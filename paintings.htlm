@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystical Art Collection - The Online Commune</title>
+    
+    <!-- Import des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Oswald:wght@200..700&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variables CSS identiques à la page principale */
+        :root {
+            --primary-bg: #d0c7c4;
+            --text-primary: #1c1911;
+            --secondary-bg: #b2a38c;
+            --accent-primary: #ae7324;
+            --accent-nature: #1e704b;
+            --kool-aid-red: #1B8B8C;
+            --accent-dark: #242625;
+            --accent-mystery: #51044e;
+            --light-text: #D9B596;
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.4;
+            color: var(--text-primary);
+            background: var(--primary-bg);
+            overflow-x: hidden;
+        }
+
+        /* Arrière-plan atmosphérique */
+        .atmospheric-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(27, 139, 140, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(47, 79, 47, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            z-index: -2;
+        }
+
+        /* Formes organiques */
+        .organic-element {
+            position: fixed;
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(45deg, 
+                rgba(30, 112, 75, 0.08), 
+                rgba(27, 139, 140, 0.06));
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            filter: blur(30px);
+            animation: morph 25s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+
+        .organic-element:nth-child(1) { top: 10%; left: 10%; animation-delay: -5s; }
+        .organic-element:nth-child(2) { bottom: 20%; right: 15%; animation-delay: -10s; transform: scale(0.7); }
+        .organic-element:nth-child(3) { top: 60%; left: 70%; animation-delay: -15s; transform: scale(0.5); }
+        .organic-element:nth-child(4) { bottom: 10%; left: 20%; animation-delay: -8s; transform: scale(0.4); }
+
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: scale(1) rotate(0deg); }
+            100% { border-radius: 40% 60% 70% 30% / 50% 60% 30% 50%; transform: scale(0.8) rotate(10deg); }
+        }
+
+        /* Container principal */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: rgba(208, 199, 196, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(28, 25, 17, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-header h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--accent-nature);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .gallery-subtitle {
+            font-family: var(--font-heading);
+            color: var(--kool-aid-red);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .artist-intro {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--kool-aid-red);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-nature);
+            text-shadow: 0 0 5px rgba(27, 139, 140, 0.5);
+        }
+
+        /* Filtres */
+        .filter-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: rgba(208, 199, 196, 0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--accent-dark);
+            color: white;
+            border: 2px solid var(--kool-aid-red);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--kool-aid-red);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(27, 139, 140, 0.3);
+        }
+
+        /* Galerie */
+        .paintings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .painting-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .painting-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(27, 139, 140, 0.3);
+            border-color: var(--kool-aid-red);
+        }
+
+        .painting-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .painting-card:hover .painting-image {
+            transform: scale(1.05);
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .painting-info {
+            padding: 1.5rem;
+        }
+
+        .painting-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--accent-nature);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .painting-description {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .painting-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .painting-size, .painting-medium {
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        .painting-price {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--kool-aid-red);
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .contact-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--kool-aid-red), var(--accent-nature));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 25px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(27, 139, 140, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* Status badges */
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .status-available {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .status-sold {
+            background: linear-gradient(135deg, #dc3545, #e74c3c);
+            color: white;
+        }
+
+        .status-commission {
+            background: linear-gradient(135deg, #ffc107, #ff8c00);
+            color: white;
+        }
+
+        /* Footer */
+        .gallery-footer {
+            background: var(--accent-dark);
+            color: var(--light-text);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-heading);
+            color: var(--kool-aid-red);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-method {
+            background: rgba(27, 139, 140, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--kool-aid-red);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+
+            .paintings-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .painting-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animation d'apparition */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hidden class pour les filtres */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Arrière-plan atmosphérique -->
+    <div class="atmospheric-bg"></div>
+    
+    <!-- Formes organiques -->
+    <div class="organic-element"></div>
+    <div class="organic-element"></div>
+    <div class="organic-element"></div>
+    <div class="organic-element"></div>
+
+    <div class="main-container">
+        <!-- Header -->
+        <header class="gallery-header fade-in">
+            <a href="index.html" class="back-link">← Retour à la Commune</a>
+            <h1>Mystical Art Collection</h1>
+            <p class="gallery-subtitle">Prophetic Visions from the Digital Commune</p>
+            <div class="artist-intro">
+                <p><strong>Shennipen</strong> - Artiste autochtone autodidacte basé au Québec, Canada. Mes œuvres fusionnent les visions prophétiques avec la mystique de la nature, explorant les connexions cachées entre les forces spirituelles et les conspirations cosmiques. Chaque peinture est infusée d'énergie mystique et de <span style="color: var(--kool-aid-red);">vérités alternatives</span>.</p>
+            </div>
+        </header>
+
+        <!-- Filtres -->
+        <div class="filter-section fade-in">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Toutes les Œuvres</button>
+                <button class="filter-btn" data-filter="available">Disponibles</button>
+                <button class="filter-btn" data-filter="nature">Nature Mystique</button>
+                <button class="filter-btn" data-filter="conspiracy">Conspirations</button>
+                <button class="filter-btn" data-filter="abstract">Abstrait</button>
+            </div>
+        </div>
+
+        <!-- Galerie -->
+        <div class="paintings-grid" id="paintings-gallery">
+            <!-- Les peintures seront générées automatiquement par JavaScript -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="gallery-footer">
+            <div class="contact-info">
+                <h3>Commandez Votre Œuvre Mystique</h3>
+                <p>Toutes les peintures sont des originaux uniques. Commissions personnalisées disponibles pour canaliser vos visions spécifiques.</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <strong>Discord:</strong> Shennipen#1337
+                    </div>
+                    <div class="contact-method">
+                        <strong>Email:</strong> prophet@commune.digital
+                    </div>
+                    <div class="contact-method">
+                        <strong>Signal:</strong> Sur demande
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+                    <em>"L'art véritable révèle les vérités que les pouvoirs établis veulent cacher."</em>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 🎨 BASE DE DONNÉES DES PEINTURES 🎨
+        // Pour ajouter une nouvelle peinture, ajoute un objet dans ce tableau
+        const paintings = [
+            {
+                title: "Kool-Aid Revelation",
+                image: "kool-aid-mouth.jpg",
+                description: "Une exploration prophétique du contrôle mental à travers les symboles corporatifs. Le rouge Kool-Aid révèle les vérités cachées sur la manipulation des masses.",
+                size: "16\" x 20\"",
+                medium: "Acrylique sur toile",
+                price: "CAD $350",
+                status: "available", // available, sold, commission
+                category: ["conspiracy", "available"],
+                contactMethod: "Discord: Shennipen#1337"
+            },
+            {
+                title: "Forest Spirits Awakening",
+                image: "forest-spirits.jpg",
+                description: "Les esprits ancestraux de la forêt québécoise émergent pour guider les âmes perdues vers la vérité. Connexion profonde avec la sagesse autochtone.",
+                size: "18\" x 24\"",
+                medium: "Huile sur toile",
+                price: "CAD $480",
+                status: "available",
+                category: ["nature", "available"],
+                contactMethod: "Signal sur demande"
+            },
+            {
+                title: "Royal Bloodline Corruption",
+                image: "royal-corruption.jpg",
+                description: "Dénonciation artistique de la consanguinité royale et ses effets sur l'humanité. Les liens génétiques maudits révélés à travers l'art visionnaire.",
+                size: "20\" x 30\"",
+                medium: "Technique mixte",
+                price: "CAD $650",
+                status: "sold",
+                category: ["conspiracy"],
+                contactMethod: "N/A - Vendu"
+            },
+            {
+                title: "Quantum Sobriety Paradox",
+                image: "quantum-paradox.jpg",
+                description: "Visualisation des dimensions parallèles où la sobriété et l'éveil spirituel s'entremêlent. Une critique des conventions sociales sur la conscience.",
+                size: "16\" x 16\"",
+                medium: "Acrylique et encres",
+                price: "CAD $420",
+                status: "available",
+                category: ["abstract", "conspiracy", "available"],
+                contactMethod: "Email: prophet@commune.digital"
+            },
+            {
+                title: "Sacred Medicine Ceremony",
+                image: "medicine-ceremony.jpg",
+                description: "Hommage aux traditions autochtones de guérison. Les plantes sacrées révèlent leurs secrets aux chercheurs de vérité sincères.",
+                size: "22\" x 28\"",
+                medium: "Acrylique sur bois",
+                price: "CAD $580",
+                status: "commission",
+                category: ["nature"],
+                contactMethod: "Commande personnalisée - Discord"
+            },
+            {
+                title: "Corporate Mascot Conspiracy",
+                image: "mascot-conspiracy.jpg",
+                description: "Les mascottes corporatives cachent des symboles occultes. Cette œuvre dévoile les messages subliminaux dans la culture populaire.",
+                size: "14\" x 18\"",
+                medium: "Encre et aquarelle",
+                price: "CAD $310",
+                status: "available",
+                category: ["conspiracy", "available"],
+                contactMethod: "Discord: Shennipen#1337"
+            },
+            {
+                title: "Aurora Mystique",
+                image: "aurora-mystique.jpg",
+                description: "Les aurores boréales du Nord québécois transmettent des messages cosmiques. Connexion entre les forces terrestres et célestes.",
+                size: "20\" x 24\"",
+                medium: "Acrylique luminescente",
+                price: "CAD $520",
+                status: "available",
+                category: ["nature", "abstract", "available"],
+                contactMethod: "Signal sur demande"
+            },
+            {
+                title: "Underground Truth Network",
+                image: "truth-network.jpg",
+                description: "Représentation du réseau souterrain de chercheurs de vérité. Nous sommes connectés par des liens invisibles mais puissants.",
+                size: "24\" x 36\"",
+                medium: "Technique mixte sur toile",
+                price: "CAD $750",
+                status: "commission",
+                category: ["conspiracy", "abstract"],
+                contactMethod: "Commission spéciale - Email"
+            }
+        ];
+
+        // Fonction pour générer le HTML d'une peinture
+        function createPaintingHTML(painting) {
+            const statusClass = `status-${painting.status}`;
+            const statusText = {
+                'available': 'Disponible',
+                'sold': 'Vendu',
+                'commission': 'Commission'
+            };
+
+            return `
+                <div class="painting-card fade-in" data-category="${painting.category.join(' ')}">
+                    <div class="status-badge ${statusClass}">${statusText[painting.status]}</div>
+                    <img src="${painting.image}" alt="${painting.title}" class="painting-image" onerror="this.src='https://via.placeholder.com/400x300/1B8B8C/FFFFFF?text=Image+à+venir'">
+                    <div class="painting-info">
+                        <h3 class="painting-title">${painting.title}</h3>
+                        <p class="painting-description">${painting.description}</p>
+                        <div class="painting-details">
+                            <div>
+                                <div class="painting-size">📐 ${painting.size}</div>
+                                <div class="painting-medium">🎨 ${painting.medium}</div>
+                            </div>
+                            <div class="painting-price">${painting.price}</div>
+                        </div>
+                        ${painting.status === 'sold' 
+                            ? '<button class="contact-btn sold" disabled>Œuvre Vendue</button>' 
+                            : `<a href="#" class="contact-btn ${painting.status}" onclick="contactArtist('${painting.title}', '${painting.contactMethod}')">Contacter l'Artiste</a>`
+                        }
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fonction pour afficher les peintures
+        function displayPaintings(paintingsToShow = paintings) {
+            const gallery = document.getElementById('paintings-gallery');
+            gallery.innerHTML = paintingsToShow.map(painting => createPaintingHTML(painting)).join('');
+        }
+
+        // Fonction de filtrage
+        function filterPaintings(category) {
+            const filteredPaintings = category === 'all' 
+                ? paintings 
+                : paintings.filter(painting => painting.category.includes(category));
+            
+            displayPaintings(filteredPaintings);
+        }
+
+        // Fonction de contact
+        function contactArtist(paintingTitle, contactMethod) {
+            alert(`Pour "${paintingTitle}":\n\n${contactMethod}\n\nMentionne le titre de l'œuvre dans ton message pour une réponse plus rapide!`);
+        }
+
+        // Event listeners pour les filtres
+        document.addEventListener('DOMContentLoaded', function() {
+            // Affichage initial
+            displayPaintings();
+
+            // Filtres
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Retirer la classe active des autres boutons
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    // Ajouter la classe active au bouton cliqué
+                    this.classList.add('active');
+                    // Filtrer les peintures
+                    filterPaintings(this.dataset.filter);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
