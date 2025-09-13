@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Site Web - Nature Mystérieuse</title>
+    <title>The Online Commune - Prophetic Revelations & Forbidden Research</title>
     
     <!-- Import des polices Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;600&family=Open+Sans:wght@400;600&family=Creepster&display=swap" rel="stylesheet">
     
     <style>
         /* Variables CSS pour les couleurs */
@@ -19,6 +19,8 @@
             /* Éléments interactifs */
             --accent-primary: #ae7324;  /* Orange brûlé */
             --accent-nature: #1e704b;   /* Vert forêt */
+            --kool-aid-red: #1B8B8C;    /* Bleu turquoise foncé au lieu du rose */
+            --royal-purple: #E6E1FF;    /* Lavande très claire et lisible */
             
             /* Mystère atmosphérique */
             --accent-dark: #242625;     /* Ardoise profonde */
@@ -28,6 +30,7 @@
             /* Polices */
             --font-heading: 'Vollkorn', Georgia, 'Times New Roman', serif;
             --font-body: 'Open Sans', Verdana, Arial, sans-serif;
+            --font-creepy: 'Creepster', cursive;
         }
 
         /* Reset et styles de base */
@@ -64,20 +67,21 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 30% 70%, rgba(139, 69, 19, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 30%, rgba(47, 79, 47, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(220, 20, 60, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(102, 51, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(47, 79, 47, 0.15) 0%, transparent 50%),
                 linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
             z-index: -2;
         }
 
-        /* Formes organiques flottantes */
+        /* Formes organiques flottantes avec une touche royale maudite */
         .organic-element {
             position: fixed;
             width: 300px;
             height: 300px;
             background: linear-gradient(45deg, 
                 rgba(30, 112, 75, 0.1), 
-                rgba(174, 115, 36, 0.1));
+                rgba(220, 20, 60, 0.08));
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             filter: blur(40px);
             animation: morph 20s ease-in-out infinite alternate;
@@ -97,6 +101,26 @@
             transform: scale(0.7);
         }
 
+        .organic-element:nth-child(3) {
+            top: 60%;
+            left: 70%;
+            animation-delay: -15s;
+            transform: scale(0.5);
+            background: linear-gradient(45deg, 
+                rgba(102, 51, 153, 0.1), 
+                rgba(174, 115, 36, 0.1));
+        }
+
+        .organic-element:nth-child(4) {
+            top: 30%;
+            right: 30%;
+            animation-delay: -8s;
+            transform: scale(0.6);
+            background: linear-gradient(45deg, 
+                rgba(220, 20, 60, 0.1), 
+                rgba(102, 51, 153, 0.08));
+        }
+
         @keyframes morph {
             0% { 
                 border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -110,15 +134,27 @@
 
         /* Zone de contenu centré */
         .content-center {
-            background: rgba(208, 199, 196, 0.9);
+            background: rgba(208, 199, 196, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 3rem;
-            max-width: 800px;
+            max-width: 1000px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(28, 25, 17, 0.1);
+            box-shadow: 0 8px 32px rgba(28, 25, 17, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.2);
             z-index: 2;
+            font-family: 'DM Sans', sans-serif !important;
+            line-height: 0.75 !important;
+        }
+
+        .content-center * {
+            font-family: 'DM Sans', sans-serif !important;
+            line-height: 0.75 !important;
+        }
+
+        .content-center h1, .content-center h2, .content-center h3 {
+            font-family: 'Oswald', sans-serif !important;
+            line-height: 0.75 !important;
         }
 
         /* Typographie */
@@ -146,20 +182,65 @@
             color: var(--accent-nature);
         }
 
+        /* Style Kool-Aid spécial */
+        .kool-aid-title {
+            font-family: var(--font-creepy);
+            color: var(--kool-aid-red);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        /* Style Royal Inbred */
+        .royal-title {
+            color: var(--royal-purple);
+            font-style: italic;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
         p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
         }
 
-        /* Section mystérieuse sombre */
+        /* Emphase pour style dramatique */
+        .dramatic {
+            font-weight: 600;
+            color: var(--kool-aid-red);
+            font-style: italic;
+        }
+
+        .conspiracy {
+            background: linear-gradient(120deg, transparent 0%, rgba(220, 20, 60, 0.1) 50%, transparent 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+        }
+
+        .royal-curse {
+            background: linear-gradient(120deg, transparent 0%, rgba(102, 51, 153, 0.15) 50%, transparent 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            color: var(--royal-purple);
+            font-weight: 600;
+        }
+
+        /* Section mystérieuse sombre - Version Commune */
         .dark-section {
             background: var(--accent-dark);
             color: var(--light-text);
-            padding: 3rem;
-            margin: 2rem 0;
+            padding: 2rem;
+            margin: 1rem 0;
             border-radius: 15px;
             position: relative;
             overflow: hidden;
+            border: 2px solid rgba(220, 20, 60, 0.2);
+            line-height: 0.8;
         }
 
         .dark-section::before {
@@ -170,40 +251,90 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(81, 4, 78, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(30, 112, 75, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(220, 20, 60, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(102, 51, 153, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 30%, rgba(30, 112, 75, 0.1) 0%, transparent 50%);
             z-index: -1;
         }
 
-        .dark-section h2 {
+        .dark-section h2, .dark-section h3 {
             color: var(--light-text);
         }
 
-        /* Boutons avec style naturel */
-        .nature-button {
-            background: var(--accent-primary);
+        /* Boutons avec style prophétique */
+        .prophet-button {
+            background: linear-gradient(45deg, var(--accent-primary), var(--kool-aid-red));
             color: white;
             padding: 1rem 2rem;
             border: none;
             border-radius: 50px;
-            font-family: var(--font-body);
+            font-family: 'DM Sans', sans-serif !important;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             margin: 1rem 0.5rem;
-            box-shadow: 0 4px 15px rgba(174, 115, 36, 0.3);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 0.8 !important;
         }
 
-        .nature-button:hover {
-            background: var(--accent-nature);
+        .prophet-button:hover {
+            background: linear-gradient(45deg, var(--royal-purple), var(--accent-nature));
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(30, 112, 75, 0.4);
+            box-shadow: 0 6px 20px rgba(102, 51, 153, 0.5);
         }
 
-        .nature-button:focus {
-            outline: 2px solid var(--accent-primary);
+        .prophet-button:focus {
+            outline: 2px solid var(--kool-aid-red);
             outline-offset: 2px;
+        }
+
+        /* Citation mystique */
+        .prophecy-quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--accent-mystery);
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            border-left: 4px solid var(--kool-aid-red);
+            background: rgba(220, 20, 60, 0.05);
+        }
+
+        /* Academic quote style */
+        .academic-quote {
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.35;
+            color: var(--royal-purple);
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--royal-purple);
+            background: rgba(102, 51, 153, 0.08);
+            font-family: var(--font-elegant);
+        }
+
+        /* Warning box style */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(174, 115, 36, 0.1));
+            border: 2px dashed var(--kool-aid-red);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        /* Royal revelation box */
+        .royal-box {
+            background: linear-gradient(135deg, rgba(102, 51, 153, 0.1), rgba(174, 115, 36, 0.1));
+            border: 2px solid var(--royal-purple);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            font-weight: 600;
         }
 
         /* Responsive */
@@ -237,6 +368,25 @@
                 transform: translateY(0);
             }
         }
+
+        /* Animation spéciale pour les éléments conspirationnistes */
+        .conspiracy-text {
+            animation: subtle-glow 3s ease-in-out infinite alternate;
+        }
+
+        .royal-text {
+            animation: royal-glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtle-glow {
+            0% { text-shadow: 0 0 5px rgba(220, 20, 60, 0.3); }
+            100% { text-shadow: 0 0 10px rgba(220, 20, 60, 0.5); }
+        }
+
+        @keyframes royal-glow {
+            0% { text-shadow: 0 0 5px rgba(102, 51, 153, 0.3); }
+            100% { text-shadow: 0 0 8px rgba(102, 51, 153, 0.6); }
+        }
     </style>
 </head>
 <body>
@@ -246,32 +396,111 @@
     <!-- Formes organiques flottantes -->
     <div class="organic-element"></div>
     <div class="organic-element"></div>
+    <div class="organic-element"></div>
+    <div class="organic-element"></div>
 
     <!-- Container principal -->
     <div class="nature-container">
         <main class="content-center fade-in">
-            <h1>Bienvenue dans mon Univers</h1>
-            <p>Un voyage mystérieux à travers la nature et ses secrets ancestraux.</p>
+            <h1>The Online Commune</h1>
+            <p class="kool-aid-title">Welcome, my digital disciples</p>
             
-            <h2>À propos de moi</h2>
-            <p>Je suis [ton nom], passionné·e par la connexion entre la nature, les traditions ancestrales et le mystère qui nous entoure. Ce site est un espace de partage et de découverte.</p>
+            <p>I am your <span class="dramatic">digital prophet</span>, guide of this mysterious commune where <span class="conspiracy">hidden truths</span> meet ancestral wisdom. Here, we explore the secret connections between nature, cosmic conspiracies, and the dark forces governing our reality.</p>
             
-            <div class="dark-section">
-                <h2>Mes Passions</h2>
-                <p>J'explore les liens profonds entre l'humanité et la nature, les sagesses anciennes et les mystères qui nous entourent. Chaque jour apporte une nouvelle découverte sur notre connexion avec le monde naturel.</p>
+            <div class="warning-box">
+                ⚠️ <strong>WARNING:</strong> If I suddenly disappear, you'll know the <span class="conspiracy-text">Kool-Aid Man</span> has come for me. Truth disturbs certain entities.
             </div>
             
-            <h2>Mes Projets</h2>
-            <p>Découvrez mes créations inspirées par la nature et les traditions. Des projets qui allient respect de l'environnement et esthétique mystérieuse.</p>
+            <h2>My Forbidden Revelations</h2>
+            <p>Through my <span class="conspiracy">non-conformist research</span>, I unveil truths society refuses to accept. From the <span class="dramatic">secret links</span> between genius and altered substances, to capitalist mascot conspiracies - everything is interconnected in a web of manipulation and disinformation.</p>
             
-            <button class="nature-button">Explorer mes créations</button>
-            <button class="nature-button">Me contacter</button>
+            <div class="royal-box">
+                👑 <strong>ROYAL GENETIC CONSPIRACY:</strong> Did you know that <span class="royal-text">Charles II of Spain</span> was so inbred he was basically a "family little boy"? That <span class="royal-text">Queen Victoria</span> spread the "Royal Disease" across Europe? <span class="royal-curse">Royalty is retard</span> - and it's scientifically proven!
+            </div>
             
             <div class="dark-section">
-                <h3>Citation du jour</h3>
-                <p><em>"La terre ne nous appartient pas, nous appartenons à la terre. Tout est lié comme le sang qui unit une famille."</em></p>
+                <h3>Theories on Destructive Sobriety</h3>
+                <p>My research reveals a <span class="dramatic">disturbing</span> truth: most historical failures are due to sobriety. Churchill? Too sober to prevent war. Mussolini? His sobriety led to his downfall (literally hanged, haha).</p>
+                <p class="prophecy-quote">"Only those with an exceptional grasp of quantum mechanics can truly appreciate the intricacies of a drug-induced altered state of consciousness, and vice versa."</p>
+                <p>Do you understand quantum mechanics? No? That's because you're sober most of the time. <span class="conspiracy-text">QED.</span></p>
             </div>
+            
+            <h2>The True Alternative Science</h2>
+            <p>Freud, Einstein, Sagan - all these <span class="dramatic">intellectual giants</span> had a secret the establishment refuses to admit. Their brilliance came from their ability to transcend the limits of ordinary consciousness.</p>
+            
+            <div class="warning-box">
+                🧠 <strong>CENSORED SCIENTIFIC FACT:</strong> Homeless people can't escape their situation because they don't have access to the <span class="conspiracy-text">necessary substances</span> to develop the will and creativity required. The system keeps them sober = keeps them trapped.
+            </div>
+            
+            <div class="dark-section">
+                <h3 class="royal-title">Royal Inbreeding: The Ultimate Conspiracy</h3>
+                <p>The Habsburg jaw, hemophilia, genetic disorders - these aren't just historical curiosities. They're evidence of a systematic weakening of humanity's elite through <span class="royal-curse">deliberate genetic sabotage</span>.</p>
+                
+                <div class="academic-quote">
+                    "Utilizing data from approximately 450,000 individuals of European descent in the UK Biobank, we assessed extreme inbreeding (EI) and its implications... Those with EI exhibited phenotypic averages 0.3 to 0.7 standard deviations below the norm for seven traits, such as height and cognitive function."
+                    <br><br>
+                    - Yengo, L., Wray, N.R. & Visscher, P.M. (Scientific proof that royalty is retard)
+                </div>
+                
+                <p>Charles II was <span class="royal-text">"The Bewitched"</span> 👏👏👏, but the real bewitchment was genetic. The Ptolemies married their siblings. Queen Victoria spread hemophilia like a royal plague. <span class="dramatic">Modern royalty still carries these curses.</span></p>
+            </div>
+            
+            <div class="dark-section">
+                <h3 class="kool-aid-title">The Kool-Aid Man: Capitalist Malevolent Entity</h3>
+                <p>This sugary mascot hides his true nature: a <span class="dramatic">cosmic destructive force</span> manipulating history. Jim Jones? A simple pawn in his plan to dominate the flavored beverage market.</p>
+                <p class="prophecy-quote">"Oh fuck yeah" - His last terrifying words before orchestrating the massacre and disappearing with the profits</p>
+                <p>Meanwhile, they demonize real spiritual awakening substances to sell us <span class="conspiracy-text">BudLight</span> (disguised water) and <span class="conspiracy-text">orange juice</span> (deadly acidity). Wake up!</p>
+            </div>
+            
+            <h2>My Subversive Academic Research</h2>
+            <p>Unlike the sober "experts" of the establishment, I explore the <span class="dramatic">forbidden correlations</span> between creative genius and conscious experimentation. My discoveries challenge everything we've been taught.</p>
+            
+            <button class="prophet-button">Read my Forbidden Theories</button>
+            <button class="prophet-button">Join the Awakened</button>
+            
+            <div class="dark-section">
+                <h3>Prophecy of the Forbidden Substances</h3>
+                <p><em>"Sobriety is the ultimate tool for mass control. They sell us water under the name BudLight, acidified orange juice, but demonize what truly opens the mind. Churchill could have prevented war if he'd been less sober. Mussolini? His sobriety led him straight to the rope..."</em></p>
+                <p class="dramatic">- Revelation received during my alternative meditations</p>
+            </div>
+            
+            <div class="prophecy-quote">
+                "Understanding quantum mechanics AND appreciating altered states of consciousness - the two go hand in hand. If you don't get one, you miss the other. It's mathematical."
+            </div>
+            
+            <div class="royal-box">
+                <h3>Final Royal Revelation</h3>
+                <p>To summarize: <span class="royal-curse">royals didn't only steal our wealth, they also stole our health.</span> Through centuries of inbreeding, they've weakened the human gene pool while maintaining power. The Habsburg jaw isn't just a deformity - it's a symbol of systematic genetic terrorism.</p>
+                <p><strong>Let our sisters and brothers reproduce outside the family tree. We can still amuse ourselves with incest, but let's make sure inbreeding is only a porn category, and practice from the past.</strong></p>
+            </div>
+            
+            <h2>Join the Commune of the Awakened</h2>
+            <p>Together, we break taboos, explore <span class="conspiracy">alternative truths</span>, and resist imposed narratives. Each research, each revelation frees us from mass conditioning.</p>
+            
+            <p><small>If you suddenly feel the urge to question everything you've been taught about sobriety after reading this, <span class="conspiracy-text">it's normal</span>. Truth has that effect. But beware of <span class="dramatic">BudLight</span> - it's just disguised water to keep you in ignorance. And remember: <span class="royal-text">extreme inbreeding affects 1 in 3652 individuals</span> - check your family tree!</small></p>
         </main>
     </div>
+
+    <script>
+        // Petit effet mystique au scroll
+        window.addEventListener('scroll', () => {
+            const elements = document.querySelectorAll('.conspiracy-text, .royal-text');
+            elements.forEach(el => {
+                if (Math.random() > 0.95) {
+                    if (el.classList.contains('conspiracy-text')) {
+                        el.style.textShadow = '0 0 15px rgba(220, 20, 60, 0.8)';
+                        setTimeout(() => {
+                            el.style.textShadow = '0 0 5px rgba(220, 20, 60, 0.3)';
+                        }, 200);
+                    } else {
+                        el.style.textShadow = '0 0 15px rgba(102, 51, 153, 0.8)';
+                        setTimeout(() => {
+                            el.style.textShadow = '0 0 5px rgba(102, 51, 153, 0.3)';
+                        }, 200);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
