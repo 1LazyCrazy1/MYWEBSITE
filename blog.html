@@ -26,18 +26,18 @@
             line-height: 0.75 !important;
         }
 
-        /* Variables CSS */
+        /* Variables CSS avec thème bleu-violet */
         :root {
             --primary-bg: #d0c7c4;
             --text-primary: #1c1911;
             --secondary-bg: #b2a38c;
-            --accent-primary: #ae7324;
-            --accent-nature: #1e704b;
-            --kool-aid-red: #1B8B8C;
-            --royal-purple: #1B8B8C;
-            --accent-dark: #242625;
-            --accent-mystery: #51044e;
-            --light-text: #D9B596;
+            --accent-primary: #667eea;  /* Bleu-violet principal */
+            --accent-nature: #764ba2;   /* Violet plus profond */
+            --kool-aid-red: #5b67d1;    /* Bleu-violet électrique */
+            --royal-purple: #6c5ce7;    /* Violet royal */
+            --accent-dark: #2d3436;     /* Gris-bleu foncé */
+            --accent-mystery: #6c5ce7;  /* Violet mystique */
+            --light-text: #ddd6fe;      /* Bleu-violet très clair */
             --font-heading: 'Oswald', sans-serif;
             --font-body: 'DM Sans', sans-serif;
         }
@@ -109,14 +109,14 @@
             position: relative;
         }
 
-        /* Formes organiques d'arrière-plan */
+        /* Formes organiques d'arrière-plan avec thème bleu-violet */
         .organic-bg {
             position: fixed;
             width: 200px;
             height: 200px;
             background: linear-gradient(45deg, 
-                rgba(27, 139, 140, 0.05), 
-                rgba(174, 115, 36, 0.08));
+                rgba(102, 126, 234, 0.08), 
+                rgba(118, 75, 162, 0.06));
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             filter: blur(30px);
             animation: float 15s ease-in-out infinite alternate;
@@ -197,12 +197,12 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--kool-aid-red), var(--accent-nature));
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-nature));
         }
 
         .article-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(27, 139, 140, 0.2);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.2);
             border-color: var(--kool-aid-red);
         }
 
@@ -255,13 +255,12 @@
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
             display: inline-block;
-            target: "_blank";
         }
 
         .read-more:hover {
             background: var(--accent-nature);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(27, 139, 140, 0.3);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         /* Section catégories */
@@ -361,7 +360,7 @@
         <!-- Header du blog -->
         <header class="blog-header fade-in">
             <h1 class="blog-title">Prophetic Research Archive</h1>
-            <p class="blog-subtitle">Forbidden theories, alternative truths, and cosmic conspiracies revealed</p>
+            <p class="blog-subtitle">Published research on Medium - Forbidden theories and alternative truths</p>
         </header>
 
         <!-- Filtres par catégorie -->
@@ -370,7 +369,7 @@
             <button class="category-btn">Kool-Aid Conspiracy</button>
             <button class="category-btn">Royal Genetics</button>
             <button class="category-btn">Sobriety Studies</button>
-            <button class="category-btn">Quantum Consciousness</button>
+            <button class="category-btn">Olympic Reform</button>
         </div>
 
         <!-- Grille d'articles -->
