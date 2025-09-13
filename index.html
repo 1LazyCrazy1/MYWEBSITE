@@ -5,50 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Online Commune - Digital Prophet & Alternative Research</title>
     
-    <!-- Import des meilleures alternatives pour Smooth Sans et Betas Neue -->
+    <!-- Import des polices Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Oswald:wght@200..700&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     
     <style>
-        /* Force les vraies alternatives aux polices demandées ABSOLUMENT PARTOUT */
-        *, *::before, *::after {
-            font-family: 'DM Sans', sans-serif !important; /* Alternative à Smooth Sans */
-            line-height: 0.75 !important;
-        }
-        
-        h1, h2, h3, h4, h5, h6, .kool-aid-title, .royal-title {
-            font-family: 'Oswald', sans-serif !important; /* Alternative à Betas Neue */
-            line-height: 0.75 !important;
-        }
-
-        /* Force même sur les spans et autres éléments inline */
-        span, em, strong, b, i, a, small {
-            font-family: 'DM Sans', sans-serif !important;
-            line-height: 0.75 !important;
-        }
-
         /* Variables CSS pour les couleurs */
         :root {
             /* Couleurs terre de base */
-            --primary-bg: #d0c7c4;      /* Beige sablé */
-            --text-primary: #1c1911;    /* Noir charbon */
-            --secondary-bg: #b2a38c;    /* Taupe chaud */
+            --primary-bg: #d0c7c4;
+            --text-primary: #1c1911;
+            --secondary-bg: #b2a38c;
             
             /* Éléments interactifs */
-            --accent-primary: #ae7324;  /* Orange brûlé */
-            --accent-nature: #1e704b;   /* Vert forêt */
-            --kool-aid-red: #1B8B8C;    /* Bleu turquoise foncé au lieu du rose */
-            --royal-purple: #1B8B8C;    /* Même bleu turquoise que le kool-aid */
+            --accent-primary: #ae7324;
+            --accent-nature: #1e704b;
+            --kool-aid-red: #1B8B8C;
+            --royal-purple: #1B8B8C;
             
             /* Mystère atmosphérique */
-            --accent-dark: #242625;     /* Ardoise profonde */
-            --accent-mystery: #51044e;  /* Violet profond */
-            --light-text: #D9B596;     /* Beige antique */
+            --accent-dark: #242625;
+            --accent-mystery: #51044e;
+            --light-text: #D9B596;
             
-            /* Polices - Vraies alternatives */
-            --font-heading: 'Oswald', sans-serif; /* Alternative à Betas Neue */
-            --font-body: 'DM Sans', sans-serif; /* Alternative à Smooth Sans */
+            /* Polices */
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
             --font-elegant: 'Manrope', sans-serif;
         }
 
@@ -60,22 +43,18 @@
         }
 
         body {
-            font-family: 'DM Sans', sans-serif !important;
+            font-family: var(--font-body);
             font-size: 1rem;
-            line-height: 0.75 !important;
+            line-height: 1.4;
             color: var(--text-primary);
             background: var(--primary-bg);
             overflow-x: hidden;
         }
 
-        /* Container principal centré */
+        /* Container principal */
         .nature-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             position: relative;
-            padding: 2rem;
+            min-height: 100vh;
         }
 
         /* Arrière-plan atmosphérique */
@@ -92,7 +71,7 @@
             z-index: -2;
         }
 
-        /* Formes organiques flottantes avec une touche royale maudite */
+        /* Formes organiques flottantes */
         .organic-element {
             position: fixed;
             width: 300px;
@@ -134,9 +113,6 @@
             left: 20%;
             animation-delay: -8s;
             transform: scale(0.4);
-            background: linear-gradient(45deg, 
-                rgba(30, 112, 75, 0.08), 
-                rgba(27, 139, 140, 0.06));
         }
 
         .organic-element:nth-child(5) {
@@ -144,9 +120,6 @@
             right: 25%;
             animation-delay: -12s;
             transform: scale(0.6);
-            background: linear-gradient(45deg, 
-                rgba(174, 115, 36, 0.06), 
-                rgba(30, 112, 75, 0.08));
         }
 
         .organic-element:nth-child(6) {
@@ -154,9 +127,6 @@
             right: 5%;
             animation-delay: -18s;
             transform: scale(0.3);
-            background: radial-gradient(circle, 
-                rgba(27, 139, 140, 0.08), 
-                transparent);
         }
 
         @keyframes morph {
@@ -170,17 +140,15 @@
             }
         }
 
-        /* The Last Supper Banner Styles */
+        /* Bannière Last Supper */
         .last-supper-banner {
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: relative;
             width: 100%;
             height: 300px;
             overflow: hidden;
-            z-index: 1;
             border-radius: 0 0 20px 20px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
         }
 
         .last-supper-banner img {
@@ -196,7 +164,6 @@
             transform: scale(1.02);
         }
 
-        /* Overlay mystique sur l'image */
         .last-supper-banner::after {
             content: '';
             position: absolute;
@@ -211,12 +178,10 @@
                 transparent 70%, 
                 rgba(28, 25, 17, 0.2) 100%
             );
-            z-index: 2;
         }
 
-        /* Zone de contenu centré */
+        /* Zone de contenu principal */
         .content-center {
-            margin-top: 320px;
             position: relative;
             z-index: 3;
             background: rgba(208, 199, 196, 0.95);
@@ -224,29 +189,18 @@
             border-radius: 20px;
             padding: 3rem;
             max-width: 1000px;
+            margin: 0 auto 2rem auto;
             text-align: center;
             box-shadow: 0 8px 32px rgba(28, 25, 17, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            font-family: 'DM Sans', sans-serif !important;
-            line-height: 0.75 !important;
-        }
-
-        .content-center * {
-            font-family: 'DM Sans', sans-serif !important;
-            line-height: 0.75 !important;
-        }
-
-        .content-center h1, .content-center h2, .content-center h3 {
-            font-family: 'Oswald', sans-serif !important;
-            line-height: 0.75 !important;
         }
 
         /* Typographie */
-        h1, h2, h3 {
-            font-family: 'Oswald', sans-serif !important;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
             font-weight: 600;
-            line-height: 0.9 !important;
-            margin-bottom: 0.5rem !important;
+            line-height: 1.2;
+            margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -255,12 +209,13 @@
             font-size: clamp(2rem, 6vw, 4rem);
             color: var(--accent-nature);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
         }
 
         h2 { 
             font-size: clamp(1.5rem, 4vw, 2.5rem);
             color: var(--accent-primary);
-            margin-top: 2rem;
+            margin: 2rem 0 1.5rem 0;
         }
 
         h3 { 
@@ -268,47 +223,66 @@
             color: var(--accent-nature);
         }
 
-        /* Style Kool-Aid spécial - more elegant */
+        h4 {
+            font-size: 1.2rem;
+            color: var(--accent-dark);
+            margin: 0.5rem 0;
+        }
+
+        /* Style Kool-Aid spécial */
         .kool-aid-title {
-            font-family: 'Oswald', sans-serif !important;
+            font-family: var(--font-heading);
             color: var(--kool-aid-red);
             font-size: clamp(1.3rem, 3vw, 1.9rem);
             font-weight: 600;
-            font-style: normal !important;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
             letter-spacing: 1px;
             text-transform: uppercase;
-            line-height: 0.75 !important;
+            margin-bottom: 1.5rem;
         }
 
         p {
-            margin-bottom: 0.75rem !important;
+            margin-bottom: 1rem;
             font-size: 1.05rem;
-            line-height: 0.75 !important;
-            font-family: 'DM Sans', sans-serif !important;
+            line-height: 1.6;
+            font-family: var(--font-body);
         }
 
-        /* Emphase pour style dramatique */
+        /* Emphases */
         .dramatic {
             font-weight: 600;
             color: var(--kool-aid-red);
-            font-style: normal !important;
-            font-family: 'DM Sans', sans-serif !important;
-            line-height: 0.75 !important;
         }
 
         .conspiracy {
             background: linear-gradient(120deg, transparent 0%, rgba(27, 139, 140, 0.1) 50%, transparent 100%);
             padding: 0.2rem 0.5rem;
             border-radius: 5px;
-            font-family: 'DM Sans', sans-serif !important;
-            line-height: 0.75 !important;
         }
 
-        /* Navigation principale avec backgrounds psychédéliques */
+        .conspiracy-text {
+            animation: subtle-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtle-glow {
+            0% { text-shadow: 0 0 5px rgba(27, 139, 140, 0.3); }
+            100% { text-shadow: 0 0 10px rgba(27, 139, 140, 0.5); }
+        }
+
+        /* Warning box */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(27, 139, 140, 0.1), rgba(174, 115, 36, 0.1));
+            border: 2px dashed var(--kool-aid-red);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        /* Navigation principale */
         .main-nav {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
@@ -323,19 +297,15 @@
             border: 2px solid rgba(27, 139, 140, 0.5);
             text-decoration: none;
             display: block;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
             min-height: 200px;
             overflow: hidden;
         }
 
-        /* Backgrounds psychédéliques avec gradients colorés */
+        /* Backgrounds psychédéliques */
         .nav-card.blog {
             background: 
                 radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.8) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.7) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(69, 183, 209, 0.6) 0%, transparent 50%),
                 linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             animation: psychedelic-blog 8s ease-in-out infinite alternate;
         }
@@ -344,7 +314,6 @@
             background: 
                 radial-gradient(circle at 60% 30%, rgba(138, 43, 226, 0.8) 0%, transparent 50%),
                 radial-gradient(circle at 30% 70%, rgba(186, 85, 211, 0.7) 0%, transparent 50%),
-                radial-gradient(circle at 70% 90%, rgba(75, 0, 130, 0.6) 0%, transparent 50%),
                 linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
             animation: psychedelic-paintings 10s ease-in-out infinite alternate;
         }
@@ -353,7 +322,6 @@
             background: 
                 radial-gradient(circle at 40% 40%, rgba(0, 255, 127, 0.8) 0%, transparent 50%),
                 radial-gradient(circle at 90% 10%, rgba(255, 0, 255, 0.7) 0%, transparent 50%),
-                radial-gradient(circle at 10% 90%, rgba(0, 191, 255, 0.6) 0%, transparent 50%),
                 linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             animation: psychedelic-discord 12s ease-in-out infinite alternate;
         }
@@ -373,7 +341,6 @@
             100% { filter: hue-rotate(40deg) saturate(1.1); }
         }
 
-        /* Overlay pour la lisibilité du texte */
         .nav-card::before {
             content: '';
             position: absolute;
@@ -420,11 +387,11 @@
 
         .nav-card p {
             color: white;
-            line-height: 1.2 !important;
+            line-height: 1.4;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* Section d'introduction compacte */
+        /* Section d'introduction */
         .intro-section {
             margin: 2rem 0;
             text-align: center;
@@ -436,21 +403,10 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
         }
 
-        /* Warning box style */
-        .warning-box {
-            background: linear-gradient(135deg, rgba(27, 139, 140, 0.1), rgba(174, 115, 36, 0.1));
-            border: 2px dashed var(--kool-aid-red);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 10px;
-            font-weight: 600;
-            line-height: 0.8 !important;
-            font-family: 'DM Sans', sans-serif !important;
-        }
-
-        /* Styles pour les images dans les sections */
+        /* Images preview */
         .section-image {
             max-width: 150px;
             border-radius: 10px;
@@ -473,7 +429,7 @@
             opacity: 0.7;
         }
 
-        /* Footer styles */
+        /* Footer */
         .mystical-footer {
             background: var(--accent-dark);
             color: var(--light-text);
@@ -499,7 +455,7 @@
         }
 
         .footer-signature {
-            font-family: 'Oswald', sans-serif !important;
+            font-family: var(--font-heading);
             font-size: 1.2rem;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -511,36 +467,7 @@
             font-style: italic;
             font-size: 0.9rem;
             opacity: 0.8;
-            line-height: 1.2 !important;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nature-container {
-                padding: 1rem;
-            }
-            
-            .content-center {
-                padding: 2rem;
-                margin-top: 280px;
-            }
-            
-            .organic-element {
-                width: 200px;
-                height: 200px;
-            }
-
-            .main-nav {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-card {
-                padding: 1.5rem;
-            }
-
-            .section-image {
-                max-width: 100px;
-            }
+            line-height: 1.4;
         }
 
         /* Animation d'apparition */
@@ -559,14 +486,39 @@
             }
         }
 
-        /* Animation spéciale pour les éléments conspirationnistes */
-        .conspiracy-text {
-            animation: subtle-glow 3s ease-in-out infinite alternate;
-        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-center {
+                padding: 2rem;
+                margin: 0 1rem 2rem 1rem;
+            }
+            
+            .organic-element {
+                width: 200px;
+                height: 200px;
+            }
 
-        @keyframes subtle-glow {
-            0% { text-shadow: 0 0 5px rgba(27, 139, 140, 0.3); }
-            100% { text-shadow: 0 0 10px rgba(27, 139, 140, 0.5); }
+            .main-nav {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .nav-card {
+                padding: 1.5rem;
+                min-height: 180px;
+            }
+
+            .section-image {
+                max-width: 100px;
+            }
+
+            .last-supper-banner {
+                height: 200px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -584,25 +536,28 @@
 
     <!-- Container principal -->
     <div class="nature-container">
-        <!-- Bannière Last Supper dramatique -->
+        <!-- Bannière Last Supper -->
         <div class="last-supper-banner">
             <img src="last-supper.jpg" alt="The Last Supper - Kool-Aid Conspiracy">
         </div>
 
-        <main class="content-center fade-in">
+        <!-- Contenu principal -->
+        <div class="content-center fade-in">
             <h1>The Online Commune</h1>
             <p class="kool-aid-title">Welcome to the Digital Prophet's Domain</p>
-                <div class="warning-box">
-                    ⚠️ <strong>WARNING:</strong> If I suddenly disappear, you'll know the <span class="conspiracy-text">Kool-Aid Man or the gouvernments</span> has come for me. Truth disturbs certain entities.
-                </div>
+            
+            <div class="warning-box">
+                ⚠️ <strong>WARNING:</strong> If I suddenly disappear, you'll know the <span class="conspiracy-text">Kool-Aid Man or the governments</span> has come for me. Truth disturbs certain entities.
             </div>
-            <h4>LOCATION ; THE COMMUNE</h4>
+            
+            <h4>LOCATION : THE COMMUNE</h4>
             <h3>AUTHORIZED BY THE PROPHET LAZY CRAZY</h3>
             <p class="kool-aid-title">CLASSIFICATION : FOR IMMEDIATE SPIRITUAL DISSEMINATION</p>
             
             <div class="intro-section">
                 <p class="intro-brief">I am your <span class="dramatic">digital prophet</span>, guide of this mysterious commune where <span class="conspiracy">hidden truths</span> meet ancestral wisdom. Here, we explore forbidden connections between nature, cosmic conspiracies, and the dark forces governing reality.</p>
-        <main class="content-center fade-in">
+            </div>
+
             <h2>Explore Kool-Aid MKULTRA pieces of sweet truth</h2>
             
             <nav class="main-nav">
@@ -613,7 +568,7 @@
 
                 <a href="paintings.html" class="nav-card paintings">
                     <h3>Mystical Art Collection</h3>
-                    <p>Original paintings for sale infused with prophetic visions and indigenous nature mystique. Each piece is made by me, self-taught young indigenous artist located in the province of Kupec, Canada.</p>
+                    <p>Original paintings for sale infused with prophetic visions and indigenous nature mystique. Each piece is made by me, self-taught young indigenous artist located in the province of Quebec, Canada.</p>
                 </a>
 
                 <a href="discord.html" class="nav-card discord">
@@ -631,17 +586,17 @@
                 </div>
                 <p><small>Current investigations: <span class="conspiracy-text">Quantum mechanics vs sobriety</span>, corporate mascot manipulation, and <span class="conspiracy-text">extreme inbreeding affects 1 in 3652 individuals</span> - the royal genetic terrorism continues.</small></p>
             </div>
+        </div>
 
-            <!-- Footer mystique -->
-            <footer class="mystical-footer">
-                <div class="footer-signature">Shennipen</div>
-                <div class="footer-subtitle">Jim Jones, The Kool-Aid Man, and the mystical power of forbidden substance</div>
-            </footer>
-        </main>
+        <!-- Footer mystique -->
+        <footer class="mystical-footer">
+            <div class="footer-signature">Shennipen</div>
+            <div class="footer-subtitle">Jim Jones, The Kool-Aid Man, and the mystical power of forbidden substance</div>
+        </footer>
     </div>
 
     <script>
-        // Petit effet mystique au scroll
+        // Effet mystique au scroll
         window.addEventListener('scroll', () => {
             const elements = document.querySelectorAll('.conspiracy-text');
             elements.forEach(el => {
@@ -651,17 +606,6 @@
                         el.style.textShadow = '0 0 5px rgba(27, 139, 140, 0.3)';
                     }, 200);
                 }
-            });
-        });
-
-        // Effet de hover sur les cartes de navigation
-        document.querySelectorAll('.nav-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.background = 'linear-gradient(135deg, #333, var(--accent-dark))';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.background = 'linear-gradient(135deg, var(--accent-dark), #333)';
             });
         });
     </script>
