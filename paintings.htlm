@@ -41,6 +41,40 @@
             overflow-x: hidden;
         }
 
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            font-family: var(--font-heading);
+        }
+
+        .lang-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 4px;
+            text-decoration: none;
+            color: var(--accent-nature);
+            border: 2px solid var(--accent-nature);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .lang-btn.active {
+            background-color: var(--accent-nature);
+            color: white;
+        }
+
+        .lang-btn:hover {
+            background-color: var(--kool-aid-red);
+            border-color: var(--kool-aid-red);
+            color: white;
+        }
+
         /* Arrière-plan atmosphérique */
         .atmospheric-bg {
             position: fixed;
@@ -283,6 +317,17 @@
             filter: brightness(1.1);
         }
 
+        .contact-btn.sold {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .contact-btn.sold:hover {
+            transform: none;
+            box-shadow: none;
+            filter: none;
+        }
+
         /* Status badges */
         .status-badge {
             position: absolute;
@@ -379,6 +424,16 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
         }
 
         /* Animation d'apparition */
@@ -398,6 +453,12 @@
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <a href="#" class="lang-btn active">English</a>
+        <a href="#" class="lang-btn" onclick="alert('Version française à venir ! / French version coming soon!')">Français</a>
+    </div>
+
     <!-- Arrière-plan atmosphérique -->
     <div class="atmospheric-bg"></div>
     
@@ -410,22 +471,22 @@
     <div class="main-container">
         <!-- Header -->
         <header class="gallery-header fade-in">
-            <a href="index.html" class="back-link">← Retour à la Commune</a>
+            <a href="index.html" class="back-link">← Back to Commune</a>
             <h1>Mystical Art Collection</h1>
             <p class="gallery-subtitle">Prophetic Visions from the Digital Commune</p>
             <div class="artist-intro">
-                <p><strong>Shennipen</strong> - Artiste autochtone autodidacte basé au Québec, Canada. Mes œuvres fusionnent les visions prophétiques avec la mystique de la nature, explorant les connexions cachées entre les forces spirituelles et les conspirations cosmiques. Chaque peinture est infusée d'énergie mystique et de <span style="color: var(--kool-aid-red);">vérités alternatives</span>.</p>
+                <p><strong>Shennipen</strong> - Indigenous self-taught artist based in Quebec, Canada. My works fuse prophetic visions with nature mysticism, exploring the hidden connections between spiritual forces and cosmic conspiracies. Each painting is infused with mystical energy and <span style="color: var(--kool-aid-red);">alternative truths</span>.</p>
             </div>
         </header>
 
         <!-- Filtres -->
         <div class="filter-section fade-in">
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Toutes les Œuvres</button>
-                <button class="filter-btn" data-filter="available">Disponibles</button>
-                <button class="filter-btn" data-filter="nature">Nature Mystique</button>
-                <button class="filter-btn" data-filter="conspiracy">Conspirations</button>
-                <button class="filter-btn" data-filter="abstract">Abstrait</button>
+                <button class="filter-btn active" data-filter="all">All Works</button>
+                <button class="filter-btn" data-filter="available">Available</button>
+                <button class="filter-btn" data-filter="nature">Mystical Nature</button>
+                <button class="filter-btn" data-filter="conspiracy">Conspiracies</button>
+                <button class="filter-btn" data-filter="abstract">Abstract</button>
             </div>
         </div>
 
@@ -437,8 +498,8 @@
         <!-- Footer -->
         <footer class="gallery-footer">
             <div class="contact-info">
-                <h3>Commandez Votre Œuvre Mystique</h3>
-                <p>Toutes les peintures sont des originaux uniques. Commissions personnalisées disponibles pour canaliser vos visions spécifiques.</p>
+                <h3>Commission Your Mystical Artwork</h3>
+                <p>All paintings are unique originals. Custom commissions available to channel your specific visions.</p>
                 
                 <div class="contact-methods">
                     <div class="contact-method">
@@ -448,71 +509,146 @@
                         <strong>Email:</strong> prophet@commune.digital
                     </div>
                     <div class="contact-method">
-                        <strong>Signal:</strong> Sur demande
+                        <strong>Signal:</strong> Upon request
                     </div>
                 </div>
                 
                 <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
-                    <em>"L'art véritable révèle les vérités que les pouvoirs établis veulent cacher."</em>
+                    <em>"True art reveals the truths that the powers that be want to hide."</em>
                 </p>
             </div>
         </footer>
     </div>
 
     <script>
-        // 🎨 BASE DE DONNÉES DES PEINTURES 🎨
-        // Pour ajouter une nouvelle peinture, ajoute un objet dans ce tableau
+        // 🎨 PAINTINGS DATABASE 🎨
         const paintings = [
             {
                 title: "Bambi Mimic",
-                image: "Bambi_Mimic.jpg",
-                description: "This is Bambi Mimic, a new friend.
-                Behind its sweet smile, its mischievous eyes hide ancient secrets. Do you dare to discover what it knows?
-                This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks. The style is both figurative and slightly abstract, inviting the viewer to dive into a universe that is both dreamlike and intriguing..",
-                size: "12\" x 12\"",
-                medium: "Acrylic sur toile",
-                price: "CAD $85 + expedition",
-                status: "available", // available, sold, commission
+                image: "images/Bambi_Mimic.jpg",
+                description: "This is Bambi Mimic, a new friend. Behind its sweet smile, its mischievous eyes hide ancient secrets. Do you dare to discover what it knows? This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks. The style is both figurative and slightly abstract, inviting the viewer to dive into a universe that is both dreamlike and intriguing.",
+                size: "12\" × 12\"",
+                medium: "Acrylic on canvas",
+                price: "$85 CAD",
+                status: "available",
+                category: ["abstract", "available"],
+                contactMethod: "Email: Coming soob"
+            },
+            {
+                title: "Kool-Aid Revelation",
+                image: "images/kool-aid-mouth.jpg",
+                description: "A prophetic exploration of mind control through corporate symbols. The Kool-Aid red reveals hidden truths about mass manipulation.",
+                size: "16\" × 20\"",
+                medium: "Acrylic on canvas",
+                price: "$350 CAD",
+                status: "available",
                 category: ["conspiracy", "available"],
-                contactMethod: "Email: Shennipen#1337"
+                contactMethod: "Discord: Shennipen#1337"
             },
             {
                 title: "Forest Spirits Awakening",
-                image: "Bambi_Mimic.jpg",
-                description: "Les esprits ancestraux de la forêt québécoise émergent pour guider les âmes perdues vers la vérité. Connexion profonde avec la sagesse autochtone.",
-                size: "18\" x 24\"",
-                medium: "Huile sur toile",
-                price: "CAD $480",
+                image: "images/forest-spirits.jpg",
+                description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth. Deep connection with indigenous wisdom.",
+                size: "18\" × 24\"",
+                medium: "Oil on canvas",
+                price: "$480 CAD",
                 status: "available",
                 category: ["nature", "available"],
-                contactMethod: "Signal sur demande"
+                contactMethod: "Signal upon request"
             },
             {
                 title: "Royal Bloodline Corruption",
-                image: "Bambi_Mimic.jpg",
-                description: "Dénonciation artistique de la consanguinité royale et ses effets sur l'humanité. Les liens génétiques maudits révélés à travers l'art visionnaire.",
-                size: "20\" x 30\"",
-                medium: "Technique mixte",
-                price: "CAD $650",
+                image: "images/royal-corruption.jpg",
+                description: "Artistic denunciation of royal inbreeding and its effects on humanity. The cursed genetic links revealed through visionary art.",
+                size: "20\" × 30\"",
+                medium: "Mixed media",
+                price: "$650 CAD",
                 status: "sold",
                 category: ["conspiracy"],
-                contactMethod: "N/A - Vendu"
+                contactMethod: "N/A - Sold"
             },
             {
                 title: "Quantum Sobriety Paradox",
-                image: "Bambi_Mimic.jpg",
-                description: "Visualisation des dimensions parallèles où la sobriété et l'éveil spirituel s'entremêlent. Une critique des conventions sociales sur la conscience.",
-                size: "16\" x 16\"",
-                medium: "Acrylique et encres",
-                price: "CAD $420",
+                image: "images/quantum-paradox.jpg",
+                description: "Visualization of parallel dimensions where sobriety and spiritual awakening intertwine. A critique of social conventions on consciousness.",
+                size: "16\" × 16\"",
+                medium: "Acrylic and inks",
+                price: "$420 CAD",
                 status: "available",
                 category: ["abstract", "conspiracy", "available"],
                 contactMethod: "Email: prophet@commune.digital"
-            },
-           
+            }
         ];
 
-     
+        // Function to create painting HTML
+        function createPaintingHTML(painting) {
+            const statusClass = `status-${painting.status}`;
+            const statusText = {
+                'available': 'Available',
+                'sold': 'Sold',
+                'commission': 'Commission'
+            };
+
+            return `
+                <div class="painting-card fade-in" data-category="${painting.category.join(' ')}">
+                    <div class="status-badge ${statusClass}">${statusText[painting.status]}</div>
+                    <img src="${painting.image}" alt="${painting.title}" class="painting-image" onerror="this.src='https://via.placeholder.com/400x300/1B8B8C/FFFFFF?text=Image+Coming+Soon'">
+                    <div class="painting-info">
+                        <h3 class="painting-title">${painting.title}</h3>
+                        <p class="painting-description">${painting.description}</p>
+                        <div class="painting-details">
+                            <div>
+                                <div class="painting-size">📐 ${painting.size}</div>
+                                <div class="painting-medium">🎨 ${painting.medium}</div>
+                            </div>
+                            <div class="painting-price">${painting.price}</div>
+                        </div>
+                        ${painting.status === 'sold' 
+                            ? '<button class="contact-btn sold" disabled>Sold Out</button>' 
+                            : `<a href="#" class="contact-btn ${painting.status}" onclick="contactArtist('${painting.title}', '${painting.contactMethod}')">Contact Artist</a>`
+                        }
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to display paintings
+        function displayPaintings(paintingsToShow = paintings) {
+            const gallery = document.getElementById('paintings-gallery');
+            gallery.innerHTML = paintingsToShow.map(painting => createPaintingHTML(painting)).join('');
+        }
+
+        // Function to filter paintings
+        function filterPaintings(category) {
+            const filteredPaintings = category === 'all' 
+                ? paintings 
+                : paintings.filter(painting => painting.category.includes(category));
+            
+            displayPaintings(filteredPaintings);
+        }
+
+        // Contact function
+        function contactArtist(paintingTitle, contactMethod) {
+            alert(`For "${paintingTitle}":\n\n${contactMethod}\n\nMention the artwork title in your message for faster response!`);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial display
+            displayPaintings();
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from other buttons
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    // Filter paintings
+                    filterPaintings(this.dataset.filter);
+                });
+            });
+        });
     </script>
 </body>
 </html>
