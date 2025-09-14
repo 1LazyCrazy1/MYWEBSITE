@@ -512,75 +512,7 @@
            
         ];
 
-        // Fonction pour générer le HTML d'une peinture
-        function createPaintingHTML(painting) {
-            const statusClass = `status-${painting.status}`;
-            const statusText = {
-                'available': 'Disponible',
-                'sold': 'Vendu',
-                'commission': 'Commission'
-            };
-
-            return `
-                <div class="painting-card fade-in" data-category="${painting.category.join(' ')}">
-                    <div class="status-badge ${statusClass}">${statusText[painting.status]}</div>
-                    <img src="${painting.image}" alt="${painting.title}" class="painting-image" onerror="this.src='https://via.placeholder.com/400x300/1B8B8C/FFFFFF?text=Image+à+venir'">
-                    <div class="painting-info">
-                        <h3 class="painting-title">${painting.title}</h3>
-                        <p class="painting-description">${painting.description}</p>
-                        <div class="painting-details">
-                            <div>
-                                <div class="painting-size">📐 ${painting.size}</div>
-                                <div class="painting-medium">🎨 ${painting.medium}</div>
-                            </div>
-                            <div class="painting-price">${painting.price}</div>
-                        </div>
-                        ${painting.status === 'sold' 
-                            ? '<button class="contact-btn sold" disabled>Œuvre Vendue</button>' 
-                            : `<a href="#" class="contact-btn ${painting.status}" onclick="contactArtist('${painting.title}', '${painting.contactMethod}')">Contacter l'Artiste</a>`
-                        }
-                    </div>
-                </div>
-            `;
-        }
-
-        // Fonction pour afficher les peintures
-        function displayPaintings(paintingsToShow = paintings) {
-            const gallery = document.getElementById('paintings-gallery');
-            gallery.innerHTML = paintingsToShow.map(painting => createPaintingHTML(painting)).join('');
-        }
-
-        // Fonction de filtrage
-        function filterPaintings(category) {
-            const filteredPaintings = category === 'all' 
-                ? paintings 
-                : paintings.filter(painting => painting.category.includes(category));
-            
-            displayPaintings(filteredPaintings);
-        }
-
-        // Fonction de contact
-        function contactArtist(paintingTitle, contactMethod) {
-            alert(`Pour "${paintingTitle}":\n\n${contactMethod}\n\nMentionne le titre de l'œuvre dans ton message pour une réponse plus rapide!`);
-        }
-
-        // Event listeners pour les filtres
-        document.addEventListener('DOMContentLoaded', function() {
-            // Affichage initial
-            displayPaintings();
-
-            // Filtres
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Retirer la classe active des autres boutons
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    // Ajouter la classe active au bouton cliqué
-                    this.classList.add('active');
-                    // Filtrer les peintures
-                    filterPaintings(this.dataset.filter);
-                });
-            });
-        });
+     
     </script>
 </body>
 </html>
