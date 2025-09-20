@@ -730,7 +730,8 @@
                          alt="${painting.title}" 
                          class="painting-image" 
                          onerror="handleImageError(this)"
-                         onclick="openLightbox('${painting.image}', '${painting.title}')"
+                         data-image="${painting.image}"
+                         data-title="${painting.title}"
                          style="cursor: pointer;"
                          loading="lazy">
                     <div class="painting-info">
