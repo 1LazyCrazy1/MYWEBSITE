@@ -363,11 +363,11 @@
             color: white;
         }
 
-        /* Image loading state */
+        /* Image loading state - Amélioration */
         .image-placeholder {
             width: 100%;
             height: 300px;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -375,6 +375,36 @@
             color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            border: 2px dashed #ccc;
+        }
+
+        .image-placeholder::before {
+            content: "🎨";
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .image-placeholder-content {
+            text-align: center;
+        }
+
+        .image-error {
+            background: linear-gradient(135deg, #ffe0e0, #ffcccc);
+            color: #cc0000;
+            border-color: #ff6666;
+        }
+
+        .upload-instruction {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 0, 0.1);
+            border: 2px dashed #ffcc00;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
         }
 
         /* Footer */
@@ -593,6 +623,14 @@
             </div>
         </header>
 
+        <!-- Instructions pour l'utilisateur -->
+        <div class="upload-instruction">
+            <strong>📁 Pour afficher vos images :</strong><br>
+            1. Placez votre fichier "Bambi_mimic.png" dans le même dossier que ce fichier HTML<br>
+            2. Ou modifiez le chemin dans le code JavaScript ci-dessous<br>
+            3. Vérifiez que le nom du fichier correspond exactement (sensible à la casse)
+        </div>
+
         <!-- Filtres -->
         <div class="filter-section fade-in">
             <div class="filter-buttons">
@@ -644,11 +682,15 @@
     </div>
 
     <script>
-        // 🎨 PAINTINGS DATABASE 🎨
+        // 🎨 PAINTINGS DATABASE - CHEMINS CORRIGÉS 🎨
         const paintings = [
             {
                 title: "Bambi Mimic",
-                image: "./Bambi_mimic.png",
+                // MODIFIEZ CE CHEMIN selon l'emplacement de votre image :
+                image: "Bambi_mimic.png", // Sans le "./" au début
+                // Alternatives si l'image est dans un sous-dossier :
+                // image: "images/Bambi_mimic.png",
+                // image: "assets/Bambi_mimic.png",
                 description: "This is Bambi Mimic, a new friend. Behind its sweet smile, its mischievous eyes hide ancient secrets. Do you dare to discover what it knows? This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks. The style is both figurative and slightly abstract, inviting the viewer to dive into a universe that is both dreamlike and intriguing.",
                 size: "12\" × 12\"",
                 medium: "Acrylic on canvas",
@@ -703,18 +745,34 @@
             }
         ];
 
-        // Function to handle image loading errors
+        // Function améliorée pour gérer les erreurs d'image
         function handleImageError(img) {
-            // Create a placeholder div
-            const placeholder = document.createElement('div');
-            placeholder.className = 'image-placeholder';
-            placeholder.innerHTML = 'Image Loading...';
+            console.log(`❌ Échec du chargement de l'image: ${img.src}`);
             
-            // Replace the img with placeholder
+            // Créer un placeholder avec plus d'informations
+            const placeholder = document.createElement('div');
+            placeholder.className = 'image-placeholder image-error';
+            
+            const content = document.createElement('div');
+            content.className = 'image-placeholder-content';
+            content.innerHTML = `
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚠️</div>
+                <div>Image non trouvée</div>
+                <div style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.7;">
+                    ${img.getAttribute('data-title') || 'Image manquante'}
+                </div>
+                <div style="font-size: 0.7rem; margin-top: 0.5rem; opacity: 0.5;">
+                    Chemin: ${img.src}
+                </div>
+            `;
+            
+            placeholder.appendChild(content);
+            
+            // Remplacer l'image par le placeholder
             img.parentNode.replaceChild(placeholder, img);
         }
 
-        // Function to create painting HTML
+        // Function pour créer le HTML des peintures
         function createPaintingHTML(painting) {
             const statusClass = `status-${painting.status}`;
             const statusText = {
@@ -729,11 +787,11 @@
                     <img src="${painting.image}" 
                          alt="${painting.title}" 
                          class="painting-image" 
-                         onerror="handleImageError(this)"
-                         data-image="${painting.image}"
                          data-title="${painting.title}"
+                         onerror="handleImageError(this)"
                          style="cursor: pointer;"
-                         loading="lazy">
+                         loading="lazy"
+                         onclick="openLightbox('${painting.image}', '${painting.title}')">
                     <div class="painting-info">
                         <h3 class="painting-title">${painting.title}</h3>
                         <p class="painting-description">${painting.description}</p>
@@ -753,13 +811,13 @@
             `;
         }
 
-        // Function to display paintings
+        // Function pour afficher les peintures
         function displayPaintings(paintingsToShow = paintings) {
             const gallery = document.getElementById('paintings-gallery');
             gallery.innerHTML = paintingsToShow.map(painting => createPaintingHTML(painting)).join('');
         }
 
-        // Function to filter paintings
+        // Function pour filtrer les peintures
         function filterPaintings(category) {
             const filteredPaintings = category === 'all' 
                 ? paintings 
@@ -768,12 +826,12 @@
             displayPaintings(filteredPaintings);
         }
 
-        // Contact function
+        // Function de contact
         function contactArtist(paintingTitle, contactMethod) {
-            alert(`For "${paintingTitle}":\n\n${contactMethod}\n\nMention the artwork title in your message for faster response!`);
+            alert(`Pour "${paintingTitle}":\n\n${contactMethod}\n\nMentionnez le titre de l'œuvre dans votre message pour une réponse plus rapide !`);
         }
 
-        // Lightbox functions
+        // Functions pour la lightbox
         function openLightbox(imageSrc, title) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
@@ -784,16 +842,16 @@
             lightboxTitle.textContent = title;
             
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden'; // Empêcher le scroll en arrière-plan
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto'; // Restaurer le scroll
         }
 
-        // Close lightbox with Escape key
+        // Fermer la lightbox avec la touche Échap
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeLightbox();
@@ -802,35 +860,127 @@
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Initial display
+            // Affichage initial
             displayPaintings();
 
-            // Filter buttons
+            // Boutons de filtre
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Remove active class from other buttons
+                    // Retirer la classe active des autres boutons
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    // Add active class to clicked button
+                    // Ajouter la classe active au bouton cliqué
                     this.classList.add('active');
-                    // Filter paintings
+                    // Filtrer les peintures
                     filterPaintings(this.dataset.filter);
                 });
             });
+
+            // Test de chargement des images
+            console.log('🎨 Test de chargement des images...');
+            testImageLoading();
         });
 
-        // Debug function to check image paths
-        function debugImagePaths() {
-            console.log('Checking image paths...');
-            paintings.forEach(painting => {
+        // Function pour tester le chargement des images
+        function testImageLoading() {
+            paintings.forEach((painting, index) => {
                 const img = new Image();
-                img.onload = () => console.log(`✅ Image loaded: ${painting.image}`);
-                img.onerror = () => console.log(`❌ Failed to load: ${painting.image}`);
+                
+                img.onload = function() {
+                    console.log(`✅ Image ${index + 1} chargée avec succès: ${painting.title}`);
+                    console.log(`   Chemin: ${painting.image}`);
+                };
+                
+                img.onerror = function() {
+                    console.log(`❌ Échec du chargement de l'image ${index + 1}: ${painting.title}`);
+                    console.log(`   Chemin testé: ${painting.image}`);
+                    
+                    // Suggestions de chemins alternatifs
+                    const filename = painting.image.split('/').pop();
+                    console.log(`   💡 Vérifiez ces chemins possibles:`);
+                    console.log(`      - ${filename}`);
+                    console.log(`      - ./${filename}`);
+                    console.log(`      - images/${filename}`);
+                    console.log(`      - assets/${filename}`);
+                    console.log(`      - photos/${filename}`);
+                };
+                
                 img.src = painting.image;
             });
         }
 
-        // Call debug function
-        debugImagePaths();
+        // Function pour vérifier les fichiers disponibles
+        function checkImageFiles() {
+            console.log('🔍 Vérification des fichiers d\'images requis:');
+            console.log('');
+            paintings.forEach((painting, index) => {
+                if (!painting.image.startsWith('http')) {
+                    console.log(`${index + 1}. ${painting.title}`);
+                    console.log(`   Fichier requis: ${painting.image}`);
+                    console.log(`   Statut: ${painting.status}`);
+                    console.log('');
+                }
+            });
+        }
+
+        // Appeler la fonction de vérification
+        checkImageFiles();
+
+        // Function utilitaire pour mettre à jour le chemin d'une image
+        function updateImagePath(paintingTitle, newPath) {
+            const painting = paintings.find(p => p.title === paintingTitle);
+            if (painting) {
+                painting.image = newPath;
+                displayPaintings(); // Rafraîchir l'affichage
+                console.log(`✅ Chemin mis à jour pour "${paintingTitle}": ${newPath}`);
+            } else {
+                console.log(`❌ Peinture non trouvée: "${paintingTitle}"`);
+            }
+        }
+
+        // Exemple d'utilisation pour mettre à jour le chemin :
+        // updateImagePath("Bambi Mimic", "nouveau_chemin/Bambi_mimic.png");
+
+    </script>
+
+    <!-- Instructions de débogage pour l'utilisateur -->
+    <script>
+        // Message d'aide dans la console
+        console.log(`
+🎨 GUIDE DE DÉPANNAGE POUR LES IMAGES 🎨
+
+Si l'image "Bambi Mimic" ne s'affiche pas, voici comment résoudre le problème :
+
+1. VÉRIFICATION DU FICHIER :
+   ✓ Le fichier "Bambi_mimic.png" existe-t-il ?
+   ✓ Est-il dans le bon dossier ?
+   ✓ Le nom est-il exactement "Bambi_mimic.png" (sensible à la casse) ?
+
+2. EMPLACEMENTS À TESTER :
+   • Même dossier que le fichier HTML
+   • Dossier "images/"
+   • Dossier "assets/"
+   • Dossier "photos/"
+
+3. MODIFICATION DU CODE :
+   Ligne ~355 du JavaScript, changez :
+   image: "Bambi_mimic.png"
+   
+   Par l'un de ces chemins :
+   image: "./Bambi_mimic.png"
+   image: "images/Bambi_mimic.png"
+   image: "assets/Bambi_mimic.png"
+
+4. FORMATS SUPPORTÉS :
+   ✓ .png, .jpg, .jpeg, .gif, .webp
+
+5. TAILLE RECOMMANDÉE :
+   • Largeur/Hauteur : 400-800px
+   • Poids : < 2MB pour un chargement rapide
+
+6. UTILISEZ LA FONCTION D'AIDE :
+   Dans la console, tapez :
+   updateImagePath("Bambi Mimic", "NOUVEAU_CHEMIN.png")
+`);
     </script>
 </body>
 </html>
