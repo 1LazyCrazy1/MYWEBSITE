@@ -230,7 +230,7 @@
             transition: all 0.4s ease;
             border: 2px solid transparent;
             position: relative;
-            min-height: 550px; /* Ensure consistent card height */
+            min-height: 550px;
         }
 
         .painting-card:hover {
@@ -242,17 +242,17 @@
         .painting-image {
             width: 100%;
             height: 300px;
-            object-fit: contain; /* Changed from 'cover' to 'contain' to preserve aspect ratio */
+            object-fit: contain;
             object-position: center;
             transition: all 0.4s ease;
             background-color: #f0f0f0;
-            image-rendering: -webkit-optimize-contrast; /* Better image rendering */
+            image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
 
         .painting-card:hover .painting-image {
-            transform: scale(1.02); /* Reduced scale to preserve quality */
-            filter: brightness(1.05) contrast(1.05); /* Reduced filter intensity */
+            transform: scale(1.02);
+            filter: brightness(1.05) contrast(1.05);
         }
 
         .painting-info {
@@ -545,7 +545,7 @@
         const paintings = [
             {
                 title: "Bambi Mimic",
-                image: "./Bambi_Mimic.png", // Try this path first
+                image: "./Bambi_mimic.png",
                 description: "This is Bambi Mimic, a new friend. Behind its sweet smile, its mischievous eyes hide ancient secrets. Do you dare to discover what it knows? This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks. The style is both figurative and slightly abstract, inviting the viewer to dive into a universe that is both dreamlike and intriguing.",
                 size: "12\" × 12\"",
                 medium: "Acrylic on canvas",
