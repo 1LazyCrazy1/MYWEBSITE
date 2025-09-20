@@ -243,6 +243,7 @@
             height: 300px;
             object-fit: cover;
             transition: all 0.4s ease;
+            background-color: #f0f0f0;
         }
 
         .painting-card:hover .painting-image {
@@ -340,6 +341,7 @@
             text-transform: uppercase;
             font-weight: 600;
             letter-spacing: 1px;
+            z-index: 10;
         }
 
         .status-available {
@@ -355,6 +357,20 @@
         .status-commission {
             background: linear-gradient(135deg, #ffc107, #ff8c00);
             color: white;
+        }
+
+        /* Image loading state */
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Footer */
@@ -525,30 +541,19 @@
         const paintings = [
             {
                 title: "Bambi Mimic",
-                image: "images/Bambi_Mimic.jpg",
+                image: "./Bambi_Mimic.jpg", // Try this path first
                 description: "This is Bambi Mimic, a new friend. Behind its sweet smile, its mischievous eyes hide ancient secrets. Do you dare to discover what it knows? This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks. The style is both figurative and slightly abstract, inviting the viewer to dive into a universe that is both dreamlike and intriguing.",
                 size: "12\" × 12\"",
                 medium: "Acrylic on canvas",
                 price: "$85 CAD",
                 status: "available",
                 category: ["abstract", "available"],
-                contactMethod: "Email: Coming soob"
+                contactMethod: "Email: Coming soon"
             },
             {
-                title: "Kool-Aid Revelation",
-                image: "images/kool-aid-mouth.jpg",
-                description: "A prophetic exploration of mind control through corporate symbols. The Kool-Aid red reveals hidden truths about mass manipulation.",
-                size: "16\" × 20\"",
-                medium: "Acrylic on canvas",
-                price: "$350 CAD",
-                status: "available",
-                category: ["conspiracy", "available"],
-                contactMethod: "Discord: Shennipen#1337"
-            },
-            {
-                title: "Forest Spirits Awakening",
-                image: "images/forest-spirits.jpg",
-                description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth. Deep connection with indigenous wisdom.",
+                title: "Forest Whisperer",
+                image: "https://via.placeholder.com/400x300/1e704b/FFFFFF?text=Forest+Whisperer",
+                description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth. Deep connection with indigenous wisdom and the hidden power of nature.",
                 size: "18\" × 24\"",
                 medium: "Oil on canvas",
                 price: "$480 CAD",
@@ -557,28 +562,50 @@
                 contactMethod: "Signal upon request"
             },
             {
-                title: "Royal Bloodline Corruption",
-                image: "images/royal-corruption.jpg",
-                description: "Artistic denunciation of royal inbreeding and its effects on humanity. The cursed genetic links revealed through visionary art.",
-                size: "20\" × 30\"",
-                medium: "Mixed media",
-                price: "$650 CAD",
-                status: "sold",
-                category: ["conspiracy"],
-                contactMethod: "N/A - Sold"
+                title: "Digital Prophecy",
+                image: "https://via.placeholder.com/400x300/1B8B8C/FFFFFF?text=Digital+Prophecy",
+                description: "A prophetic exploration of mind control through digital manipulation. The screens reveal hidden truths about mass consciousness programming.",
+                size: "16\" × 20\"",
+                medium: "Acrylic on canvas",
+                price: "$350 CAD",
+                status: "available",
+                category: ["conspiracy", "available"],
+                contactMethod: "Discord: Shennipen#1337"
             },
             {
-                title: "Quantum Sobriety Paradox",
-                image: "images/quantum-paradox.jpg",
-                description: "Visualization of parallel dimensions where sobriety and spiritual awakening intertwine. A critique of social conventions on consciousness.",
+                title: "Quantum Dreams",
+                image: "https://via.placeholder.com/400x300/51044e/FFFFFF?text=Quantum+Dreams",
+                description: "Visualization of parallel dimensions where consciousness and reality intertwine. A critique of materialist limitations on spiritual perception.",
                 size: "16\" × 16\"",
                 medium: "Acrylic and inks",
                 price: "$420 CAD",
                 status: "available",
                 category: ["abstract", "conspiracy", "available"],
                 contactMethod: "Email: prophet@commune.digital"
+            },
+            {
+                title: "Royal Bloodline Corruption",
+                image: "https://via.placeholder.com/400x300/ae7324/FFFFFF?text=Royal+Corruption",
+                description: "Artistic denunciation of royal inbreeding and its effects on humanity. The cursed genetic links revealed through visionary art.",
+                size: "20\" × 30\"",
+                medium: "Mixed media",
+                price: "SOLD",
+                status: "sold",
+                category: ["conspiracy"],
+                contactMethod: "N/A - Sold"
             }
         ];
+
+        // Function to handle image loading errors
+        function handleImageError(img) {
+            // Create a placeholder div
+            const placeholder = document.createElement('div');
+            placeholder.className = 'image-placeholder';
+            placeholder.innerHTML = 'Image Loading...';
+            
+            // Replace the img with placeholder
+            img.parentNode.replaceChild(placeholder, img);
+        }
 
         // Function to create painting HTML
         function createPaintingHTML(painting) {
@@ -592,7 +619,11 @@
             return `
                 <div class="painting-card fade-in" data-category="${painting.category.join(' ')}">
                     <div class="status-badge ${statusClass}">${statusText[painting.status]}</div>
-                    <img src="${painting.image}" alt="${painting.title}" class="painting-image" onerror="this.src='https://via.placeholder.com/400x300/1B8B8C/FFFFFF?text=Image+Coming+Soon'">
+                    <img src="${painting.image}" 
+                         alt="${painting.title}" 
+                         class="painting-image" 
+                         onerror="handleImageError(this)"
+                         loading="lazy">
                     <div class="painting-info">
                         <h3 class="painting-title">${painting.title}</h3>
                         <p class="painting-description">${painting.description}</p>
@@ -649,6 +680,20 @@
                 });
             });
         });
+
+        // Debug function to check image paths
+        function debugImagePaths() {
+            console.log('Checking image paths...');
+            paintings.forEach(painting => {
+                const img = new Image();
+                img.onload = () => console.log(`✅ Image loaded: ${painting.image}`);
+                img.onerror = () => console.log(`❌ Failed to load: ${painting.image}`);
+                img.src = painting.image;
+            });
+        }
+
+        // Call debug function
+        debugImagePaths();
     </script>
 </body>
 </html>
