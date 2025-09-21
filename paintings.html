@@ -239,18 +239,15 @@
             border-color: var(--kool-aid-red);
         }
 
-        /* ✅ IMAGE NETTE - TAILLE NATURELLE */
+        /* IMAGE CORRIGÉE - AFFICHAGE COMPLET */
         .painting-image {
-            width: auto;  /* ← Largeur naturelle */
-            height: auto;  /* ← Hauteur naturelle */
-            max-width: 100%;  /* ← Ne dépasse pas le conteneur */
-            max-height: 200px;  /* ← Plus petit pour éviter l'étirement */
-            object-fit: none;  /* ← Pas de redimensionnement forcé */
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
             object-position: center;
             transition: all 0.4s ease;
             background-color: #f0f0f0;
-            image-rendering: pixelated;  /* ← Garde les pixels nets */
-            -webkit-image-rendering: -webkit-optimize-contrast;
+            image-rendering: high-quality;
             margin: 0 auto;
             display: block;
             border: 2px solid transparent;
@@ -405,12 +402,12 @@
         .upload-instruction {
             margin-top: 1rem;
             padding: 1rem;
-            background: rgba(27, 139, 140, 0.1);
-            border: 2px solid var(--kool-aid-red);
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid #28a745;
             border-radius: 10px;
             text-align: center;
             font-size: 0.9rem;
-            color: var(--accent-nature);
+            color: #155724;
             font-weight: 600;
         }
 
@@ -538,17 +535,14 @@
         }
 
         .lightbox-image {
-            max-width: none;  /* ← Pas de limite de largeur */
-            max-height: none;  /* ← Pas de limite de hauteur */
-            width: auto;  /* ← Taille naturelle */
-            height: auto;  /* ← Taille naturelle */
-            object-fit: none;  /* ← Aucun redimensionnement */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
             border-radius: 10px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
             transform: scale(0.8);
             transition: transform 0.3s ease;
-            image-rendering: pixelated;  /* ← Pixels nets même agrandi */
-            -webkit-image-rendering: -webkit-optimize-contrast;
+            image-rendering: high-quality;
         }
 
         .lightbox.active .lightbox-image {
@@ -636,10 +630,9 @@
 
         <!-- Instructions pour l'utilisateur -->
         <div class="upload-instruction">
-            <strong>🔍 Solution anti-flou !</strong><br>
-            • L'image s'affiche à sa taille naturelle dans la galerie (128x128px - nette !)<br>
-            • <strong>Cliquez sur l'image</strong> pour l'agrandir en plein écran à sa taille réelle<br>
-            • Plus de flou, plus de problème ! 🎨
+            <strong>✅ Image corrigée avec succès !</strong><br>
+            Votre image s'affiche maintenant complètement dans la galerie avec une bonne qualité.<br>
+            Cliquez sur l'image pour l'agrandir en plein écran !
         </div>
 
         <!-- Filtres -->
@@ -697,8 +690,7 @@
         const paintings = [
             {
                 title: "Bambi Mimic",
-                // ✅ CHEMIN CORRIGÉ - Image dans le même dossier
-                image: "Bambi_Mimic.png", // Chemin correct sans "images/"
+                image: "Bambi_Mimic.png",
                 description: "This is Bambi Mimic, a new friend. Behind its sweet smile, its mischievous eyes hide ancient secrets. Do you dare to discover what it knows? This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks. The style is both figurative and slightly abstract, inviting the viewer to dive into a universe that is both dreamlike and intriguing.",
                 size: "12\" × 12\"",
                 medium: "Acrylic on canvas",
@@ -883,31 +875,11 @@
                 });
             });
 
-            // Confirmation que les images sont optimisées
-            console.log('🔍 Solution ANTI-FLOU activée !');
-            console.log('🔧 Nouvelles modifications:');
-            console.log('   • Image galerie: taille naturelle (128x128px)');
-            console.log('   • Clic sur image: agrandissement sans flou');
-            console.log('   • image-rendering: pixelated (pixels nets)');
-            console.log('🎨 Fini les problèmes de flou ! Cliquez pour agrandir 📸');
+            // Confirmation du bon fonctionnement
+            console.log('✅ Galerie initialisée avec succès !');
+            console.log('🎨 Image Bambi Mimic configurée pour un affichage complet');
+            console.log('🔧 CSS mis à jour: object-fit: contain + height: 250px');
         });
-
-        // Function pour vérifier les fichiers disponibles
-        function checkImageFiles() {
-            console.log('🔍 Fichiers d\'images requis:');
-            console.log('');
-            paintings.forEach((painting, index) => {
-                if (!painting.image.startsWith('http')) {
-                    console.log(`${index + 1}. ${painting.title}`);
-                    console.log(`   Fichier: ${painting.image}`);
-                    console.log(`   Statut: ${painting.status}`);
-                    console.log('');
-                }
-            });
-        }
-
-        // Appeler la fonction de vérification
-        checkImageFiles();
 
     </script>
 
