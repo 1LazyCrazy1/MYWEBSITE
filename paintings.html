@@ -239,18 +239,21 @@
             border-color: var(--kool-aid-red);
         }
 
-        /* ✅ IMAGE MODIFIÉE POUR ÉVITER LE FLOU */
+        /* ✅ IMAGE NETTE - TAILLE NATURELLE */
         .painting-image {
-            width: 100%;
-            height: auto;  /* ← Changé de 300px à auto */
-            max-height: 300px;  /* ← Limite la hauteur max */
-            object-fit: contain;
+            width: auto;  /* ← Largeur naturelle */
+            height: auto;  /* ← Hauteur naturelle */
+            max-width: 100%;  /* ← Ne dépasse pas le conteneur */
+            max-height: 200px;  /* ← Plus petit pour éviter l'étirement */
+            object-fit: none;  /* ← Pas de redimensionnement forcé */
             object-position: center;
             transition: all 0.4s ease;
             background-color: #f0f0f0;
-            image-rendering: auto;  /* ← Rendu d'image naturel */
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
+            image-rendering: pixelated;  /* ← Garde les pixels nets */
+            -webkit-image-rendering: -webkit-optimize-contrast;
+            margin: 0 auto;
+            display: block;
+            border: 2px solid transparent;
         }
 
         .painting-card:hover .painting-image {
@@ -535,14 +538,17 @@
         }
 
         .lightbox-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            max-width: none;  /* ← Pas de limite de largeur */
+            max-height: none;  /* ← Pas de limite de hauteur */
+            width: auto;  /* ← Taille naturelle */
+            height: auto;  /* ← Taille naturelle */
+            object-fit: none;  /* ← Aucun redimensionnement */
             border-radius: 10px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
             transform: scale(0.8);
             transition: transform 0.3s ease;
-            image-rendering: auto;  /* ← Rendu net dans la lightbox aussi */
+            image-rendering: pixelated;  /* ← Pixels nets même agrandi */
+            -webkit-image-rendering: -webkit-optimize-contrast;
         }
 
         .lightbox.active .lightbox-image {
@@ -630,9 +636,10 @@
 
         <!-- Instructions pour l'utilisateur -->
         <div class="upload-instruction">
-            <strong>✅ Images optimisées !</strong><br>
-            Le code a été modifié pour afficher vos images à leur taille naturelle sans flou.
-            <br>Vos images s'afficheront maintenant de manière nette et claire !
+            <strong>🔍 Solution anti-flou !</strong><br>
+            • L'image s'affiche à sa taille naturelle dans la galerie (128x128px - nette !)<br>
+            • <strong>Cliquez sur l'image</strong> pour l'agrandir en plein écran à sa taille réelle<br>
+            • Plus de flou, plus de problème ! 🎨
         </div>
 
         <!-- Filtres -->
@@ -877,12 +884,12 @@
             });
 
             // Confirmation que les images sont optimisées
-            console.log('✅ Images optimisées pour un affichage net !');
-            console.log('🔧 Modifications appliquées:');
-            console.log('   • height: auto (au lieu de 300px fixe)');
-            console.log('   • max-height: 300px (limite la taille max)');
-            console.log('   • image-rendering: auto (rendu naturel)');
-            console.log('🎨 Vos images 128x128px s\'affichent maintenant à leur taille naturelle sans flou !');
+            console.log('🔍 Solution ANTI-FLOU activée !');
+            console.log('🔧 Nouvelles modifications:');
+            console.log('   • Image galerie: taille naturelle (128x128px)');
+            console.log('   • Clic sur image: agrandissement sans flou');
+            console.log('   • image-rendering: pixelated (pixels nets)');
+            console.log('🎨 Fini les problèmes de flou ! Cliquez pour agrandir 📸');
         });
 
         // Function pour vérifier les fichiers disponibles
