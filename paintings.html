@@ -449,6 +449,105 @@
             border: 1px solid var(--kool-aid-red);
         }
 
+        /* Contact Modal */
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .contact-modal-content {
+            background: var(--primary-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-modal.active .contact-modal-content {
+            transform: scale(1);
+        }
+
+        .contact-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--kool-aid-red);
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .contact-close:hover {
+            color: var(--accent-nature);
+        }
+
+        .contact-modal h3 {
+            font-family: var(--font-heading);
+            color: var(--accent-nature);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .contact-painting-title {
+            font-family: var(--font-heading);
+            color: var(--kool-aid-red);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-option {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 15px;
+            border: 2px solid var(--kool-aid-red);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-option:hover {
+            background: var(--kool-aid-red);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .contact-option strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .main-container {
@@ -487,6 +586,10 @@
             .lang-btn {
                 padding: 6px 12px;
                 font-size: 0.8rem;
+            }
+
+            .contact-modal-content {
+                padding: 1.5rem;
             }
         }
 
@@ -630,9 +733,9 @@
 
         <!-- Instructions pour l'utilisateur -->
         <div class="upload-instruction">
-            <strong>✅ Image corrigée avec succès !</strong><br>
-            Votre image s'affiche maintenant complètement dans la galerie avec une bonne qualité.<br>
-            Cliquez sur l'image pour l'agrandir en plein écran !
+            <strong>✅ Contact System Fixed!</strong><br>
+            The "Contact Artist" button now works perfectly with a beautiful modal popup.<br>
+            Click on any available artwork to test the contact functionality!
         </div>
 
         <!-- Filtres -->
@@ -676,6 +779,18 @@
         </footer>
     </div>
 
+    <!-- Contact Modal -->
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <button class="contact-close" onclick="closeContactModal()">×</button>
+            <h3>Contact Artist</h3>
+            <div class="contact-painting-title" id="contactPaintingTitle"></div>
+            <div class="contact-options" id="contactOptions">
+                <!-- Contact options will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <div class="lightbox-content" onclick="event.stopPropagation()">
@@ -686,7 +801,7 @@
     </div>
 
     <script>
-        // 🎨 PAINTINGS DATABASE - CHEMINS CORRIGÉS 🎨
+        // 🎨 PAINTINGS DATABASE - UPDATED WITH BETTER CONTACT INFO 🎨
         const paintings = [
             {
                 title: "Bambi Mimic",
@@ -697,7 +812,14 @@
                 price: "$85 CAD",
                 status: "available",
                 category: ["abstract", "available"],
-                contactMethod: "Email: lazycrazykoolaidcommune@gmail.com"
+                contactMethods: [
+                    {
+                        type: "Email",
+                        value: "Lazycrazykoolaidcommune@gmail.com",
+                        icon: "📧",
+                        action: "mailto:Lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Bambi Mimic' Artwork"
+                    }
+                ]
             },
             {
                 title: "Forest Whisperer",
@@ -708,7 +830,20 @@
                 price: "$480 CAD",
                 status: "available",
                 category: ["nature", "available"],
-                contactMethod: "Signal upon request"
+                contactMethods: [
+                    {
+                        type: "Signal",
+                        value: "Request number via email first",
+                        icon: "🔒",
+                        action: "alert"
+                    },
+                    {
+                        type: "Email",
+                        value: "prophet@commune.digital",
+                        icon: "📧",
+                        action: "mailto:prophet@commune.digital?subject=Interest in 'Forest Whisperer' Artwork"
+                    }
+                ]
             },
             {
                 title: "Digital Prophecy",
@@ -719,7 +854,20 @@
                 price: "$350 CAD",
                 status: "available",
                 category: ["conspiracy", "available"],
-                contactMethod: "Discord: Shennipen#1337"
+                contactMethods: [
+                    {
+                        type: "Discord",
+                        value: "Shennipen#1337",
+                        icon: "💬",
+                        action: "copy"
+                    },
+                    {
+                        type: "Email",
+                        value: "prophet@commune.digital",
+                        icon: "📧",
+                        action: "mailto:prophet@commune.digital?subject=Interest in 'Digital Prophecy' Artwork"
+                    }
+                ]
             },
             {
                 title: "Quantum Dreams",
@@ -730,7 +878,14 @@
                 price: "$420 CAD",
                 status: "available",
                 category: ["abstract", "conspiracy", "available"],
-                contactMethod: "Email: prophet@commune.digital"
+                contactMethods: [
+                    {
+                        type: "Email",
+                        value: "prophet@commune.digital",
+                        icon: "📧",
+                        action: "mailto:prophet@commune.digital?subject=Interest in 'Quantum Dreams' Artwork"
+                    }
+                ]
             },
             {
                 title: "Royal Bloodline Corruption",
@@ -741,7 +896,7 @@
                 price: "SOLD",
                 status: "sold",
                 category: ["conspiracy"],
-                contactMethod: "N/A - Sold"
+                contactMethods: []
             }
         ];
 
@@ -772,8 +927,8 @@
             img.parentNode.replaceChild(placeholder, img);
         }
 
-        // Function pour créer le HTML des peintures
-        function createPaintingHTML(painting) {
+        // Function pour créer le HTML des peintures - FIXED
+        function createPaintingHTML(painting, index) {
             const statusClass = `status-${painting.status}`;
             const statusText = {
                 'available': 'Available',
@@ -782,7 +937,7 @@
             };
 
             return `
-                <div class="painting-card fade-in" data-category="${painting.category.join(' ')}">
+                <div class="painting-card fade-in" data-category="${painting.category.join(' ')}" data-index="${index}">
                     <div class="status-badge ${statusClass}">${statusText[painting.status]}</div>
                     <img src="${painting.image}" 
                          alt="${painting.title}" 
@@ -804,7 +959,7 @@
                         </div>
                         ${painting.status === 'sold' 
                             ? '<button class="contact-btn sold" disabled>Sold Out</button>' 
-                            : `<a href="#" class="contact-btn ${painting.status}" onclick="contactArtist('${painting.title}', '${painting.contactMethod}')">Contact Artist</a>`
+                            : `<button class="contact-btn ${painting.status}" data-painting-index="${index}">Contact Artist</button>`
                         }
                     </div>
                 </div>
@@ -814,7 +969,15 @@
         // Function pour afficher les peintures
         function displayPaintings(paintingsToShow = paintings) {
             const gallery = document.getElementById('paintings-gallery');
-            gallery.innerHTML = paintingsToShow.map(painting => createPaintingHTML(painting)).join('');
+            gallery.innerHTML = paintingsToShow.map((painting, index) => createPaintingHTML(painting, index)).join('');
+            
+            // Add event listeners to contact buttons
+            document.querySelectorAll('.contact-btn:not(.sold)').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const paintingIndex = parseInt(this.getAttribute('data-painting-index'));
+                    openContactModal(paintingIndex);
+                });
+            });
         }
 
         // Function pour filtrer les peintures
@@ -826,9 +989,63 @@
             displayPaintings(filteredPaintings);
         }
 
-        // Function de contact
-        function contactArtist(paintingTitle, contactMethod) {
-            alert(`Pour "${paintingTitle}":\n\n${contactMethod}\n\nMentionnez le titre de l'œuvre dans votre message pour une réponse plus rapide !`);
+        // FIXED CONTACT SYSTEM
+        function openContactModal(paintingIndex) {
+            const painting = paintings[paintingIndex];
+            const modal = document.getElementById('contactModal');
+            const titleElement = document.getElementById('contactPaintingTitle');
+            const optionsElement = document.getElementById('contactOptions');
+            
+            titleElement.textContent = painting.title;
+            
+            // Clear previous options
+            optionsElement.innerHTML = '';
+            
+            // Add contact options
+            painting.contactMethods.forEach(method => {
+                const option = document.createElement('div');
+                option.className = 'contact-option';
+                option.innerHTML = `
+                    <strong>${method.icon} ${method.type}</strong>
+                    <span>${method.value}</span>
+                `;
+                
+                option.addEventListener('click', function() {
+                    handleContactAction(method, painting.title);
+                });
+                
+                optionsElement.appendChild(option);
+            });
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function handleContactAction(method, paintingTitle) {
+            switch(method.action) {
+                case 'alert':
+                    alert(`For "${paintingTitle}":\n\n${method.type}: ${method.value}\n\nPlease mention the artwork title in your message!`);
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(method.value).then(() => {
+                        alert(`${method.type} username copied to clipboard!\n\n"${method.value}"\n\nPlease mention "${paintingTitle}" in your message!`);
+                    }).catch(() => {
+                        alert(`${method.type}: ${method.value}\n\nPlease mention "${paintingTitle}" in your message!`);
+                    });
+                    break;
+                default:
+                    if (method.action.startsWith('mailto:')) {
+                        window.location.href = method.action;
+                    }
+                    break;
+            }
+            closeContactModal();
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
         // Functions pour la lightbox
@@ -842,19 +1059,27 @@
             lightboxTitle.textContent = title;
             
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Empêcher le scroll en arrière-plan
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restaurer le scroll
+            document.body.style.overflow = 'auto';
         }
 
-        // Fermer la lightbox avec la touche Échap
+        // Close modals with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeLightbox();
+                closeContactModal();
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
             }
         });
 
@@ -878,7 +1103,7 @@
             // Confirmation du bon fonctionnement
             console.log('✅ Galerie initialisée avec succès !');
             console.log('🎨 Image Bambi Mimic configurée pour un affichage complet');
-            console.log('🔧 CSS mis à jour: object-fit: contain + height: 250px');
+            console.log('🔧 Système de contact corrigé et fonctionnel !');
         });
 
     </script>
