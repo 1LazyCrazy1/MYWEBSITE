@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,15 +13,15 @@
     <style>
         /* Variables CSS identiques à la page principale */
         :root {
-            --primary-bg: #d0c7c4;
-            --text-primary: #1c1911;
-            --secondary-bg: #b2a38c;
-            --accent-primary: #ae7324;
+            --primary-bg: #3a4a3e;
+            --text-primary: #e8e8e8;
+            --secondary-bg: #2d3a30;
+            --accent-primary: #5a6b5e;
             --accent-nature: #1e704b;
             --kool-aid-red: #1B8B8C;
-            --accent-dark: #242625;
+            --accent-dark: #1a231d;
             --accent-mystery: #51044e;
-            --light-text: #D9B596;
+            --light-text: #c4d0c7;
             --font-heading: 'Oswald', sans-serif;
             --font-body: 'DM Sans', sans-serif;
         }
@@ -55,8 +55,8 @@
             padding: 8px 16px;
             margin: 0 4px;
             text-decoration: none;
-            color: var(--accent-nature);
-            border: 2px solid var(--accent-nature);
+            color: var(--light-text);
+            border: 2px solid var(--kool-aid-red);
             border-radius: 25px;
             transition: all 0.3s ease;
             font-size: 0.9rem;
@@ -65,17 +65,17 @@
         }
 
         .lang-btn.active {
-            background-color: var(--accent-nature);
+            background-color: var(--kool-aid-red);
             color: white;
         }
 
         .lang-btn:hover {
-            background-color: var(--kool-aid-red);
-            border-color: var(--kool-aid-red);
+            background-color: var(--accent-nature);
+            border-color: var(--accent-nature);
             color: white;
         }
 
-        /* Arrière-plan atmosphérique */
+        /* Arrière-plan atmosphérique cultiste */
         .atmospheric-bg {
             position: fixed;
             top: 0;
@@ -83,22 +83,22 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 30% 70%, rgba(27, 139, 140, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 30%, rgba(47, 79, 47, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(27, 139, 140, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(30, 112, 75, 0.2) 0%, transparent 50%),
                 linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
             z-index: -2;
         }
 
-        /* Formes organiques */
+        /* Formes organiques mystiques */
         .organic-element {
             position: fixed;
             width: 250px;
             height: 250px;
             background: linear-gradient(45deg, 
-                rgba(30, 112, 75, 0.08), 
-                rgba(27, 139, 140, 0.06));
+                rgba(27, 139, 140, 0.12), 
+                rgba(30, 112, 75, 0.1));
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            filter: blur(30px);
+            filter: blur(40px);
             animation: morph 25s ease-in-out infinite alternate;
             z-index: -1;
         }
@@ -125,27 +125,27 @@
         .gallery-header {
             text-align: center;
             margin-bottom: 3rem;
-            background: rgba(208, 199, 196, 0.95);
+            background: rgba(45, 58, 48, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 8px 32px rgba(28, 25, 17, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(27, 139, 140, 0.3);
+            border: 1px solid rgba(27, 139, 140, 0.3);
         }
 
         .gallery-header h1 {
             font-family: var(--font-heading);
             font-size: clamp(2.5rem, 6vw, 4rem);
-            color: var(--accent-nature);
+            color: var(--kool-aid-red);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 0 20px rgba(27, 139, 140, 0.5);
         }
 
         .gallery-subtitle {
             font-family: var(--font-heading);
-            color: var(--kool-aid-red);
+            color: var(--accent-mystery);
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             text-transform: uppercase;
             margin-bottom: 1.5rem;
@@ -156,7 +156,7 @@
             margin: 0 auto;
             font-size: 1.1rem;
             line-height: 1.6;
-            color: var(--text-primary);
+            color: var(--light-text);
         }
 
         .back-link {
@@ -171,17 +171,18 @@
 
         .back-link:hover {
             color: var(--accent-nature);
-            text-shadow: 0 0 5px rgba(27, 139, 140, 0.5);
+            text-shadow: 0 0 10px rgba(30, 112, 75, 0.8);
         }
 
         /* Filtres */
         .filter-section {
             text-align: center;
             margin-bottom: 3rem;
-            background: rgba(208, 199, 196, 0.8);
+            background: rgba(45, 58, 48, 0.8);
             padding: 1.5rem;
             border-radius: 15px;
             backdrop-filter: blur(5px);
+            border: 1px solid rgba(27, 139, 140, 0.2);
         }
 
         .filter-buttons {
@@ -193,7 +194,7 @@
 
         .filter-btn {
             background: var(--accent-dark);
-            color: white;
+            color: var(--light-text);
             border: 2px solid var(--kool-aid-red);
             padding: 0.75rem 1.5rem;
             border-radius: 25px;
@@ -210,7 +211,7 @@
             background: var(--kool-aid-red);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(27, 139, 140, 0.3);
+            box-shadow: 0 5px 15px rgba(27, 139, 140, 0.5);
         }
 
         /* Galerie */
@@ -223,30 +224,29 @@
         }
 
         .painting-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(45, 58, 48, 0.95);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transition: all 0.4s ease;
-            border: 2px solid transparent;
+            border: 2px solid rgba(27, 139, 140, 0.3);
             position: relative;
             min-height: 550px;
         }
 
         .painting-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(27, 139, 140, 0.3);
+            box-shadow: 0 20px 50px rgba(27, 139, 140, 0.6);
             border-color: var(--kool-aid-red);
         }
 
-        /* IMAGE CORRIGÉE - AFFICHAGE COMPLET */
         .painting-image {
             width: 100%;
             height: 250px;
             object-fit: contain;
             object-position: center;
             transition: all 0.4s ease;
-            background-color: #f0f0f0;
+            background-color: #1a231d;
             image-rendering: high-quality;
             margin: 0 auto;
             display: block;
@@ -255,7 +255,7 @@
 
         .painting-card:hover .painting-image {
             transform: scale(1.02);
-            filter: brightness(1.05) contrast(1.05);
+            filter: brightness(1.1) contrast(1.1);
         }
 
         .painting-info {
@@ -265,14 +265,14 @@
         .painting-title {
             font-family: var(--font-heading);
             font-size: 1.4rem;
-            color: var(--accent-nature);
+            color: var(--kool-aid-red);
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .painting-description {
-            color: var(--text-primary);
+            color: var(--light-text);
             margin-bottom: 1rem;
             line-height: 1.5;
             font-size: 0.95rem;
@@ -298,12 +298,12 @@
             font-size: 1.8rem;
             color: var(--kool-aid-red);
             font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            text-shadow: 0 0 10px rgba(27, 139, 140, 0.5);
         }
 
         .contact-btn {
             width: 100%;
-            background: linear-gradient(135deg, var(--kool-aid-red), var(--accent-nature));
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D);
             color: white;
             border: none;
             padding: 1rem;
@@ -317,16 +317,17 @@
             text-decoration: none;
             display: block;
             text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         .contact-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(27, 139, 140, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
             filter: brightness(1.1);
         }
 
         .contact-btn.sold {
-            background: #999;
+            background: #333;
             cursor: not-allowed;
         }
 
@@ -352,34 +353,34 @@
         }
 
         .status-available {
-            background: linear-gradient(135deg, #28a745, #20c997);
+            background: linear-gradient(135deg, #1e704b, #28a745);
             color: white;
         }
 
         .status-sold {
-            background: linear-gradient(135deg, #dc3545, #e74c3c);
+            background: linear-gradient(135deg, #dc3545, #c82333);
             color: white;
         }
 
         .status-commission {
-            background: linear-gradient(135deg, #ffc107, #ff8c00);
+            background: linear-gradient(135deg, var(--accent-primary), var(--kool-aid-red));
             color: white;
         }
 
-        /* Image loading state - Amélioration */
+        /* Image placeholder */
         .image-placeholder {
             width: 100%;
             height: 300px;
-            background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
+            background: linear-gradient(135deg, #2d3a30, #3a4a3e);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: var(--font-heading);
-            color: #666;
+            color: var(--light-text);
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
-            border: 2px dashed #ccc;
+            border: 2px dashed var(--kool-aid-red);
         }
 
         .image-placeholder::before {
@@ -394,21 +395,9 @@
         }
 
         .image-error {
-            background: linear-gradient(135deg, #ffe0e0, #ffcccc);
-            color: #cc0000;
-            border-color: #ff6666;
-        }
-
-        .upload-instruction {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(40, 167, 69, 0.1);
-            border: 2px solid #28a745;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #155724;
-            font-weight: 600;
+            background: linear-gradient(135deg, #2a3a2e, #1f2922);
+            color: var(--kool-aid-red);
+            border-color: var(--kool-aid-red);
         }
 
         /* Footer */
@@ -419,6 +408,7 @@
             padding: 3rem 2rem;
             margin-top: 4rem;
             border-radius: 20px 20px 0 0;
+            border-top: 2px solid var(--kool-aid-red);
         }
 
         .contact-info {
@@ -432,6 +422,7 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(27, 139, 140, 0.5);
         }
 
         .contact-methods {
@@ -457,7 +448,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 10000;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -471,7 +462,7 @@
         }
 
         .contact-modal-content {
-            background: var(--primary-bg);
+            background: var(--secondary-bg);
             border-radius: 20px;
             padding: 2rem;
             max-width: 500px;
@@ -479,6 +470,7 @@
             position: relative;
             transform: scale(0.8);
             transition: transform 0.3s ease;
+            border: 2px solid var(--kool-aid-red);
         }
 
         .contact-modal.active .contact-modal-content {
@@ -498,12 +490,12 @@
         }
 
         .contact-close:hover {
-            color: var(--accent-nature);
+            color: var(--accent-mystery);
         }
 
         .contact-modal h3 {
             font-family: var(--font-heading);
-            color: var(--accent-nature);
+            color: var(--kool-aid-red);
             font-size: 1.8rem;
             margin-bottom: 1rem;
             text-transform: uppercase;
@@ -512,7 +504,7 @@
 
         .contact-painting-title {
             font-family: var(--font-heading);
-            color: var(--kool-aid-red);
+            color: var(--accent-nature);
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
             text-align: center;
@@ -526,13 +518,14 @@
         }
 
         .contact-option {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(45, 58, 48, 0.9);
             padding: 1rem;
             border-radius: 15px;
             border: 2px solid var(--kool-aid-red);
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
+            color: var(--light-text);
         }
 
         .contact-option:hover {
@@ -548,66 +541,6 @@
             text-transform: uppercase;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-container {
-                padding: 1rem;
-            }
-
-            .paintings-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .filter-buttons {
-                gap: 0.5rem;
-            }
-
-            .filter-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .painting-details {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .contact-methods {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .language-switcher {
-                top: 10px;
-                right: 10px;
-            }
-
-            .lang-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-
-            .contact-modal-content {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Animation d'apparition */
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hidden class pour les filtres */
-        .hidden {
-            display: none !important;
-        }
-
         /* Lightbox Styles */
         .lightbox {
             display: none;
@@ -616,7 +549,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 9999;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -642,7 +575,7 @@
             max-height: 100%;
             object-fit: contain;
             border-radius: 10px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 20px 50px rgba(27, 139, 140, 0.8);
             transform: scale(0.8);
             transition: transform 0.3s ease;
             image-rendering: high-quality;
@@ -688,7 +621,50 @@
             letter-spacing: 1px;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+
+            .paintings-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .painting-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .contact-modal-content {
+                padding: 1.5rem;
+            }
+
             .lightbox-close {
                 top: -30px;
                 right: -30px;
@@ -701,6 +677,111 @@
                 font-size: 1rem;
                 bottom: -40px;
             }
+        }
+
+        /* Kool-Aid Man Decorations - Lugubres */
+        .kool-aid-decoration {
+            position: fixed;
+            font-size: 4rem;
+            opacity: 0.15;
+            z-index: 0;
+            filter: grayscale(70%) brightness(0.6);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            text-shadow: 0 0 20px rgba(139, 27, 27, 0.5);
+        }
+
+        .kool-aid-decoration:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; }
+        .kool-aid-decoration:nth-child(2) { top: 15%; right: 8%; animation-delay: -3s; transform: rotate(15deg); }
+        .kool-aid-decoration:nth-child(3) { bottom: 25%; left: 10%; animation-delay: -6s; transform: rotate(-20deg); }
+        .kool-aid-decoration:nth-child(4) { bottom: 10%; right: 12%; animation-delay: -9s; }
+        .kool-aid-decoration:nth-child(5) { top: 40%; left: 3%; animation-delay: -12s; transform: rotate(25deg); }
+        .kool-aid-decoration:nth-child(6) { top: 60%; right: 5%; animation-delay: -15s; transform: rotate(-15deg); }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.15; }
+            50% { transform: translateY(-20px) rotate(5deg); opacity: 0.25; }
+        }
+
+        /* Jim Jones Quote Decorations */
+        .jones-quote {
+            position: fixed;
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            color: var(--kool-aid-red);
+            opacity: 0.1;
+            z-index: 0;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            pointer-events: none;
+            animation: fadeInOut 15s ease-in-out infinite;
+        }
+
+        .jones-quote:nth-child(7) { top: 20%; left: 2%; animation-delay: 0s; }
+        .jones-quote:nth-child(8) { top: 50%; right: 2%; animation-delay: -5s; }
+        .jones-quote:nth-child(9) { bottom: 30%; left: 1%; animation-delay: -10s; }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.05; }
+            50% { opacity: 0.15; }
+        }
+
+        /* Chalice/Cup decorations */
+        .chalice-decoration {
+            position: fixed;
+            font-size: 3rem;
+            opacity: 0.08;
+            z-index: 0;
+            filter: brightness(0.5);
+            animation: pulse 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .chalice-decoration:nth-child(10) { top: 30%; left: 50%; animation-delay: -2s; }
+        .chalice-decoration:nth-child(11) { bottom: 40%; right: 20%; animation-delay: -5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.08; transform: scale(1); }
+            50% { opacity: 0.15; transform: scale(1.1); }
+        }
+
+        /* Dripping effect on headers */
+        .drip-effect {
+            position: relative;
+        }
+
+        .drip-effect::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, 
+                transparent, 
+                var(--kool-aid-red) 20%, 
+                var(--kool-aid-red) 80%, 
+                transparent);
+            opacity: 0.3;
+            filter: blur(2px);
+        }
+
+        /* Animation d'apparition */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hidden class pour les filtres */
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
@@ -720,23 +801,32 @@
     <div class="organic-element"></div>
     <div class="organic-element"></div>
 
+    <!-- Kool-Aid Man Decorations - Lugubres -->
+    <div class="kool-aid-decoration">🥤</div>
+    <div class="kool-aid-decoration">🧃</div>
+    <div class="kool-aid-decoration">🥤</div>
+    <div class="kool-aid-decoration">🧃</div>
+    <div class="kool-aid-decoration">🥤</div>
+    <div class="kool-aid-decoration">🧃</div>
+
+    <!-- Jim Jones Quote Decorations -->
+    <div class="jones-quote">DRINK THE TRUTH</div>
+    <div class="jones-quote">FOLLOW THE LIGHT</div>
+    <div class="jones-quote">ETERNAL AWAKENING</div>
+
+    <!-- Chalice Decorations -->
+    <div class="chalice-decoration">🏺</div>
+    <div class="chalice-decoration">⚱️</div>
+
     <div class="main-container">
         <!-- Header -->
         <header class="gallery-header fade-in">
             <a href="index.html" class="back-link">← Back to Commune</a>
-            <h1>Mystical Art Collection</h1>
-            <p class="gallery-subtitle">Prophetic Visions from the Digital Commune</p>
+            <h1 class="drip-effect">Mystical Art Collection</h1>
             <div class="artist-intro">
                 <p><strong>Shennipen</strong> - Indigenous self-taught artist based in Quebec, Canada. My works fuse prophetic visions with nature mysticism, exploring the hidden connections between spiritual forces and cosmic conspiracies. Each painting is infused with mystical energy and <span style="color: var(--kool-aid-red);">alternative truths</span>.</p>
             </div>
         </header>
-
-        <!-- Instructions pour l'utilisateur -->
-        <div class="upload-instruction">
-            <strong>✅ Contact System Fixed!</strong><br>
-            The "Contact Artist" button now works perfectly with a beautiful modal popup.<br>
-            Click on any available artwork to test the contact functionality!
-        </div>
 
         <!-- Filtres -->
         <div class="filter-section fade-in">
@@ -757,23 +847,21 @@
         <!-- Footer -->
         <footer class="gallery-footer">
             <div class="contact-info">
-                <h3>Commission Your Mystical Artwork</h3>
+                <h3 class="drip-effect">Commission Your Mystical Artwork</h3>
                 <p>All paintings are unique originals. Custom commissions available to channel your specific visions.</p>
                 
                 <div class="contact-methods">
                     <div class="contact-method">
-                        <strong>Discord:</strong> Shennipen#1337
-                    </div>
-                    <div class="contact-method">
-                        <strong>Email:</strong> prophet@commune.digital
-                    </div>
-                    <div class="contact-method">
-                        <strong>Signal:</strong> Upon request
+                        <strong>Email:</strong> lazycrazykoolaidcommune@gmail.com
                     </div>
                 </div>
                 
                 <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
                     <em>"True art reveals the truths that the powers that be want to hide."</em>
+                </p>
+                
+                <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.4; font-family: var(--font-heading); letter-spacing: 2px;">
+                    <em>🥤 DRINK FROM THE CHALICE OF ENLIGHTENMENT 🥤</em>
                 </p>
             </div>
         </footer>
@@ -801,7 +889,7 @@
     </div>
 
     <script>
-        // 🎨 PAINTINGS DATABASE - UPDATED WITH BETTER CONTACT INFO 🎨
+        // 🎨 PAINTINGS DATABASE 🎨
         const paintings = [
             {
                 title: "Bambi Mimic",
@@ -815,9 +903,9 @@
                 contactMethods: [
                     {
                         type: "Email",
-                        value: "Lazycrazykoolaidcommune@gmail.com",
+                        value: "lazycrazykoolaidcommune@gmail.com",
                         icon: "📧",
-                        action: "mailto:Lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Bambi Mimic' Artwork"
+                        action: "mailto:lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Bambi Mimic' Artwork"
                     }
                 ]
             },
@@ -832,16 +920,10 @@
                 category: ["nature", "available"],
                 contactMethods: [
                     {
-                        type: "Signal",
-                        value: "Request number via email first",
-                        icon: "🔒",
-                        action: "alert"
-                    },
-                    {
                         type: "Email",
-                        value: "mailto:Lazycrazykoolaidcommune@gmail.com",
+                        value: "lazycrazykoolaidcommune@gmail.com",
                         icon: "📧",
-                        action: "mailto:Lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Rock Forest' Artwork"
+                        action: "mailto:lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Blue Forest' Artwork"
                     }
                 ]
             },
@@ -859,7 +941,7 @@
                         type: "Email",
                         value: "lazycrazykoolaidcommune@gmail.com",
                         icon: "📧",
-                        action: "mailto:Lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Pink Glasses On the Back of The Turtle' Artwork"
+                        action: "mailto:lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Pink Glasses On the Back of The Turtle' Artwork"
                     }
                 ]
             },
@@ -877,7 +959,7 @@
                         type: "Email",
                         value: "lazycrazykoolaidcommune@gmail.com",
                         icon: "📧",
-                        action: "mailto:Lazycrazykoolaidcommune@gmail.com?subject=Interest in 'RockAntler' Artwork"
+                        action: "mailto:lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Rock Antler' Artwork"
                     }
                 ]
             },
@@ -887,18 +969,16 @@
                 description: "Acrylic Painting, a reflection of the duality between the marine world and the territories of the land.",
                 size: "5\" × 5\"",
                 medium: "Acrylic",
-                price: "150",
+                price: "$150 CAD",
                 status: "sold",
-                category: ["Abstract"],
+                category: ["abstract"],
                 contactMethods: []
             }
         ];
 
-        // Function améliorée pour gérer les erreurs d'image
         function handleImageError(img) {
             console.log(`❌ Échec du chargement de l'image: ${img.src}`);
             
-            // Créer un placeholder avec plus d'informations
             const placeholder = document.createElement('div');
             placeholder.className = 'image-placeholder image-error';
             
@@ -910,18 +990,12 @@
                 <div style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.7;">
                     ${img.getAttribute('data-title') || 'Image manquante'}
                 </div>
-                <div style="font-size: 0.7rem; margin-top: 0.5rem; opacity: 0.5;">
-                    Chemin: ${img.src}
-                </div>
             `;
             
             placeholder.appendChild(content);
-            
-            // Remplacer l'image par le placeholder
             img.parentNode.replaceChild(placeholder, img);
         }
 
-        // Function pour créer le HTML des peintures - FIXED
         function createPaintingHTML(painting, index) {
             const statusClass = `status-${painting.status}`;
             const statusText = {
@@ -960,12 +1034,10 @@
             `;
         }
 
-        // Function pour afficher les peintures
         function displayPaintings(paintingsToShow = paintings) {
             const gallery = document.getElementById('paintings-gallery');
             gallery.innerHTML = paintingsToShow.map((painting, index) => createPaintingHTML(painting, index)).join('');
             
-            // Add event listeners to contact buttons
             document.querySelectorAll('.contact-btn:not(.sold)').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const paintingIndex = parseInt(this.getAttribute('data-painting-index'));
@@ -974,7 +1046,6 @@
             });
         }
 
-        // Function pour filtrer les peintures
         function filterPaintings(category) {
             const filteredPaintings = category === 'all' 
                 ? paintings 
@@ -983,7 +1054,6 @@
             displayPaintings(filteredPaintings);
         }
 
-        // FIXED CONTACT SYSTEM
         function openContactModal(paintingIndex) {
             const painting = paintings[paintingIndex];
             const modal = document.getElementById('contactModal');
@@ -991,11 +1061,8 @@
             const optionsElement = document.getElementById('contactOptions');
             
             titleElement.textContent = painting.title;
-            
-            // Clear previous options
             optionsElement.innerHTML = '';
             
-            // Add contact options
             painting.contactMethods.forEach(method => {
                 const option = document.createElement('div');
                 option.className = 'contact-option';
@@ -1042,7 +1109,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Functions pour la lightbox
         function openLightbox(imageSrc, title) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
@@ -1062,7 +1128,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close modals with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeLightbox();
@@ -1070,36 +1135,23 @@
             }
         });
 
-        // Close modal when clicking outside
         document.getElementById('contactModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeContactModal();
             }
         });
 
-        // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Affichage initial
             displayPaintings();
 
-            // Boutons de filtre
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Retirer la classe active des autres boutons
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    // Ajouter la classe active au bouton cliqué
                     this.classList.add('active');
-                    // Filtrer les peintures
                     filterPaintings(this.dataset.filter);
                 });
             });
-
-            // Confirmation du bon fonctionnement
-            console.log('✅ Galerie initialisée avec succès !');
-            console.log('🎨 Image Bambi Mimic configurée pour un affichage complet');
-            console.log('🔧 Système de contact corrigé et fonctionnel !');
         });
-
     </script>
 
 </body>
