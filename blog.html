@@ -3,323 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prophetic Research Blog - The Online Commune</title>
+    <title>The Chronicles - The Kool-Aid Commune</title>
     
+    <!-- Import fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Oswald:wght@200..700&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Work+Sans:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
     
     <style>
-        /* Force les polices partout */
-        *, *::before, *::after {
-            font-family: 'DM Sans', sans-serif !important;
-            line-height: 0.75 !important;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Oswald', sans-serif !important;
-            line-height: 0.75 !important;
-        }
-
-        span, em, strong, b, i, a, small {
-            font-family: 'DM Sans', sans-serif !important;
-            line-height: 0.75 !important;
-        }
-
-        /* Variables CSS avec thème bleu-violet */
-        :root {
-            --primary-bg: #d0c7c4;
-            --text-primary: #1c1911;
-            --secondary-bg: #b2a38c;
-            --accent-primary: #667eea;  /* Bleu-violet principal */
-            --accent-nature: #764ba2;   /* Violet plus profond */
-            --kool-aid-red: #5b67d1;    /* Bleu-violet électrique */
-            --royal-purple: #6c5ce7;    /* Violet royal */
-            --accent-dark: #2d3436;     /* Gris-bleu foncé */
-            --accent-mystery: #6c5ce7;  /* Violet mystique */
-            --light-text: #ddd6fe;      /* Bleu-violet très clair */
-            --font-heading: 'Oswald', sans-serif;
-            --font-body: 'DM Sans', sans-serif;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            /* The Chronicles color palette */
+            --chron-red: #e63946;
+            --chron-black: #000;
+            --chron-darkgray: #1a1a1a;
+            --chron-gray: #666;
+            --chron-lightgray: #999;
+            --chron-white: #fff;
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(26, 26, 26, 0.95);
+            --text-light: #f0f0f0;
+        }
+
         body {
-            font-family: 'DM Sans', sans-serif !important;
-            font-size: 1rem;
-            line-height: 0.75 !important;
-            color: var(--text-primary);
-            background: var(--primary-bg);
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
             overflow-x: hidden;
         }
 
-        /* Header de navigation */
-        .nav-header {
-            background: var(--accent-dark);
-            padding: 1rem 2rem;
-            position: sticky;
+        /* Navigation Bar - Same as home */
+        .navbar {
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(230, 57, 70, 0.3);
         }
 
-        .nav-logo {
-            color: var(--kool-aid-red);
-            font-family: 'Oswald', sans-serif !important;
+        .navbar-brand {
+            font-family: 'Bebas Neue', sans-serif;
             font-size: 1.5rem;
+            background: linear-gradient(90deg, #b666d2, #e63946, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            font-family: 'Barlow', sans-serif;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
             font-weight: 600;
             text-transform: uppercase;
-            text-decoration: none;
             letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--light-text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--kool-aid-red);
-        }
-
-        /* Container principal */
-        .blog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-        }
-
-        /* Formes organiques d'arrière-plan avec thème bleu-violet */
-        .organic-bg {
-            position: fixed;
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(45deg, 
-                rgba(102, 126, 234, 0.08), 
-                rgba(118, 75, 162, 0.06));
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            filter: blur(30px);
-            animation: float 15s ease-in-out infinite alternate;
-            z-index: -1;
-        }
-
-        .organic-bg:nth-child(1) {
-            top: 10%;
-            left: 5%;
-            animation-delay: -3s;
-        }
-
-        .organic-bg:nth-child(2) {
-            bottom: 20%;
-            right: 10%;
-            animation-delay: -7s;
-            transform: scale(0.6);
-        }
-
-        .organic-bg:nth-child(3) {
-            top: 60%;
-            left: 80%;
-            animation-delay: -12s;
-            transform: scale(0.4);
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        /* Titre principal */
-        .blog-header {
-            text-align: center;
-            margin: 3rem 0;
-        }
-
-        .blog-title {
-            font-family: 'Oswald', sans-serif !important;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--accent-nature);
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .blog-subtitle {
-            font-size: 1.2rem;
-            color: var(--kool-aid-red);
-            font-style: italic;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Grille d'articles */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .article-card {
-            background: rgba(208, 199, 196, 0.9);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
             position: relative;
-            overflow: hidden;
         }
 
-        .article-card::before {
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--chron-red);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: var(--chron-red);
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar-links a.active {
+            color: var(--chron-red);
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 70px;
+            padding: 80px 40px 60px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--chron-darkgray) 0%, var(--bg-dark) 100%);
+            border-bottom: 3px solid var(--chron-red);
+            position: relative;
+        }
+
+        .page-header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-nature));
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(230, 57, 70, 0.03) 2px, rgba(230, 57, 70, 0.03) 4px);
+            pointer-events: none;
+        }
+
+        .header-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--chron-red);
+            box-shadow: 0 0 30px rgba(230, 57, 70, 0.3);
+        }
+
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .page-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 4rem;
+            color: var(--chron-red);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+        }
+
+        .page-subtitle {
+            font-family: 'Barlow', sans-serif;
+            font-size: 1.3rem;
+            color: var(--chron-lightgray);
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+
+        .classified-stamp {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: var(--chron-red);
+            border: 3px solid var(--chron-red);
+            padding: 10px 30px;
+            transform: rotate(-3deg);
+            letter-spacing: 3px;
+            margin-top: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Category Filters */
+        .categories-filter {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .category-btn {
+            font-family: 'Barlow', sans-serif;
+            background: transparent;
+            color: var(--chron-lightgray);
+            border: 2px solid var(--chron-gray);
+            padding: 10px 25px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--chron-red);
+            border-color: var(--chron-red);
+            color: var(--chron-white);
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 2px solid var(--chron-gray);
+            border-radius: 0;
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card::before {
+            content: 'CONFIDENTIAL';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            transform: rotate(45deg);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem;
+            color: var(--chron-red);
+            opacity: 0.3;
+            letter-spacing: 2px;
+        }
+
+        .article-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--chron-red);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
         }
 
         .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.2);
-            border-color: var(--kool-aid-red);
+            border-color: var(--chron-red);
+            transform: translateX(10px);
+            box-shadow: -10px 10px 30px rgba(230, 57, 70, 0.2);
+        }
+
+        .article-card:hover::after {
+            transform: scaleY(1);
         }
 
         .article-category {
             display: inline-block;
-            background: var(--accent-dark);
-            color: var(--light-text);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            background: var(--chron-red);
+            color: var(--chron-white);
+            padding: 5px 15px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
         }
 
         .article-title {
-            font-family: 'Oswald', sans-serif !important;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-bottom: 0.8rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
             line-height: 1.2;
             text-transform: uppercase;
-        }
-
-        .article-excerpt {
-            color: var(--text-primary);
-            line-height: 1.3 !important;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
+            letter-spacing: 1px;
         }
 
         .article-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-family: 'Barlow', sans-serif;
             font-size: 0.85rem;
-            color: var(--accent-primary);
-            margin-bottom: 1rem;
+            color: var(--chron-gray);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article-excerpt {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--chron-lightgray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1rem;
         }
 
         .read-more {
-            background: var(--kool-aid-red);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            background: transparent;
+            color: var(--chron-red);
+            border: 2px solid var(--chron-red);
+            padding: 12px 30px;
             text-decoration: none;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 2px;
             transition: all 0.3s ease;
             display: inline-block;
+            font-size: 0.9rem;
         }
 
         .read-more:hover {
-            background: var(--accent-nature);
+            background: var(--chron-red);
+            color: var(--chron-white);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
         }
 
-        /* Section catégories */
-        .categories-filter {
+        /* Footer - Same as home */
+        .footer {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 40px;
             text-align: center;
-            margin: 2rem 0;
+            border-top: 2px solid rgba(230, 57, 70, 0.3);
+            margin-top: 100px;
         }
 
-        .category-btn {
-            background: var(--secondary-bg);
-            color: var(--text-primary);
-            border: 2px solid var(--kool-aid-red);
-            padding: 0.5rem 1rem;
-            margin: 0.3rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'DM Sans', sans-serif !important;
+        .footer-gradient {
+            font-family: 'Bebas Neue', sans-serif;
+            background: linear-gradient(90deg, #b666d2, #e63946, #6B9AC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
         }
 
-        .category-btn:hover, .category-btn.active {
-            background: var(--kool-aid-red);
-            color: white;
+        .footer-text {
+            font-family: 'Barlow', sans-serif;
+            color: var(--chron-lightgray);
+            font-size: 0.9rem;
         }
 
-        /* Footer */
-        .blog-footer {
-            background: var(--accent-dark);
-            color: var(--light-text);
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .footer-signature {
-            font-family: 'Oswald', sans-serif !important;
-            font-size: 1.1rem;
-            color: var(--kool-aid-red);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .blog-container {
-                padding: 1rem;
-            }
-            
-            .articles-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        /* Animation d'apparition */
+        /* Animations */
         .fade-in {
             animation: fadeInUp 0.8s ease-out;
         }
@@ -334,36 +368,70 @@
                 transform: translateY(0);
             }
         }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+            }
+
+            .main-content {
+                padding: 40px 20px;
+            }
+
+            .header-logo {
+                width: 150px;
+                height: 150px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav-header">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">The Online Commune</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="blog.html">Research</a>
-                <a href="paintings.html">Art</a>
-                <a href="discord.html">Community</a>
-            </div>
-        </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">THE KOOL-AID COMMUNE</a>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="chronicles.html" class="active">The Chronicles</a></li>
+            <li><a href="shennipaint.html">Shennipaint</a></li>
+            <li><a href="cult-chronicles.html">Cult Chronicles</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
 
-    <!-- Formes organiques d'arrière-plan -->
-    <div class="organic-bg"></div>
-    <div class="organic-bg"></div>
-    <div class="organic-bg"></div>
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-logo">
+            <img src="./Chronicles.png" alt="The Chronicles Logo">
+        </div>
+        <h1 class="page-title">THE CHRONICLES</h1>
+        <p class="page-subtitle">The Real but Lazy Satiric Chronicles of the Crazy</p>
+        <div class="classified-stamp">★ TOP SECRET ★</div>
+    </header>
 
-    <!-- Container principal -->
-    <div class="blog-container">
-        <!-- Header du blog -->
-        <header class="blog-header fade-in">
-            <h1 class="blog-title">Prophetic Research Archive</h1>
-            <p class="blog-subtitle">Published research on Medium - Forbidden theories and alternative truths</p>
-        </header>
-
-        <!-- Filtres par catégorie -->
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Category Filters -->
         <div class="categories-filter fade-in">
             <button class="category-btn active">All Research</button>
             <button class="category-btn">Kool-Aid Conspiracy</button>
@@ -372,8 +440,10 @@
             <button class="category-btn">Olympic Reform</button>
         </div>
 
-        <!-- Grille d'articles -->
+        <!-- Articles Grid -->
         <div class="articles-grid">
+            
+            <!-- Article 1: Kool-Aid Man's Dark Secret -->
             <article class="article-card fade-in">
                 <span class="article-category">Kool-Aid Conspiracy</span>
                 <h2 class="article-title">The Kool-Aid Man's Dark Secret: Jonestown Revisited</h2>
@@ -381,10 +451,13 @@
                     <span>By Shennipen</span>
                     <span>Medium Publication</span>
                 </div>
-                <p class="article-excerpt">A dark chapter revealing the true conspiracy behind Jim Jones and the Kool-Aid Man's malevolent cosmic plan. The sugary mascot is not what it seems - explore the chilling twist on the Jonestown Massacre that exposes years of corporate manipulation.</p>
-                <a href="https://medium.com/@lazycraz/the-kool-aid-mans-dark-secret-jonestown-revisited-70f1b404c5bc" target="_blank" class="read-more">Read on Medium</a>
+                <p class="article-excerpt">
+                    A dark chapter revealing the true conspiracy behind Jim Jones and the Kool-Aid Man's malevolent cosmic plan. The sugary mascot is not what it seems - explore the chilling twist on the Jonestown Massacre that exposes years of corporate manipulation.
+                </p>
+                <a href="https://medium.com/@lazycraz/the-kool-aid-mans-dark-secret-jonestown-revisited-70f1b404c5bc" target="_blank" class="read-more">Read on Medium →</a>
             </article>
 
+            <!-- Article 2: Crack Head Cousin -->
             <article class="article-card fade-in">
                 <span class="article-category">Sobriety Studies</span>
                 <h2 class="article-title">Why Your Crack Head 16 Years Old Cousin is Smarter Than You</h2>
@@ -392,10 +465,13 @@
                     <span>By Shennipen</span>
                     <span>Medium Publication</span>
                 </div>
-                <p class="article-excerpt">Revolutionary research challenging conventional wisdom about intelligence and consciousness. Only those with exceptional grasp of quantum mechanics can appreciate altered states. The correlation between genius and non-sobriety is undeniable.</p>
-                <a href="https://medium.com/@lazycraz/why-your-crack-head-16-years-old-cousin-is-smarter-than-you-544e5708f61a" target="_blank" class="read-more">Read on Medium</a>
+                <p class="article-excerpt">
+                    Revolutionary research challenging conventional wisdom about intelligence and consciousness. Only those with exceptional grasp of quantum mechanics can appreciate altered states. The correlation between genius and non-sobriety is undeniable.
+                </p>
+                <a href="https://medium.com/@lazycraz/why-your-crack-head-16-years-old-cousin-is-smarter-than-you-544e5708f61a" target="_blank" class="read-more">Read on Medium →</a>
             </article>
 
+            <!-- Article 3: The Royal Penalty -->
             <article class="article-card fade-in">
                 <span class="article-category">Royal Genetics</span>
                 <h2 class="article-title">The Royal Penalty</h2>
@@ -403,10 +479,13 @@
                     <span>By Shennipen</span>
                     <span>Medium Publication</span>
                 </div>
-                <p class="article-excerpt">Deep dive into the genetic consequences of royal inbreeding. Charles II "The Bewitched," the Habsburg jaw, Queen Victoria's hemophilia plague - systematic genetic terrorism that continues today. They didn't only steal our wealth, they stole our health.</p>
-                <a href="https://medium.com/@lazycraz/the-royal-penalty-29023522cc5d" target="_blank" class="read-more">Read on Medium</a>
+                <p class="article-excerpt">
+                    Deep dive into the genetic consequences of royal inbreeding. Charles II "The Bewitched," the Habsburg jaw, Queen Victoria's hemophilia plague - systematic genetic terrorism that continues today. They didn't only steal our wealth, they stole our health.
+                </p>
+                <a href="https://medium.com/@lazycraz/the-royal-penalty-29023522cc5d" target="_blank" class="read-more">Read on Medium →</a>
             </article>
 
+            <!-- Article 4: Olympic Reform -->
             <article class="article-card fade-in">
                 <span class="article-category">Olympic Reform</span>
                 <h2 class="article-title">Olympic Overdue Reform</h2>
@@ -414,10 +493,13 @@
                     <span>By Shennipen</span>
                     <span>Medium Publication</span>
                 </div>
-                <p class="article-excerpt">Critical analysis of the Olympic system and necessary reforms. Exposing the corruption and manipulation behind the world's largest sporting event. Alternative perspectives on international competition and its hidden agendas.</p>
-                <a href="https://medium.com/@lazycraz/olympic-overdue-reform-385588b38eb1" target="_blank" class="read-more">Read on Medium</a>
+                <p class="article-excerpt">
+                    Critical analysis of the Olympic system and necessary reforms. Exposing the corruption and manipulation behind the world's largest sporting event. Alternative perspectives on international competition and its hidden agendas.
+                </p>
+                <a href="https://medium.com/@lazycraz/olympic-overdue-reform-385588b38eb1" target="_blank" class="read-more">Read on Medium →</a>
             </article>
 
+            <!-- Article 5: Mystery Research -->
             <article class="article-card fade-in">
                 <span class="article-category">Mystery Research</span>
                 <h2 class="article-title">Untitled Investigation</h2>
@@ -425,10 +507,13 @@
                     <span>By Shennipen</span>
                     <span>Medium Publication</span>
                 </div>
-                <p class="article-excerpt">Latest prophetic research into hidden truths and alternative perspectives. Explore the connections between consciousness, reality, and the forces that shape our understanding of the world around us.</p>
-                <a href="https://medium.com/@lazycraz/-c7140a999e19" target="_blank" class="read-more">Read on Medium</a>
+                <p class="article-excerpt">
+                    Latest prophetic research into hidden truths and alternative perspectives. Explore the connections between consciousness, reality, and the forces that shape our understanding of the world around us.
+                </p>
+                <a href="https://medium.com/@lazycraz/-c7140a999e19" target="_blank" class="read-more">Read on Medium →</a>
             </article>
 
+            <!-- Article 6: Coming Soon -->
             <article class="article-card fade-in">
                 <span class="article-category">Coming Soon</span>
                 <h2 class="article-title">Future Revelations</h2>
@@ -436,34 +521,40 @@
                     <span>By Shennipen</span>
                     <span>In Development</span>
                 </div>
-                <p class="article-excerpt">More forbidden theories and alternative research coming soon. Subscribe to stay updated on the latest revelations about cosmic conspiracies, genetic manipulation, and the hidden forces governing reality.</p>
-                <a href="https://medium.com/@lazycraz" target="_blank" class="read-more">Follow on Medium</a>
+                <p class="article-excerpt">
+                    More forbidden theories and alternative research coming soon. Subscribe to stay updated on the latest revelations about cosmic conspiracies, genetic manipulation, and the hidden forces governing reality.
+                </p>
+                <a href="https://medium.com/@lazycraz" target="_blank" class="read-more">Follow on Medium →</a>
             </article>
+
         </div>
 
-        <!-- Footer -->
-        <footer class="blog-footer">
-            <div class="footer-signature">Shennipen - Digital Prophet</div>
-            <p>Jim Jones, The Kool-Aid Man, and the mystical power of substance</p>
-        </footer>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-gradient">THE KOOL-AID COMMUNE</div>
+        <p class="footer-text">
+            Where satire meets salvation, one artificially flavored sip at a time.<br>
+            © 2026 The Kool-Aid Commune | All Rights Reserved
+        </p>
+    </footer>
 
     <script>
-        // Filtrage par catégorie
+        // Category filtering
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                // Retire la classe active de tous les boutons
                 document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-                // Ajoute la classe active au bouton cliqué
                 btn.classList.add('active');
                 
-                // Ici tu peux ajouter la logique de filtrage
                 const category = btn.textContent;
                 console.log('Filter by:', category);
+                
+                // You can add actual filtering logic here
             });
         });
 
-        // Animation au scroll
+        // Fade in animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -481,5 +572,6 @@
             observer.observe(card);
         });
     </script>
+
 </body>
 </html>
