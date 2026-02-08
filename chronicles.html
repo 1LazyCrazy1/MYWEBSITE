@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Chronicles - The Kool-Aid Commune</title>
-    
-    <!-- Import fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Work+Sans:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
-    
     <style>
         * {
             margin: 0;
@@ -17,561 +11,370 @@
             box-sizing: border-box;
         }
 
-        :root {
-            /* The Chronicles color palette */
-            --chron-red: #e63946;
-            --chron-black: #000;
-            --chron-darkgray: #1a1a1a;
-            --chron-gray: #666;
-            --chron-lightgray: #999;
-            --chron-white: #fff;
-            --bg-dark: #0a0a0a;
-            --bg-card: rgba(26, 26, 26, 0.95);
-            --text-light: #f0f0f0;
-        }
-
         body {
-            font-family: 'Work Sans', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-            overflow-x: hidden;
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a0000 0%, #330000 50%, #1a0000 100%);
+            color: #ff3333;
+            min-height: 100vh;
+            line-height: 1.6;
         }
 
-        /* Navigation Bar - Same as home */
-        .navbar {
-            position: fixed;
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            border-bottom: 2px solid #ff3333;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             z-index: 1000;
-            border-bottom: 2px solid rgba(230, 57, 70, 0.3);
         }
 
-        .navbar-brand {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            background: linear-gradient(90deg, #b666d2, #e63946, #ffa500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .logo {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ff3333;
             text-decoration: none;
-            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 1rem;
         }
 
-        .navbar-links {
-            display: flex;
-            gap: 30px;
+        nav {
+            text-align: center;
+        }
+
+        nav ul {
             list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
         }
 
-        .navbar-links a {
-            font-family: 'Barlow', sans-serif;
-            color: var(--text-light);
+        nav a {
+            color: #ff3333;
             text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: bold;
+            transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
-            position: relative;
         }
 
-        .navbar-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--chron-red);
-            transition: width 0.3s ease;
-        }
-
-        .navbar-links a:hover {
-            color: var(--chron-red);
-        }
-
-        .navbar-links a:hover::after {
-            width: 100%;
-        }
-
-        .navbar-links a.active {
-            color: var(--chron-red);
-        }
-
-        /* Page Header */
-        .page-header {
-            margin-top: 70px;
-            padding: 80px 40px 60px;
-            text-align: center;
-            background: linear-gradient(180deg, var(--chron-darkgray) 0%, var(--bg-dark) 100%);
-            border-bottom: 3px solid var(--chron-red);
-            position: relative;
-        }
-
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(230, 57, 70, 0.03) 2px, rgba(230, 57, 70, 0.03) 4px);
-            pointer-events: none;
-        }
-
-        .header-logo {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid var(--chron-red);
-            box-shadow: 0 0 30px rgba(230, 57, 70, 0.3);
-        }
-
-        .header-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .page-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 4rem;
-            color: var(--chron-red);
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
-        }
-
-        .page-subtitle {
-            font-family: 'Barlow', sans-serif;
-            font-size: 1.3rem;
-            color: var(--chron-lightgray);
-            font-style: italic;
-            max-width: 700px;
-            margin: 0 auto 20px;
-        }
-
-        .classified-stamp {
-            display: inline-block;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5rem;
-            color: var(--chron-red);
-            border: 3px solid var(--chron-red);
-            padding: 10px 30px;
-            transform: rotate(-3deg);
-            letter-spacing: 3px;
-            margin-top: 20px;
+        nav a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #ff3333;
         }
 
         /* Main Content */
-        .main-content {
-            max-width: 1400px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 40px;
+            padding: 2rem;
         }
 
-        /* Category Filters */
-        .categories-filter {
+        .page-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin: 3rem 0;
         }
 
-        .category-btn {
-            font-family: 'Barlow', sans-serif;
-            background: transparent;
-            color: var(--chron-lightgray);
-            border: 2px solid var(--chron-gray);
-            padding: 10px 25px;
-            margin: 5px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            font-weight: 600;
+        .page-header img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+            border: 3px solid #ff3333;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 5px;
         }
 
-        .category-btn:hover,
-        .category-btn.active {
-            background: var(--chron-red);
-            border-color: var(--chron-red);
-            color: var(--chron-white);
-        }
-
-        /* Articles Grid */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .article-card {
-            background: var(--bg-card);
-            border: 2px solid var(--chron-gray);
-            border-radius: 0;
-            padding: 30px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .article-card::before {
-            content: 'CONFIDENTIAL';
-            position: absolute;
-            top: 15px;
-            right: -30px;
-            transform: rotate(45deg);
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.7rem;
-            color: var(--chron-red);
-            opacity: 0.3;
-            letter-spacing: 2px;
-        }
-
-        .article-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--chron-red);
-            transform: scaleY(0);
-            transition: transform 0.4s ease;
-        }
-
-        .article-card:hover {
-            border-color: var(--chron-red);
-            transform: translateX(10px);
-            box-shadow: -10px 10px 30px rgba(230, 57, 70, 0.2);
-        }
-
-        .article-card:hover::after {
-            transform: scaleY(1);
-        }
-
-        .article-category {
-            display: inline-block;
-            background: var(--chron-red);
-            color: var(--chron-white);
-            padding: 5px 15px;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .article-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
-            color: var(--text-light);
-            margin-bottom: 15px;
-            line-height: 1.2;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .article-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Barlow', sans-serif;
-            font-size: 0.85rem;
-            color: var(--chron-gray);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .article-excerpt {
-            font-family: 'Work Sans', sans-serif;
-            color: var(--chron-lightgray);
-            line-height: 1.7;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-
-        .read-more {
-            font-family: 'Oswald', sans-serif;
-            background: transparent;
-            color: var(--chron-red);
-            border: 2px solid var(--chron-red);
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            display: inline-block;
-            font-size: 0.9rem;
-        }
-
-        .read-more:hover {
-            background: var(--chron-red);
-            color: var(--chron-white);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
-        }
-
-        /* Footer - Same as home */
-        .footer {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 40px;
-            text-align: center;
-            border-top: 2px solid rgba(230, 57, 70, 0.3);
-            margin-top: 100px;
-        }
-
-        .footer-gradient {
-            font-family: 'Bebas Neue', sans-serif;
-            background: linear-gradient(90deg, #b666d2, #e63946, #6B9AC4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .page-header p {
             font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-style: italic;
+            margin-bottom: 0.5rem;
         }
 
-        .footer-text {
-            font-family: 'Barlow', sans-serif;
-            color: var(--chron-lightgray);
+        .top-secret {
+            display: inline-block;
+            background: #ff3333;
+            color: #000;
+            padding: 0.5rem 2rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-top: 1rem;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 51, 51, 0.2);
+            color: #ff3333;
+            border: 2px solid #ff3333;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #ff3333;
+            color: #000;
+        }
+
+        /* Chronicles Grid */
+        .chronicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chronicle-item {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #ff3333;
+            padding: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+        }
+
+        .chronicle-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(255, 51, 51, 0.6);
+        }
+
+        .chronicle-item h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff3333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .chronicle-item .author {
+            color: #ff9999;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .chronicle-item .publication {
+            color: #ff6666;
             font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
-        /* Animations */
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
+        .chronicle-item .description {
+            color: #ffcccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .read-link {
+            display: inline-block;
+            background: #ff3333;
+            color: #000;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .read-link:hover {
+            background: #fff;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.8);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 2px solid #ff3333;
+        }
+
+        footer h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        footer p {
+            color: #ff9999;
+            font-style: italic;
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .articles-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .navbar-links {
-                display: none;
-            }
-        }
-
         @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
+            .page-header h1 {
+                font-size: 2rem;
             }
 
-            .page-title {
-                font-size: 2.5rem;
+            nav ul {
+                gap: 1rem;
             }
 
-            .page-subtitle {
-                font-size: 1rem;
+            .filter-buttons {
+                gap: 0.5rem;
             }
 
-            .main-content {
-                padding: 40px 20px;
-            }
-
-            .header-logo {
-                width: 150px;
-                height: 150px;
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="index.html" class="navbar-brand">THE KOOL-AID COMMUNE</a>
-        <ul class="navbar-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="chronicles.html" class="active">The Chronicles</a></li>
-            <li><a href="shennipaint.html">Shennipaint</a></li>
-            <li><a href="cult-chronicles.html">Cult Chronicles</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Page Header -->
-    <header class="page-header">
-        <div class="header-logo">
-            <img src="./Chronicles.png" alt="The Chronicles Logo">
-        </div>
-        <h1 class="page-title">THE CHRONICLES</h1>
-        <p class="page-subtitle">The Real but Lazy Satiric Chronicles of the Crazy</p>
-        <div class="classified-stamp">★ TOP SECRET ★</div>
+    <header>
+        <a href="index.html" class="logo">THE KOOL-AID COMMUNE</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="chronicles.html">The Chronicles</a></li>
+                <li><a href="shennipaint.html">Shennipaint</a></li>
+                <li><a href="cult-chronicles.html">Cult Chronicles</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        
-        <!-- Category Filters -->
-        <div class="categories-filter fade-in">
-            <button class="category-btn active">All Research</button>
-            <button class="category-btn">Kool-Aid Conspiracy</button>
-            <button class="category-btn">Royal Genetics</button>
-            <button class="category-btn">Sobriety Studies</button>
-            <button class="category-btn">Olympic Reform</button>
+    <div class="container">
+        <div class="page-header">
+            <img src="./Chronicles.png" alt="The Chronicles Logo">
+            <h1>THE CHRONICLES</h1>
+            <p>The Real but Lazy Satiric Chronicles of the Crazy</p>
+            <div class="top-secret">★ TOP SECRET ★</div>
         </div>
 
-        <!-- Articles Grid -->
-        <div class="articles-grid">
-            
-            <!-- Article 1: Kool-Aid Man's Dark Secret -->
-            <article class="article-card fade-in">
-                <span class="article-category">Kool-Aid Conspiracy</span>
-                <h2 class="article-title">The Kool-Aid Man's Dark Secret: Jonestown Revisited</h2>
-                <div class="article-meta">
-                    <span>By Lazycrazy</span>
-                    <span>Medium Publication</span>
-                </div>
-                <p class="article-excerpt">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Research</button>
+            <button class="filter-btn" data-filter="kool-aid">Kool-Aid Conspiracy</button>
+            <button class="filter-btn" data-filter="royal">Royal Genetics</button>
+            <button class="filter-btn" data-filter="sobriety">Sobriety Studies</button>
+            <button class="filter-btn" data-filter="olympic">Olympic Reform</button>
+        </div>
+
+        <div class="chronicles-grid">
+            <!-- Kool-Aid Conspiracy -->
+            <div class="chronicle-item" data-category="kool-aid">
+                <h2>The Kool-Aid Man's Dark Secret: Jonestown Revisited</h2>
+                <p class="author">By Lazycrazy</p>
+                <p class="publication">Medium Publication</p>
+                <p class="description">
                     A dark chapter revealing the true conspiracy behind Jim Jones and the Kool-Aid Man's malevolent cosmic plan. The sugary mascot is not what it seems - explore the chilling twist on the Jonestown Massacre that exposes years of corporate manipulation.
                 </p>
-                <a href="https://medium.com/@lazycraz/the-kool-aid-mans-dark-secret-jonestown-revisited-70f1b404c5bc" target="_blank" class="read-more">Read on Medium →</a>
-            </article>
+                <a href="https://medium.com/@lazycraz/the-kool-aid-mans-dark-secret-jonestown-revisited-70f1b404c5bc" class="read-link" target="_blank">Read on Medium →</a>
+            </div>
 
-            <!-- Article 2: Crack Head Cousin -->
-            <article class="article-card fade-in">
-                <span class="article-category">Sobriety Studies</span>
-                <h2 class="article-title">Why Your Crack Head 16 Years Old Cousin is Smarter Than You</h2>
-                <div class="article-meta">
-                    <span>By LazyCrazy</span>
-                    <span>Medium Publication</span>
-                </div>
-                <p class="article-excerpt">
+            <!-- Sobriety Studies -->
+            <div class="chronicle-item" data-category="sobriety">
+                <h2>Why Your Crack Head 16 Years Old Cousin is Smarter Than You</h2>
+                <p class="author">By LazyCrazy</p>
+                <p class="publication">Medium Publication</p>
+                <p class="description">
                     Revolutionary research challenging conventional wisdom about intelligence and consciousness. Only those with exceptional grasp of quantum mechanics can appreciate altered states. The correlation between genius and non-sobriety is undeniable.
                 </p>
-                <a href="https://medium.com/@lazycraz/why-your-crack-head-16-years-old-cousin-is-smarter-than-you-544e5708f61a" target="_blank" class="read-more">Read on Medium →</a>
-            </article>
+                <a href="https://medium.com/@lazycraz/why-your-crack-head-16-years-old-cousin-is-smarter-than-you-544e5708f61a" class="read-link" target="_blank">Read on Medium →</a>
+            </div>
 
-            <!-- Article 3: The Royal Penalty -->
-            <article class="article-card fade-in">
-                <span class="article-category">Royal Genetics</span>
-                <h2 class="article-title">The Royal Penalty</h2>
-                <div class="article-meta">
-                    <span>By LazyCrazy</span>
-                    <span>Medium Publication</span>
-                </div>
-                <p class="article-excerpt">
+            <!-- Royal Genetics -->
+            <div class="chronicle-item" data-category="royal">
+                <h2>The Royal Penalty</h2>
+                <p class="author">By LazyCrazy</p>
+                <p class="publication">Medium Publication</p>
+                <p class="description">
                     Deep dive into the genetic consequences of royal inbreeding. Charles II "The Bewitched," the Habsburg jaw, Queen Victoria's hemophilia plague - systematic genetic terrorism that continues today. They didn't only steal our wealth, they stole our health.
                 </p>
-                <a href="https://medium.com/@lazycraz/the-royal-penalty-29023522cc5d" target="_blank" class="read-more">Read on Medium →</a>
-            </article>
+                <a href="https://medium.com/@lazycraz/the-royal-penalty-29023522cc5d" class="read-link" target="_blank">Read on Medium →</a>
+            </div>
 
-            <!-- Article 4: Olympic Reform -->
-            <article class="article-card fade-in">
-                <span class="article-category">Olympic Reform</span>
-                <h2 class="article-title">Olympic Overdue Reform</h2>
-                <div class="article-meta">
-                    <span>By LazyCrazy</span>
-                    <span>Medium Publication</span>
-                </div>
-                <p class="article-excerpt">
+            <!-- Olympic Reform -->
+            <div class="chronicle-item" data-category="olympic">
+                <h2>Olympic Overdue Reform</h2>
+                <p class="author">By LazyCrazy</p>
+                <p class="publication">Medium Publication</p>
+                <p class="description">
                     Critical analysis of the Olympic system and necessary reforms. Exposing the corruption and manipulation behind the world's largest sporting event. Alternative perspectives on international competition and its hidden agendas.
                 </p>
-                <a href="https://medium.com/@lazycraz/olympic-overdue-reform-385588b38eb1" target="_blank" class="read-more">Read on Medium →</a>
-            </article>
+                <a href="https://medium.com/@lazycraz/olympic-overdue-reform-385588b38eb1" class="read-link" target="_blank">Read on Medium →</a>
+            </div>
 
-            <!-- Article 5: Dolphin Danger -->
-            <article class="article-card fade-in">
-                <span class="article-category">Mystery Research</span>
-                <h2 class="article-title">Untitled Investigation</h2>
-                <div class="article-meta">
-                    <span>By Shennipen</span>
-                    <span>Medium Publication</span>
-                </div>
-                <p class="article-excerpt">
+            <!-- Mystery Research -->
+            <div class="chronicle-item" data-category="mystery">
+                <h2>Untitled Investigation</h2>
+                <p class="author">By Shennipen</p>
+                <p class="publication">Medium Publication</p>
+                <p class="description">
                     Latest prophetic research into hidden truths and alternative perspectives. Explore the connections between consciousness, reality, and the forces that shape our understanding of the world around us.
                 </p>
-                <a href="https://medium.com/@lazycraz/-c7140a999e19" target="_blank" class="read-more">Read on Medium →</a>
-            </article>
+                <a href="https://medium.com/@lazycraz/-c7140a999e19" class="read-link" target="_blank">Read on Medium →</a>
+            </div>
 
-             <!-- Article 4: The Rhyming Cypher. How Anglo-Saxon Nomenclature Patterns Safeguarded American Measurement Sovereignty (1787-Present)  -->
-            <article class="article-card fade-in">
-                <span class="article-category">Conspiracy</span>
-                <h2 class="article-title">The Rhyming Cypher</h2>
-                <div class="article-meta">
-                    <span>By LazyCrazy</span>
-                    <span>Medium Publication</span>
-                </div>
-                <p class="article-excerpt">
-                    Critical analysis of the Olympic system and necessary reforms. Exposing the corruption and manipulation behind the world's largest sporting event. Alternative perspectives on international competition and its hidden agendas.
+            <!-- The Rhyming Cypher - CORRECTED -->
+            <div class="chronicle-item" data-category="conspiracy">
+                <h2>The Rhyming Cypher</h2>
+                <p class="author">By LazyCrazy</p>
+                <p class="publication">Medium Publication</p>
+                <p class="description">
+                    Why does America refuse to adopt the metric system? The answer lies in William becoming Bill and Richard becoming Dick. A satirical exposé of the greatest Franco-American conspiracy: how Anglo-Saxon nickname patterns created a constitutional fail-safe against French decimal tyranny. God bless these United States and the inexplicable nickname "Dick."
                 </p>
-                <a href="https://medium.com/@lazycraz/the-rhyming-cipher-how-anglo-saxon-nomenclature-patterns-safeguarded-american-measurement-bd783da3f548">Read on Medium →</a>
-            </article>
-
+                <a href="https://medium.com/@lazycraz/the-rhyming-cipher-how-anglo-saxon-nomenclature-patterns-safeguarded-american-measurement-bd783da3f548" class="read-link" target="_blank">Read on Medium →</a>
+            </div>
         </div>
+    </div>
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-gradient">THE KOOL-AID COMMUNE</div>
-        <p class="footer-text">
-            Where satire meets salvation, one artificially flavored sip at a time.<br>
-            © 2026 The Kool-Aid Commune | All Rights Reserved
-        </p>
+    <footer>
+        <h3>THE KOOL-AID COMMUNE</h3>
+        <p>Where satire meets salvation, one artificially flavored sip at a time.</p>
+        <p>© 2026 The Kool-Aid Commune | All Rights Reserved</p>
     </footer>
 
     <script>
-        // Category filtering
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const category = btn.textContent;
-                console.log('Filter by:', category);
-                
-                // You can add actual filtering logic here
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const chronicleItems = document.querySelectorAll('.chronicle-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                chronicleItems.forEach(item => {
+                    if (filterValue === 'all') {
+                        item.style.display = 'block';
+                    } else {
+                        if (item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
             });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.article-card').forEach(card => {
-            observer.observe(card);
         });
     </script>
-
 </body>
 </html>
