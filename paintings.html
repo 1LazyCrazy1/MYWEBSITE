@@ -1,280 +1,367 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mystical Art Collection - The Online Commune</title>
+    <title>Shennipaint Artwork - The Kool-Aid Commune</title>
     
-    <!-- Import des polices -->
+    <!-- Import fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Oswald:wght@200..700&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Barlow:wght@400;700&family=Work+Sans:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
     
     <style>
-        /* Variables CSS identiques à la page principale */
-        :root {
-            --primary-bg: #3a4a3e;
-            --text-primary: #e8e8e8;
-            --secondary-bg: #2d3a30;
-            --accent-primary: #5a6b5e;
-            --accent-nature: #1e704b;
-            --kool-aid-red: #1B8B8C;
-            --accent-dark: #1a231d;
-            --accent-mystery: #51044e;
-            --light-text: #c4d0c7;
-            --font-heading: 'Oswald', sans-serif;
-            --font-body: 'DM Sans', sans-serif;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            /* Shennipaint color palette */
+            --shenni-blue: #6B9AC4;
+            --shenni-pink: #E67B9F;
+            --shenni-orange: #F4A460;
+            --shenni-purple: #9B7CB8;
+            --shenni-teal: #4ECDC4;
+            --bg-dark: #1a1a2e;
+            --bg-darker: #0f0f1e;
+            --bg-card: rgba(26, 26, 46, 0.95);
+            --text-light: #f0f0f0;
+            --text-gray: #aaa;
+        }
+
         body {
-            font-family: var(--font-body);
-            font-size: 1rem;
-            line-height: 1.4;
-            color: var(--text-primary);
-            background: var(--primary-bg);
+            font-family: 'Work Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+            color: var(--text-light);
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Language Switcher */
-        .language-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            font-family: var(--font-heading);
-        }
-
-        .lang-btn {
-            display: inline-block;
-            padding: 8px 16px;
-            margin: 0 4px;
-            text-decoration: none;
-            color: var(--light-text);
-            border: 2px solid var(--kool-aid-red);
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .lang-btn.active {
-            background-color: var(--kool-aid-red);
-            color: white;
-        }
-
-        .lang-btn:hover {
-            background-color: var(--accent-nature);
-            border-color: var(--accent-nature);
-            color: white;
-        }
-
-        /* Arrière-plan atmosphérique cultiste */
-        .atmospheric-bg {
+        /* Psychedelic background elements */
+        .cosmic-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 30% 70%, rgba(27, 139, 140, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 30%, rgba(30, 112, 75, 0.2) 0%, transparent 50%),
-                linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
-            z-index: -2;
+            z-index: -1;
+            opacity: 0.3;
         }
 
-        /* Formes organiques mystiques */
-        .organic-element {
-            position: fixed;
+        .cosmic-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float-cosmic 20s ease-in-out infinite;
+        }
+
+        .cosmic-orb:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--shenni-blue), transparent);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .cosmic-orb:nth-child(2) {
             width: 250px;
             height: 250px;
-            background: linear-gradient(45deg, 
-                rgba(27, 139, 140, 0.12), 
-                rgba(30, 112, 75, 0.1));
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            filter: blur(40px);
-            animation: morph 25s ease-in-out infinite alternate;
-            z-index: -1;
+            background: radial-gradient(circle, var(--shenni-pink), transparent);
+            top: 50%;
+            right: 15%;
+            animation-delay: -7s;
         }
 
-        .organic-element:nth-child(1) { top: 10%; left: 10%; animation-delay: -5s; }
-        .organic-element:nth-child(2) { bottom: 20%; right: 15%; animation-delay: -10s; transform: scale(0.7); }
-        .organic-element:nth-child(3) { top: 60%; left: 70%; animation-delay: -15s; transform: scale(0.5); }
-        .organic-element:nth-child(4) { bottom: 10%; left: 20%; animation-delay: -8s; transform: scale(0.4); }
-
-        @keyframes morph {
-            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: scale(1) rotate(0deg); }
-            100% { border-radius: 40% 60% 70% 30% / 50% 60% 30% 50%; transform: scale(0.8) rotate(10deg); }
+        .cosmic-orb:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--shenni-orange), transparent);
+            bottom: 20%;
+            left: 60%;
+            animation-delay: -14s;
         }
 
-        /* Container principal */
-        .main-container {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            padding: 2rem;
+        .cosmic-orb:nth-child(4) {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, var(--shenni-purple), transparent);
+            top: 70%;
+            left: 20%;
+            animation-delay: -3s;
         }
 
-        /* Header */
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            background: rgba(45, 58, 48, 0.95);
+        @keyframes float-cosmic {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.1); }
+            50% { transform: translate(-20px, 20px) scale(0.9); }
+            75% { transform: translate(20px, 30px) scale(1.05); }
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 30, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(27, 139, 140, 0.3);
-            border: 1px solid rgba(27, 139, 140, 0.3);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(107, 154, 196, 0.3);
         }
 
-        .gallery-header h1 {
-            font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            color: var(--kool-aid-red);
-            text-transform: uppercase;
+        .navbar-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, #b666d2, #e63946, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
             letter-spacing: 2px;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(27, 139, 140, 0.5);
         }
 
-        .gallery-subtitle {
-            font-family: var(--font-heading);
-            color: var(--accent-mystery);
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            font-family: 'Barlow', sans-serif;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--shenni-pink);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: var(--shenni-pink);
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar-links a.active {
+            color: var(--shenni-blue);
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 70px;
+            padding: 80px 40px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-logo {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid transparent;
+            background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+                        linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange)) border-box;
+            box-shadow: 0 0 40px rgba(107, 154, 196, 0.4);
+            animation: rotate-gradient 10s linear infinite;
+        }
+
+        @keyframes rotate-gradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .page-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .page-subtitle {
+            font-family: 'Barlow', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto 30px;
         }
 
         .artist-intro {
             max-width: 700px;
             margin: 0 auto;
             font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--light-text);
+            line-height: 1.8;
+            color: var(--text-light);
+            padding: 30px;
+            background: rgba(107, 154, 196, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(107, 154, 196, 0.2);
         }
 
-        .back-link {
-            display: inline-block;
-            margin-bottom: 1rem;
-            color: var(--kool-aid-red);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
         }
 
-        .back-link:hover {
-            color: var(--accent-nature);
-            text-shadow: 0 0 10px rgba(30, 112, 75, 0.8);
-        }
-
-        /* Filtres */
-        .filter-section {
+        /* Category Filters */
+        .categories-filter {
             text-align: center;
-            margin-bottom: 3rem;
-            background: rgba(45, 58, 48, 0.8);
-            padding: 1.5rem;
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(27, 139, 140, 0.2);
+            margin-bottom: 50px;
         }
 
         .filter-buttons {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            background: var(--accent-dark);
-            color: var(--light-text);
-            border: 2px solid var(--kool-aid-red);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-family: var(--font-heading);
-            text-transform: uppercase;
+            font-family: 'Barlow', sans-serif;
+            background: transparent;
+            color: var(--text-gray);
+            border: 2px solid var(--shenni-blue);
+            padding: 12px 28px;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .filter-btn:hover,
         .filter-btn.active {
-            background: var(--kool-aid-red);
+            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink));
+            border-color: transparent;
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(27, 139, 140, 0.5);
+            box-shadow: 0 5px 20px rgba(107, 154, 196, 0.4);
         }
 
-        /* Galerie */
+        /* Paintings Grid */
         .paintings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 40px;
         }
 
         .painting-card {
-            background: rgba(45, 58, 48, 0.95);
-            border-radius: 20px;
+            background: var(--bg-card);
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid transparent;
             transition: all 0.4s ease;
-            border: 2px solid rgba(27, 139, 140, 0.3);
             position: relative;
-            min-height: 550px;
+        }
+
+        .painting-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .painting-card:hover::before {
+            opacity: 1;
         }
 
         .painting-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(27, 139, 140, 0.6);
-            border-color: var(--kool-aid-red);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(107, 154, 196, 0.3);
+        }
+
+        .painting-image-container {
+            width: 100%;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
         }
 
         .painting-image {
-            width: 100%;
-            height: 250px;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
-            object-position: center;
-            transition: all 0.4s ease;
-            background-color: #1a231d;
-            image-rendering: high-quality;
-            margin: 0 auto;
-            display: block;
-            border: 2px solid transparent;
+            transition: transform 0.4s ease;
         }
 
         .painting-card:hover .painting-image {
-            transform: scale(1.02);
-            filter: brightness(1.1) contrast(1.1);
+            transform: scale(1.05);
         }
 
         .painting-info {
-            padding: 1.5rem;
+            padding: 30px;
         }
 
         .painting-title {
-            font-family: var(--font-heading);
-            font-size: 1.4rem;
-            color: var(--kool-aid-red);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
 
         .painting-description {
-            color: var(--light-text);
-            margin-bottom: 1rem;
-            line-height: 1.5;
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
             font-size: 0.95rem;
         }
 
@@ -282,34 +369,61 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 15px;
         }
 
-        .painting-size, .painting-medium {
+        .painting-meta {
+            font-family: 'Barlow', sans-serif;
             font-size: 0.9rem;
-            color: var(--accent-primary);
-            font-weight: 500;
+            color: var(--shenni-blue);
         }
 
         .painting-price {
-            font-family: var(--font-heading);
+            font-family: 'Barlow', sans-serif;
             font-size: 1.8rem;
-            color: var(--kool-aid-red);
             font-weight: 700;
-            text-shadow: 0 0 10px rgba(27, 139, 140, 0.5);
+            background: linear-gradient(135deg, var(--shenni-pink), var(--shenni-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        .status-available {
+            background: linear-gradient(135deg, var(--shenni-teal), var(--shenni-blue));
+            color: white;
+        }
+
+        .status-sold {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
         }
 
         .contact-btn {
             width: 100%;
-            background: linear-gradient(135deg, #FF6B6B, #FFD93D);
+            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange));
             color: white;
             border: none;
-            padding: 1rem;
-            border-radius: 25px;
-            font-family: var(--font-heading);
+            padding: 15px;
+            border-radius: 30px;
+            font-family: 'Barlow', sans-serif;
             font-size: 1rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
@@ -317,17 +431,16 @@
             text-decoration: none;
             display: block;
             text-align: center;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(107, 154, 196, 0.5);
             filter: brightness(1.1);
         }
 
         .contact-btn.sold {
-            background: #333;
+            background: linear-gradient(135deg, #555, #333);
             cursor: not-allowed;
         }
 
@@ -337,211 +450,52 @@
             filter: none;
         }
 
-        /* Status badges */
-        .status-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-family: var(--font-heading);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
-            z-index: 10;
-        }
-
-        .status-available {
-            background: linear-gradient(135deg, #1e704b, #28a745);
-            color: white;
-        }
-
-        .status-sold {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            color: white;
-        }
-
-        .status-commission {
-            background: linear-gradient(135deg, var(--accent-primary), var(--kool-aid-red));
-            color: white;
-        }
-
-        /* Image placeholder */
-        .image-placeholder {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #2d3a30, #3a4a3e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-heading);
-            color: var(--light-text);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            border: 2px dashed var(--kool-aid-red);
-        }
-
-        .image-placeholder::before {
-            content: "🎨";
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .image-placeholder-content {
-            text-align: center;
-        }
-
-        .image-error {
-            background: linear-gradient(135deg, #2a3a2e, #1f2922);
-            color: var(--kool-aid-red);
-            border-color: var(--kool-aid-red);
-        }
-
         /* Footer */
-        .gallery-footer {
-            background: var(--accent-dark);
-            color: var(--light-text);
+        .footer {
+            background: rgba(15, 15, 30, 0.95);
+            padding: 40px;
             text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-            border-radius: 20px 20px 0 0;
-            border-top: 2px solid var(--kool-aid-red);
+            border-top: 2px solid rgba(107, 154, 196, 0.3);
+            margin-top: 100px;
         }
 
-        .contact-info {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-info h3 {
-            font-family: var(--font-heading);
-            color: var(--kool-aid-red);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            text-shadow: 0 0 15px rgba(27, 139, 140, 0.5);
-        }
-
-        .contact-methods {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-method {
-            background: rgba(27, 139, 140, 0.2);
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
-            border: 1px solid var(--kool-aid-red);
-        }
-
-        /* Contact Modal */
-        .contact-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .contact-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-        }
-
-        .contact-modal-content {
-            background: var(--secondary-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-            border: 2px solid var(--kool-aid-red);
-        }
-
-        .contact-modal.active .contact-modal-content {
-            transform: scale(1);
-        }
-
-        .contact-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: var(--kool-aid-red);
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .contact-close:hover {
-            color: var(--accent-mystery);
-        }
-
-        .contact-modal h3 {
-            font-family: var(--font-heading);
-            color: var(--kool-aid-red);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .contact-painting-title {
-            font-family: var(--font-heading);
-            color: var(--accent-nature);
+        .footer-gradient {
+            font-family: 'Bebas Neue', sans-serif;
+            background: linear-gradient(90deg, #b666d2, #e63946, #6B9AC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
-        .contact-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .footer-text {
+            font-family: 'Barlow', sans-serif;
+            color: var(--text-gray);
+            font-size: 0.9rem;
         }
 
-        .contact-option {
-            background: rgba(45, 58, 48, 0.9);
-            padding: 1rem;
+        .footer-contact {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(107, 154, 196, 0.1);
             border-radius: 15px;
-            border: 2px solid var(--kool-aid-red);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            color: var(--light-text);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .contact-option:hover {
-            background: var(--kool-aid-red);
-            color: white;
-            transform: translateY(-2px);
+        .footer-contact h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
         }
 
-        .contact-option strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-family: var(--font-heading);
-            text-transform: uppercase;
-        }
-
-        /* Lightbox Styles */
+        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -567,485 +521,266 @@
             position: relative;
             max-width: 90%;
             max-height: 90%;
-            cursor: default;
         }
 
         .lightbox-image {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 90vh;
             object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 20px 50px rgba(27, 139, 140, 0.8);
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-            image-rendering: high-quality;
-        }
-
-        .lightbox.active .lightbox-image {
-            transform: scale(1);
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(107, 154, 196, 0.6);
         }
 
         .lightbox-close {
             position: absolute;
-            top: -40px;
-            right: -40px;
+            top: -50px;
+            right: 0;
             width: 40px;
             height: 40px;
-            background: var(--kool-aid-red);
+            background: var(--shenni-pink);
             color: white;
             border: none;
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .lightbox-close:hover {
-            background: var(--accent-nature);
+            background: var(--shenni-orange);
             transform: scale(1.1);
         }
 
-        .lightbox-title {
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            right: 0;
-            color: white;
-            text-align: center;
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Animations */
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .paintings-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+
+            .navbar-links {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
-            .main-container {
-                padding: 1rem;
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .page-title {
+                font-size: 3rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .main-content {
+                padding: 40px 20px;
+            }
+
+            .header-logo {
+                width: 180px;
+                height: 180px;
             }
 
             .paintings-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
-
-            .filter-buttons {
-                gap: 0.5rem;
-            }
-
-            .filter-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .painting-details {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .contact-methods {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .language-switcher {
-                top: 10px;
-                right: 10px;
-            }
-
-            .lang-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-
-            .contact-modal-content {
-                padding: 1.5rem;
-            }
-
-            .lightbox-close {
-                top: -30px;
-                right: -30px;
-                width: 30px;
-                height: 30px;
-                font-size: 1rem;
-            }
-            
-            .lightbox-title {
-                font-size: 1rem;
-                bottom: -40px;
-            }
-        }
-
-        /* Kool-Aid Man Decorations - Lugubres */
-        .kool-aid-decoration {
-            position: fixed;
-            font-size: 4rem;
-            opacity: 0.15;
-            z-index: 0;
-            filter: grayscale(70%) brightness(0.6);
-            animation: float 20s ease-in-out infinite;
-            pointer-events: none;
-            text-shadow: 0 0 20px rgba(139, 27, 27, 0.5);
-        }
-
-        .kool-aid-decoration:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; }
-        .kool-aid-decoration:nth-child(2) { top: 15%; right: 8%; animation-delay: -3s; transform: rotate(15deg); }
-        .kool-aid-decoration:nth-child(3) { bottom: 25%; left: 10%; animation-delay: -6s; transform: rotate(-20deg); }
-        .kool-aid-decoration:nth-child(4) { bottom: 10%; right: 12%; animation-delay: -9s; }
-        .kool-aid-decoration:nth-child(5) { top: 40%; left: 3%; animation-delay: -12s; transform: rotate(25deg); }
-        .kool-aid-decoration:nth-child(6) { top: 60%; right: 5%; animation-delay: -15s; transform: rotate(-15deg); }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.15; }
-            50% { transform: translateY(-20px) rotate(5deg); opacity: 0.25; }
-        }
-
-        /* Jim Jones Quote Decorations */
-        .jones-quote {
-            position: fixed;
-            font-family: var(--font-heading);
-            font-size: 0.8rem;
-            color: var(--kool-aid-red);
-            opacity: 0.1;
-            z-index: 0;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            pointer-events: none;
-            animation: fadeInOut 15s ease-in-out infinite;
-        }
-
-        .jones-quote:nth-child(7) { top: 20%; left: 2%; animation-delay: 0s; }
-        .jones-quote:nth-child(8) { top: 50%; right: 2%; animation-delay: -5s; }
-        .jones-quote:nth-child(9) { bottom: 30%; left: 1%; animation-delay: -10s; }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0.05; }
-            50% { opacity: 0.15; }
-        }
-
-        /* Chalice/Cup decorations */
-        .chalice-decoration {
-            position: fixed;
-            font-size: 3rem;
-            opacity: 0.08;
-            z-index: 0;
-            filter: brightness(0.5);
-            animation: pulse 10s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .chalice-decoration:nth-child(10) { top: 30%; left: 50%; animation-delay: -2s; }
-        .chalice-decoration:nth-child(11) { bottom: 40%; right: 20%; animation-delay: -5s; }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.08; transform: scale(1); }
-            50% { opacity: 0.15; transform: scale(1.1); }
-        }
-
-        /* Dripping effect on headers */
-        .drip-effect {
-            position: relative;
-        }
-
-        .drip-effect::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 3px;
-            background: linear-gradient(to right, 
-                transparent, 
-                var(--kool-aid-red) 20%, 
-                var(--kool-aid-red) 80%, 
-                transparent);
-            opacity: 0.3;
-            filter: blur(2px);
-        }
-
-        /* Animation d'apparition */
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hidden class pour les filtres */
-        .hidden {
-            display: none !important;
         }
     </style>
 </head>
 <body>
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <a href="#" class="lang-btn active">English</a>
-        <a href="#" class="lang-btn" onclick="alert('Version française à venir ! / French version coming soon!')">Français</a>
+
+    <!-- Cosmic Background -->
+    <div class="cosmic-bg">
+        <div class="cosmic-orb"></div>
+        <div class="cosmic-orb"></div>
+        <div class="cosmic-orb"></div>
+        <div class="cosmic-orb"></div>
     </div>
 
-    <!-- Arrière-plan atmosphérique -->
-    <div class="atmospheric-bg"></div>
-    
-    <!-- Formes organiques -->
-    <div class="organic-element"></div>
-    <div class="organic-element"></div>
-    <div class="organic-element"></div>
-    <div class="organic-element"></div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">THE KOOL-AID COMMUNE</a>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="chronicles.html">The Chronicles</a></li>
+            <li><a href="shennipaint.html" class="active">Shennipaint</a></li>
+            <li><a href="cult-chronicles.html">Cult Chronicles</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
-    <!-- Kool-Aid Man Decorations - Lugubres -->
-    <div class="kool-aid-decoration">🥤</div>
-    <div class="kool-aid-decoration">🧃</div>
-    <div class="kool-aid-decoration">🥤</div>
-    <div class="kool-aid-decoration">🧃</div>
-    <div class="kool-aid-decoration">🥤</div>
-    <div class="kool-aid-decoration">🧃</div>
+    <!-- Page Header -->
+    <header class="page-header fade-in">
+        <div class="header-logo">
+            <img src="./Shennipaint.png" alt="Shennipaint Logo">
+        </div>
+        <h1 class="page-title">Shennipaint Artwork</h1>
+        <p class="page-subtitle">Original Paintings Available</p>
+        <div class="artist-intro">
+            <strong>Shennipaint</strong> - Indigenous self-taught artist based in Quebec, Canada. My works fuse prophetic visions with nature mysticism, exploring the hidden connections between spiritual forces and cosmic energies. Each painting is hand-painted with love, intention, and a touch of psychedelic magic.
+        </div>
+    </header>
 
-    <!-- Jim Jones Quote Decorations -->
-    <div class="jones-quote">DRINK THE TRUTH</div>
-    <div class="jones-quote">FOLLOW THE LIGHT</div>
-    <div class="jones-quote">ETERNAL AWAKENING</div>
-
-    <!-- Chalice Decorations -->
-    <div class="chalice-decoration">🏺</div>
-    <div class="chalice-decoration">⚱️</div>
-
-    <div class="main-container">
-        <!-- Header -->
-        <header class="gallery-header fade-in">
-            <a href="index.html" class="back-link">← Back to Commune</a>
-            <h1 class="drip-effect">Mystical Art Collection</h1>
-            <div class="artist-intro">
-                <p><strong>Shennipen</strong> - Indigenous self-taught artist based in Quebec, Canada. My works fuse prophetic visions with nature mysticism, exploring the hidden connections between spiritual forces and cosmic conspiracies. Each painting is infused with mystical energy and <span style="color: var(--kool-aid-red);">alternative truths</span>.</p>
-            </div>
-        </header>
-
-        <!-- Filtres -->
-        <div class="filter-section fade-in">
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Category Filters -->
+        <div class="categories-filter fade-in">
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All Works</button>
                 <button class="filter-btn" data-filter="available">Available</button>
                 <button class="filter-btn" data-filter="nature">Mystical Nature</button>
-                <button class="filter-btn" data-filter="conspiracy">Conspiracies</button>
                 <button class="filter-btn" data-filter="abstract">Abstract</button>
             </div>
         </div>
 
-        <!-- Galerie -->
+        <!-- Paintings Grid -->
         <div class="paintings-grid" id="paintings-gallery">
-            <!-- Les peintures seront générées automatiquement par JavaScript -->
+            <!-- Paintings will be generated by JavaScript -->
         </div>
 
-        <!-- Footer -->
-        <footer class="gallery-footer">
-            <div class="contact-info">
-                <h3 class="drip-effect">Commission Your Mystical Artwork</h3>
-                <p>All paintings are unique originals. Custom commissions available to channel your specific visions.</p>
-                
-                <div class="contact-methods">
-                    <div class="contact-method">
-                        <strong>Email:</strong> lazycrazykoolaidcommune@gmail.com
-                    </div>
-                </div>
-                
-                <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
-                    <em>"True art reveals the truths that the powers that be want to hide."</em>
-                </p>
-                
-                <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.4; font-family: var(--font-heading); letter-spacing: 2px;">
-                    <em>🥤 DRINK FROM THE CHALICE OF ENLIGHTENMENT 🥤</em>
-                </p>
-            </div>
-        </footer>
-    </div>
+    </main>
 
-    <!-- Contact Modal -->
-    <div class="contact-modal" id="contactModal">
-        <div class="contact-modal-content">
-            <button class="contact-close" onclick="closeContactModal()">×</button>
-            <h3>Contact Artist</h3>
-            <div class="contact-painting-title" id="contactPaintingTitle"></div>
-            <div class="contact-options" id="contactOptions">
-                <!-- Contact options will be populated by JavaScript -->
-            </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-gradient">THE KOOL-AID COMMUNE</div>
+        <p class="footer-text">
+            Where satire meets salvation, one artificially flavored sip at a time.<br>
+            © 2026 The Kool-Aid Commune | All Rights Reserved
+        </p>
+        
+        <div class="footer-contact">
+            <h3>Commission Your Mystical Artwork</h3>
+            <p class="footer-text">
+                All paintings are unique originals.<br>
+                Custom commissions available to channel your specific visions.<br><br>
+                <strong>Email:</strong> crazykoolaidcommune@gmail.com
+            </p>
         </div>
-    </div>
+    </footer>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <div class="lightbox-content" onclick="event.stopPropagation()">
             <button class="lightbox-close" onclick="closeLightbox()">×</button>
             <img class="lightbox-image" id="lightbox-image" src="" alt="">
-            <div class="lightbox-title" id="lightbox-title"></div>
         </div>
     </div>
 
     <script>
-        // 🎨 PAINTINGS DATABASE 🎨
+        // Paintings Database
         const paintings = [
             {
                 title: "Bambi Mimic",
-                image: "Bambi_Mimic.png",
-                description: "This is Bambi Mimic, a new friend. Behind its sweet smile, its mischievous eyes hide ancient secrets. Do you dare to discover what it knows? This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks. The style is both figurative and slightly abstract, inviting the viewer to dive into a universe that is both dreamlike and intriguing.",
+                image: "./Bambi_Mimic.png",
+                description: "Behind its sweet smile, its mischievous eyes hide ancient secrets. This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks. The style is both figurative and slightly abstract, inviting the viewer to dive into a universe that is both dreamlike and intriguing.",
                 size: "12\" × 12\"",
                 medium: "Acrylic on canvas",
                 price: "$300 CAD",
                 status: "available",
-                category: ["abstract", "available"],
-                contactMethods: [
-                    {
-                        type: "Email",
-                        value: "lazycrazykoolaidcommune@gmail.com",
-                        icon: "📧",
-                        action: "mailto:lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Bambi Mimic' Artwork"
-                    }
-                ]
+                category: ["abstract", "available"]
             },
             {
                 title: "Blue Forest",
-                image: "BlueForest.png",
+                image: "./BlueForest.png",
                 description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth.",
                 size: "7\" × 5\"",
                 medium: "Acrylic on canvas",
                 price: "$250 CAD",
                 status: "available",
-                category: ["nature", "available"],
-                contactMethods: [
-                    {
-                        type: "Email",
-                        value: "lazycrazykoolaidcommune@gmail.com",
-                        icon: "📧",
-                        action: "mailto:lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Blue Forest' Artwork"
-                    }
-                ]
+                category: ["nature", "available"]
             },
             {
                 title: "Pink Glasses On the Back of The Turtle",
-                image: "Tortoise.png",
-                description: "A prophetic exploration of mind control through digital manipulation. The screens reveal hidden truths about mass consciousness programming.",
+                image: "./Tortoise.png",
+                description: "A prophetic exploration of perception and reality. The turtle carries ancient wisdom while modern vision seeks new truths.",
                 size: "16\" × 12\"",
                 medium: "Acrylic on canvas",
                 price: "$400 CAD",
                 status: "available",
-                category: ["conspiracy", "available"],
-                contactMethods: [
-                    {
-                        type: "Email",
-                        value: "lazycrazykoolaidcommune@gmail.com",
-                        icon: "📧",
-                        action: "mailto:lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Pink Glasses On the Back of The Turtle' Artwork"
-                    }
-                ]
+                category: ["nature", "available"]
             },
             {
                 title: "Rock Antler",
-                image: "RockAntler.png",
-                description: "Add your description",
+                image: "./RockAntler.png",
+                description: "Where earth meets spirit, strength meets grace. A fusion of natural elements and mystical energy.",
                 size: "7\" × 5\"",
                 medium: "Acrylic",
                 price: "$250 CAD",
                 status: "available",
-                category: ["abstract", "conspiracy", "available"],
-                contactMethods: [
-                    {
-                        type: "Email",
-                        value: "lazycrazykoolaidcommune@gmail.com",
-                        icon: "📧",
-                        action: "mailto:lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Rock Antler' Artwork"
-                    }
-                ]
+                category: ["abstract", "available"]
             },
             {
                 title: "The Big Slam",
-                image: "Thebigslam.png",
-                description: "Add your description",
+                image: "./Thebigslam.png",
+                description: "Explosive energy captured on canvas. A cosmic collision of color and consciousness.",
                 size: "7\" × 5\"",
                 medium: "Acrylic",
                 price: "$250 CAD",
                 status: "available",
-                category: ["abstract", "conspiracy", "available"],
-                contactMethods: [
-                    {
-                        type: "Email",
-                        value: "lazycrazykoolaidcommune@gmail.com",
-                        icon: "📧",
-                        action: "mailto:lazycrazykoolaidcommune@gmail.com?subject=Interest in 'Rock Antler' Artwork"
-                    }
-                ]
-                    },
+                category: ["abstract", "available"]
+            },
             {
                 title: "MW Upside-Down Reality",
-                image: "MarineWolfs.png",
+                image: "./MarineWolfs.png",
                 description: "Acrylic Painting, a reflection of the duality between the marine world and the territories of the land.",
                 size: "5\" × 5\"",
                 medium: "Acrylic",
                 price: "$500 CAD",
                 status: "sold",
-                category: ["abstract"],
-                contactMethods: []
+                category: ["abstract"]
             }
         ];
 
-        function handleImageError(img) {
-            console.log(`❌ Échec du chargement de l'image: ${img.src}`);
-            
-            const placeholder = document.createElement('div');
-            placeholder.className = 'image-placeholder image-error';
-            
-            const content = document.createElement('div');
-            content.className = 'image-placeholder-content';
-            content.innerHTML = `
-                <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚠️</div>
-                <div>Image non trouvée</div>
-                <div style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.7;">
-                    ${img.getAttribute('data-title') || 'Image manquante'}
-                </div>
-            `;
-            
-            placeholder.appendChild(content);
-            img.parentNode.replaceChild(placeholder, img);
-        }
+        function createPaintingHTML(painting) {
+            const emailSubject = encodeURIComponent(`Interested in "${painting.title}"`);
+            const emailBody = encodeURIComponent(`Hello,\n\nI am interested in purchasing your painting "${painting.title}" (${painting.price}).\n\nPlease let me know the next steps.\n\nThank you!`);
+            const mailtoLink = `mailto:crazykoolaidcommune@gmail.com?subject=${emailSubject}&body=${emailBody}`;
 
-        function createPaintingHTML(painting, index) {
             const statusClass = `status-${painting.status}`;
-            const statusText = {
-                'available': 'Available',
-                'sold': 'Sold',
-                'commission': 'Commission'
-            };
+            const statusText = painting.status === 'available' ? 'Available' : 'Sold';
 
             return `
-                <div class="painting-card fade-in" data-category="${painting.category.join(' ')}" data-index="${index}">
-                    <div class="status-badge ${statusClass}">${statusText[painting.status]}</div>
-                    <img src="${painting.image}" 
-                         alt="${painting.title}" 
-                         class="painting-image" 
-                         data-title="${painting.title}"
-                         onerror="handleImageError(this)"
-                         style="cursor: pointer;"
-                         loading="lazy"
-                         onclick="openLightbox('${painting.image}', '${painting.title}')">
+                <div class="painting-card fade-in" data-category="${painting.category.join(' ')}">
+                    <div class="status-badge ${statusClass}">${statusText}</div>
+                    <div class="painting-image-container" onclick="openLightbox('${painting.image}')">
+                        <img src="${painting.image}" 
+                             alt="${painting.title}" 
+                             class="painting-image"
+                             loading="lazy">
+                    </div>
                     <div class="painting-info">
                         <h3 class="painting-title">${painting.title}</h3>
                         <p class="painting-description">${painting.description}</p>
                         <div class="painting-details">
-                            <div>
-                                <div class="painting-size">📐 ${painting.size}</div>
-                                <div class="painting-medium">🎨 ${painting.medium}</div>
+                            <div class="painting-meta">
+                                📐 ${painting.size}<br>
+                                🎨 ${painting.medium}
                             </div>
                             <div class="painting-price">${painting.price}</div>
                         </div>
                         ${painting.status === 'sold' 
                             ? '<button class="contact-btn sold" disabled>Sold Out</button>' 
-                            : `<button class="contact-btn ${painting.status}" data-painting-index="${index}">Contact Artist</button>`
+                            : `<a href="${mailtoLink}" class="contact-btn">Contact Artist</a>`
                         }
                     </div>
                 </div>
@@ -1054,14 +789,7 @@
 
         function displayPaintings(paintingsToShow = paintings) {
             const gallery = document.getElementById('paintings-gallery');
-            gallery.innerHTML = paintingsToShow.map((painting, index) => createPaintingHTML(painting, index)).join('');
-            
-            document.querySelectorAll('.contact-btn:not(.sold)').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const paintingIndex = parseInt(this.getAttribute('data-painting-index'));
-                    openContactModal(paintingIndex);
-                });
-            });
+            gallery.innerHTML = paintingsToShow.map(painting => createPaintingHTML(painting)).join('');
         }
 
         function filterPaintings(category) {
@@ -1072,70 +800,11 @@
             displayPaintings(filteredPaintings);
         }
 
-        function openContactModal(paintingIndex) {
-            const painting = paintings[paintingIndex];
-            const modal = document.getElementById('contactModal');
-            const titleElement = document.getElementById('contactPaintingTitle');
-            const optionsElement = document.getElementById('contactOptions');
-            
-            titleElement.textContent = painting.title;
-            optionsElement.innerHTML = '';
-            
-            painting.contactMethods.forEach(method => {
-                const option = document.createElement('div');
-                option.className = 'contact-option';
-                option.innerHTML = `
-                    <strong>${method.icon} ${method.type}</strong>
-                    <span>${method.value}</span>
-                `;
-                
-                option.addEventListener('click', function() {
-                    handleContactAction(method, painting.title);
-                });
-                
-                optionsElement.appendChild(option);
-            });
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function handleContactAction(method, paintingTitle) {
-            switch(method.action) {
-                case 'alert':
-                    alert(`For "${paintingTitle}":\n\n${method.type}: ${method.value}\n\nPlease mention the artwork title in your message!`);
-                    break;
-                case 'copy':
-                    navigator.clipboard.writeText(method.value).then(() => {
-                        alert(`${method.type} username copied to clipboard!\n\n"${method.value}"\n\nPlease mention "${paintingTitle}" in your message!`);
-                    }).catch(() => {
-                        alert(`${method.type}: ${method.value}\n\nPlease mention "${paintingTitle}" in your message!`);
-                    });
-                    break;
-                default:
-                    if (method.action.startsWith('mailto:')) {
-                        window.location.href = method.action;
-                    }
-                    break;
-            }
-            closeContactModal();
-        }
-
-        function closeContactModal() {
-            const modal = document.getElementById('contactModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function openLightbox(imageSrc, title) {
+        function openLightbox(imageSrc) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
-            const lightboxTitle = document.getElementById('lightbox-title');
             
             lightboxImage.src = imageSrc;
-            lightboxImage.alt = title;
-            lightboxTitle.textContent = title;
-            
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -1146,22 +815,11 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-                closeContactModal();
-            }
-        });
-
-        document.getElementById('contactModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeContactModal();
-            }
-        });
-
+        // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
             displayPaintings();
 
+            // Filter buttons
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1169,6 +827,13 @@
                     filterPaintings(this.dataset.filter);
                 });
             });
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
         });
     </script>
 
