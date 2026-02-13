@@ -12,18 +12,18 @@
         }
 
         body {
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, #1a0000 0%, #330000 50%, #1a0000 100%);
-            color: #ff3333;
+            font-family: Georgia, 'Times New Roman', serif;
+            background: linear-gradient(135deg, #1a1210 0%, #2a1e18 50%, #1a1210 100%);
+            color: #e8d5b7;
             min-height: 100vh;
             line-height: 1.6;
         }
 
         /* Header */
         header {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             padding: 1rem 0;
-            border-bottom: 2px solid #ff3333;
+            border-bottom: 2px solid #8b4a2a;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -31,14 +31,15 @@
 
         .logo {
             text-align: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: #ff3333;
+            color: #e8c99a;
             text-decoration: none;
             display: block;
             margin-bottom: 1rem;
+            font-family: Georgia, serif;
         }
 
         nav {
@@ -54,17 +55,19 @@
         }
 
         nav a {
-            color: #ff3333;
+            color: #c9a87a;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
         }
 
         nav a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px #ff3333;
+            color: #f5e6d0;
+            text-shadow: 0 0 8px rgba(200, 150, 80, 0.6);
         }
 
         /* Main Content */
@@ -84,31 +87,36 @@
             width: 100%;
             height: auto;
             margin-bottom: 2rem;
-            border: 3px solid #ff3333;
-            box-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
+            border: 3px solid #8b4a2a;
+            box-shadow: 0 0 20px rgba(139, 74, 42, 0.4);
         }
 
         .page-header h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 5px;
+            color: #e8c99a;
+            font-family: Georgia, serif;
         }
 
         .page-header p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-style: italic;
             margin-bottom: 0.5rem;
+            color: #c9a87a;
         }
 
         .top-secret {
             display: inline-block;
-            background: #ff3333;
-            color: #000;
+            background: #6b2a1a;
+            color: #f5e6d0;
             padding: 0.5rem 2rem;
             font-weight: bold;
             letter-spacing: 3px;
             margin-top: 1rem;
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
         }
 
         /* Filter Buttons */
@@ -121,22 +129,24 @@
         }
 
         .filter-btn {
-            background: rgba(255, 51, 51, 0.2);
-            color: #ff3333;
-            border: 2px solid #ff3333;
+            background: rgba(139, 74, 42, 0.15);
+            color: #c9a87a;
+            border: 2px solid #8b4a2a;
             padding: 0.75rem 1.5rem;
             cursor: pointer;
-            font-family: 'Courier New', monospace;
+            font-family: Arial, sans-serif;
             font-weight: bold;
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 0.85rem;
         }
 
         .filter-btn:hover,
         .filter-btn.active {
-            background: #ff3333;
-            color: #000;
+            background: #6b2a1a;
+            color: #f5e6d0;
+            border-color: #a05030;
         }
 
         /* Chronicles Grid */
@@ -148,78 +158,103 @@
         }
 
         .chronicle-item {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #ff3333;
+            background: rgba(20, 12, 8, 0.75);
+            border: 1px solid #6b4030;
             padding: 2rem;
             transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+            box-shadow: 0 0 15px rgba(100, 50, 20, 0.2);
         }
 
         .chronicle-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(255, 51, 51, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 25px rgba(139, 74, 42, 0.35);
+            border-color: #a05030;
+        }
+
+        .chronicle-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            margin: -2rem -2rem 1.5rem -2rem;
+            width: calc(100% + 4rem);
+            border-bottom: 1px solid #6b4030;
+            opacity: 0.9;
         }
 
         .chronicle-item h2 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
-            color: #ff3333;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: #e8c99a;
+            letter-spacing: 1px;
+            font-family: Georgia, serif;
+            line-height: 1.4;
         }
 
         .chronicle-item .author {
-            color: #ff9999;
+            color: #c9a87a;
             font-style: italic;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
         }
 
         .chronicle-item .publication {
-            color: #ff6666;
-            font-size: 0.9rem;
+            color: #a08060;
+            font-size: 0.85rem;
             margin-bottom: 1rem;
+            font-family: Arial, sans-serif;
         }
 
         .chronicle-item .description {
-            color: #ffcccc;
+            color: #d4b896;
             margin-bottom: 1.5rem;
             line-height: 1.8;
+            font-family: Georgia, serif;
+            font-size: 0.95rem;
         }
 
         .read-link {
             display: inline-block;
-            background: #ff3333;
-            color: #000;
-            padding: 0.75rem 1.5rem;
+            background: #6b2a1a;
+            color: #f5e6d0;
+            padding: 0.65rem 1.4rem;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: Arial, sans-serif;
+            font-size: 0.85rem;
         }
 
         .read-link:hover {
-            background: #fff;
-            box-shadow: 0 0 15px rgba(255, 51, 51, 0.8);
+            background: #8b3a22;
+            box-shadow: 0 0 12px rgba(139, 74, 42, 0.5);
         }
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             padding: 2rem;
             text-align: center;
             margin-top: 4rem;
-            border-top: 2px solid #ff3333;
+            border-top: 2px solid #6b4030;
         }
 
         footer h3 {
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            color: #e8c99a;
+            font-family: Georgia, serif;
+            letter-spacing: 2px;
         }
 
         footer p {
-            color: #ff9999;
+            color: #a08060;
             font-style: italic;
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
         }
 
         /* Responsive */
@@ -238,7 +273,7 @@
 
             .filter-btn {
                 padding: 0.5rem 1rem;
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -274,10 +309,24 @@
         </div>
 
         <div class="chronicles-grid">
-            <!-- Kool-Aid Conspiracy -->
+
+            <!-- 1. The Rhyming Cypher -->
+            <div class="chronicle-item" data-category="conspiracy">
+                <img src="./img-rhyming-cypher.jpg" alt="The Rhyming Cypher">
+                <h2>The Rhyming Cypher</h2>
+                <p class="author">By LazyCrazy</p>
+                <p class="publication">Medium Publication</p>
+                <p class="description">
+                    Why does America refuse to adopt the metric system? The answer lies in William becoming Bill and Richard becoming Dick. A satirical exposé of the greatest Franco-American conspiracy: how Anglo-Saxon nickname patterns created a constitutional fail-safe against French decimal tyranny. God bless these United States and the inexplicable nickname "Dick."
+                </p>
+                <a href="https://medium.com/@lazycraz/the-rhyming-cipher-how-anglo-saxon-nomenclature-patterns-safeguarded-american-measurement-bd783da3f548" class="read-link" target="_blank">Read on Medium →</a>
+            </div>
+
+            <!-- 2. The Kool-Aid Man -->
             <div class="chronicle-item" data-category="kool-aid">
+                <img src="./img-koolaid.jpg" alt="The Kool-Aid Man's Dark Secret">
                 <h2>The Kool-Aid Man's Dark Secret: Jonestown Revisited</h2>
-                <p class="author">By Lazycrazy</p>
+                <p class="author">By LazyCrazy</p>
                 <p class="publication">Medium Publication</p>
                 <p class="description">
                     A dark chapter revealing the true conspiracy behind Jim Jones and the Kool-Aid Man's malevolent cosmic plan. The sugary mascot is not what it seems - explore the chilling twist on the Jonestown Massacre that exposes years of corporate manipulation.
@@ -285,8 +334,9 @@
                 <a href="https://medium.com/@lazycraz/the-kool-aid-mans-dark-secret-jonestown-revisited-70f1b404c5bc" class="read-link" target="_blank">Read on Medium →</a>
             </div>
 
-            <!-- Sobriety Studies -->
+            <!-- 3. Crackhead Cousin -->
             <div class="chronicle-item" data-category="sobriety">
+                <img src="./img-crackhead.jpg" alt="Why Your Crackhead Cousin is Smarter Than You">
                 <h2>Why Your Crack Head 16 Years Old Cousin is Smarter Than You</h2>
                 <p class="author">By LazyCrazy</p>
                 <p class="publication">Medium Publication</p>
@@ -296,8 +346,9 @@
                 <a href="https://medium.com/@lazycraz/why-your-crack-head-16-years-old-cousin-is-smarter-than-you-544e5708f61a" class="read-link" target="_blank">Read on Medium →</a>
             </div>
 
-            <!-- Royal Genetics -->
+            <!-- 4. The Royal Penalty -->
             <div class="chronicle-item" data-category="royal">
+                <img src="./img-royal-penalty.jpg" alt="The Royal Penalty">
                 <h2>The Royal Penalty</h2>
                 <p class="author">By LazyCrazy</p>
                 <p class="publication">Medium Publication</p>
@@ -307,8 +358,9 @@
                 <a href="https://medium.com/@lazycraz/the-royal-penalty-29023522cc5d" class="read-link" target="_blank">Read on Medium →</a>
             </div>
 
-            <!-- Olympic Reform -->
+            <!-- 5. Olympic Overdue Reform -->
             <div class="chronicle-item" data-category="olympic">
+                <img src="./img-olympic.jpg" alt="Olympic Overdue Reform">
                 <h2>Olympic Overdue Reform</h2>
                 <p class="author">By LazyCrazy</p>
                 <p class="publication">Medium Publication</p>
@@ -318,27 +370,6 @@
                 <a href="https://medium.com/@lazycraz/olympic-overdue-reform-385588b38eb1" class="read-link" target="_blank">Read on Medium →</a>
             </div>
 
-            <!-- Mystery Research -->
-            <div class="chronicle-item" data-category="mystery">
-                <h2>Untitled Investigation</h2>
-                <p class="author">By Shennipen</p>
-                <p class="publication">Medium Publication</p>
-                <p class="description">
-                    Latest prophetic research into hidden truths and alternative perspectives. Explore the connections between consciousness, reality, and the forces that shape our understanding of the world around us.
-                </p>
-                <a href="https://medium.com/@lazycraz/-c7140a999e19" class="read-link" target="_blank">Read on Medium →</a>
-            </div>
-
-            <!-- The Rhyming Cypher - CORRECTED -->
-            <div class="chronicle-item" data-category="conspiracy">
-                <h2>The Rhyming Cypher</h2>
-                <p class="author">By LazyCrazy</p>
-                <p class="publication">Medium Publication</p>
-                <p class="description">
-                    Why does America refuse to adopt the metric system? The answer lies in William becoming Bill and Richard becoming Dick. A satirical exposé of the greatest Franco-American conspiracy: how Anglo-Saxon nickname patterns created a constitutional fail-safe against French decimal tyranny. God bless these United States and the inexplicable nickname "Dick."
-                </p>
-                <a href="https://medium.com/@lazycraz/the-rhyming-cipher-how-anglo-saxon-nomenclature-patterns-safeguarded-american-measurement-bd783da3f548" class="read-link" target="_blank">Read on Medium →</a>
-            </div>
         </div>
     </div>
 
@@ -349,15 +380,12 @@
     </footer>
 
     <script>
-        // Filter functionality
         const filterButtons = document.querySelectorAll('.filter-btn');
         const chronicleItems = document.querySelectorAll('.chronicle-item');
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove active class from all buttons
                 filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
                 button.classList.add('active');
 
                 const filterValue = button.getAttribute('data-filter');
@@ -366,11 +394,7 @@
                     if (filterValue === 'all') {
                         item.style.display = 'block';
                     } else {
-                        if (item.getAttribute('data-category') === filterValue) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
+                        item.style.display = item.getAttribute('data-category') === filterValue ? 'block' : 'none';
                     }
                 });
             });
