@@ -4,619 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shennipaint Artwork - The Kool-Aid Commune</title>
-    
-    <!-- Import fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Barlow:wght@400;700&family=Work+Sans:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
-    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            /* Shennipaint color palette */
-            --shenni-blue: #6B9AC4;
-            --shenni-pink: #E67B9F;
-            --shenni-orange: #F4A460;
-            --shenni-purple: #9B7CB8;
-            --shenni-teal: #4ECDC4;
-            --bg-dark: #1a1a2e;
-            --bg-darker: #0f0f1e;
-            --bg-card: rgba(26, 26, 46, 0.95);
-            --text-light: #f0f0f0;
-            --text-gray: #aaa;
-        }
-
-        body {
-            font-family: 'Work Sans', sans-serif;
-            background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
-            color: var(--text-light);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Psychedelic background elements */
-        .cosmic-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .cosmic-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: float-cosmic 20s ease-in-out infinite;
-        }
-
-        .cosmic-orb:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--shenni-blue), transparent);
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .cosmic-orb:nth-child(2) {
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, var(--shenni-pink), transparent);
-            top: 50%;
-            right: 15%;
-            animation-delay: -7s;
-        }
-
-        .cosmic-orb:nth-child(3) {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, var(--shenni-orange), transparent);
-            bottom: 20%;
-            left: 60%;
-            animation-delay: -14s;
-        }
-
-        .cosmic-orb:nth-child(4) {
-            width: 180px;
-            height: 180px;
-            background: radial-gradient(circle, var(--shenni-purple), transparent);
-            top: 70%;
-            left: 20%;
-            animation-delay: -3s;
-        }
-
-        @keyframes float-cosmic {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -30px) scale(1.1); }
-            50% { transform: translate(-20px, 20px) scale(0.9); }
-            75% { transform: translate(20px, 30px) scale(1.05); }
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(15, 15, 30, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 2px solid rgba(107, 154, 196, 0.3);
-        }
-
-        .navbar-brand {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            background: linear-gradient(90deg, #b666d2, #e63946, #ffa500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-
-        .navbar-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .navbar-links a {
-            font-family: 'Barlow', sans-serif;
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .navbar-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--shenni-pink);
-            transition: width 0.3s ease;
-        }
-
-        .navbar-links a:hover {
-            color: var(--shenni-pink);
-        }
-
-        .navbar-links a:hover::after {
-            width: 100%;
-        }
-
-        .navbar-links a.active {
-            color: var(--shenni-blue);
-        }
-
-        /* Page Header */
-        .page-header {
-            margin-top: 70px;
-            padding: 80px 40px 60px;
-            text-align: center;
-            position: relative;
-        }
-
-        .header-logo {
-            width: 250px;
-            height: 250px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid transparent;
-            background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
-                        linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange)) border-box;
-            box-shadow: 0 0 40px rgba(107, 154, 196, 0.4);
-            animation: rotate-gradient 10s linear infinite;
-        }
-
-        @keyframes rotate-gradient {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .header-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .page-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 5rem;
-            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .page-subtitle {
-            font-family: 'Barlow', sans-serif;
-            font-size: 1.5rem;
-            color: var(--text-gray);
-            font-style: italic;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-
-        .artist-intro {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-light);
-            padding: 30px;
-            background: rgba(107, 154, 196, 0.1);
-            border-radius: 20px;
-            border: 1px solid rgba(107, 154, 196, 0.2);
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-
-        /* Category Filters */
-        .categories-filter {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            font-family: 'Barlow', sans-serif;
-            background: transparent;
-            color: var(--text-gray);
-            border: 2px solid var(--shenni-blue);
-            padding: 12px 28px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink));
-            border-color: transparent;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(107, 154, 196, 0.4);
-        }
-
-        /* Paintings Grid */
-        .paintings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 40px;
-        }
-
-        .painting-card {
-            background: var(--bg-card);
-            border-radius: 25px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .painting-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 25px;
-            padding: 2px;
-            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .painting-card:hover::before {
-            opacity: 1;
-        }
-
-        .painting-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(107, 154, 196, 0.3);
-        }
-
-        .painting-image-container {
-            width: 100%;
-            height: 300px;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .painting-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.4s ease;
-        }
-
-        .painting-card:hover .painting-image {
-            transform: scale(1.05);
-        }
-
-        .painting-info {
-            padding: 30px;
-        }
-
-        .painting-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .painting-description {
-            font-family: 'Work Sans', sans-serif;
-            color: var(--text-gray);
-            line-height: 1.7;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        .painting-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .painting-meta {
-            font-family: 'Barlow', sans-serif;
-            font-size: 0.9rem;
-            color: var(--shenni-blue);
-        }
-
-        .painting-price {
-            font-family: 'Barlow', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--shenni-pink), var(--shenni-orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .status-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-family: 'Barlow', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            z-index: 10;
-        }
-
-        .status-available {
-            background: linear-gradient(135deg, var(--shenni-teal), var(--shenni-blue));
-            color: white;
-        }
-
-        .status-sold {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            color: white;
-        }
-
-        .contact-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange));
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 30px;
-            font-family: 'Barlow', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(107, 154, 196, 0.5);
-            filter: brightness(1.1);
-        }
-
-        .contact-btn.sold {
-            background: linear-gradient(135deg, #555, #333);
-            cursor: not-allowed;
-        }
-
-        .contact-btn.sold:hover {
-            transform: none;
-            box-shadow: none;
-            filter: none;
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(15, 15, 30, 0.95);
-            padding: 40px;
-            text-align: center;
-            border-top: 2px solid rgba(107, 154, 196, 0.3);
-            margin-top: 100px;
-        }
-
-        .footer-gradient {
-            font-family: 'Bebas Neue', sans-serif;
-            background: linear-gradient(90deg, #b666d2, #e63946, #6B9AC4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .footer-text {
-            font-family: 'Barlow', sans-serif;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        .footer-contact {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(107, 154, 196, 0.1);
-            border-radius: 15px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .footer-contact h3 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-        }
-
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-        }
-
-        .lightbox.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 15px;
-            box-shadow: 0 0 50px rgba(107, 154, 196, 0.6);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            width: 40px;
-            height: 40px;
-            background: var(--shenni-pink);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            background: var(--shenni-orange);
-            transform: scale(1.1);
-        }
-
-        /* Animations */
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .paintings-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-
-            .navbar-links {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-
-            .page-title {
-                font-size: 3rem;
-            }
-
-            .page-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .main-content {
-                padding: 40px 20px;
-            }
-
-            .header-logo {
-                width: 180px;
-                height: 180px;
-            }
-
-            .paintings-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+            --shenni-blue: #6B9AC4; --shenni-pink: #E67B9F; --shenni-orange: #F4A460;
+            --shenni-purple: #9B7CB8; --shenni-teal: #4ECDC4;
+            --bg-dark: #1a1a2e; --bg-darker: #0f0f1e; --bg-card: rgba(26,26,46,0.95);
+            --text-light: #f0f0f0; --text-gray: #aaa;
+        }
+        body { font-family: 'Work Sans', sans-serif; background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%); color: var(--text-light); overflow-x: hidden; }
+        .cosmic-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; }
+        .cosmic-orb { position: absolute; border-radius: 50%; filter: blur(60px); animation: float-cosmic 20s ease-in-out infinite; }
+        .cosmic-orb:nth-child(1) { width: 300px; height: 300px; background: radial-gradient(circle, var(--shenni-blue), transparent); top: 10%; left: 10%; }
+        .cosmic-orb:nth-child(2) { width: 250px; height: 250px; background: radial-gradient(circle, var(--shenni-pink), transparent); top: 50%; right: 15%; animation-delay: -7s; }
+        .cosmic-orb:nth-child(3) { width: 200px; height: 200px; background: radial-gradient(circle, var(--shenni-orange), transparent); bottom: 20%; left: 60%; animation-delay: -14s; }
+        .cosmic-orb:nth-child(4) { width: 180px; height: 180px; background: radial-gradient(circle, var(--shenni-purple), transparent); top: 70%; left: 20%; animation-delay: -3s; }
+        @keyframes float-cosmic { 0%,100% { transform: translate(0,0) scale(1); } 25% { transform: translate(30px,-30px) scale(1.1); } 50% { transform: translate(-20px,20px) scale(0.9); } 75% { transform: translate(20px,30px) scale(1.05); } }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(15,15,30,0.95); backdrop-filter: blur(10px); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 2px solid rgba(107,154,196,0.3); }
+        .navbar-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; background: linear-gradient(90deg, #b666d2, #e63946, #ffa500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; letter-spacing: 2px; }
+        .navbar-links { display: flex; gap: 30px; list-style: none; }
+        .navbar-links a { font-family: 'Barlow', sans-serif; color: var(--text-light); text-decoration: none; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative; }
+        .navbar-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--shenni-pink); transition: width 0.3s ease; }
+        .navbar-links a:hover { color: var(--shenni-pink); }
+        .navbar-links a:hover::after { width: 100%; }
+        .navbar-links a.active { color: var(--shenni-blue); }
+        .page-header { margin-top: 70px; padding: 80px 40px 60px; text-align: center; }
+        .header-logo { width: 250px; height: 250px; margin: 0 auto 30px; border-radius: 50%; overflow: hidden; border: 5px solid transparent; background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box, linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange)) border-box; box-shadow: 0 0 40px rgba(107,154,196,0.4); animation: rotate-gradient 10s linear infinite; }
+        @keyframes rotate-gradient { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .page-title { font-family: 'Dancing Script', cursive; font-size: 5rem; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; font-weight: 700; }
+        .page-subtitle { font-family: 'Barlow', sans-serif; font-size: 1.5rem; color: var(--text-gray); font-style: italic; max-width: 800px; margin: 0 auto 30px; }
+        .artist-intro { max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: var(--text-light); padding: 30px; background: rgba(107,154,196,0.1); border-radius: 20px; border: 1px solid rgba(107,154,196,0.2); }
+        .main-content { max-width: 1400px; margin: 0 auto; padding: 60px 40px; }
+        .categories-filter { text-align: center; margin-bottom: 50px; }
+        .filter-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .filter-btn { font-family: 'Barlow', sans-serif; background: transparent; color: var(--text-gray); border: 2px solid var(--shenni-blue); padding: 12px 28px; border-radius: 30px; cursor: pointer; transition: all 0.3s ease; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .filter-btn:hover, .filter-btn.active { background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink)); border-color: transparent; color: white; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(107,154,196,0.4); }
+        .paintings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 40px; }
+        .painting-card { background: var(--bg-card); border-radius: 25px; overflow: hidden; border: 2px solid transparent; transition: all 0.4s ease; position: relative; }
+        .painting-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 25px; padding: 2px; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.4s ease; }
+        .painting-card:hover::before { opacity: 1; }
+        .painting-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(107,154,196,0.3); }
+        .painting-image-container { width: 100%; height: 300px; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; cursor: pointer; }
+        .painting-image { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.4s ease; }
+        .painting-card:hover .painting-image { transform: scale(1.05); }
+        .painting-info { padding: 30px; }
+        .painting-title { font-family: 'Dancing Script', cursive; font-size: 2rem; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px; font-weight: 700; }
+        .painting-description { font-family: 'Work Sans', sans-serif; color: var(--text-gray); line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem; }
+        .painting-details { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+        .painting-meta { font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--shenni-blue); }
+        .painting-price { font-family: 'Barlow', sans-serif; font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, var(--shenni-pink), var(--shenni-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .status-badge { position: absolute; top: 20px; right: 20px; padding: 8px 20px; border-radius: 20px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; z-index: 10; }
+        .status-available { background: linear-gradient(135deg, var(--shenni-teal), var(--shenni-blue)); color: white; }
+        .status-sold { background: linear-gradient(135deg, #dc3545, #c82333); color: white; }
+        .contact-btn { width: 100%; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange)); color: white; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: block; text-align: center; }
+        .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(107,154,196,0.5); filter: brightness(1.1); }
+        .contact-btn.sold { background: linear-gradient(135deg, #555, #333); cursor: not-allowed; }
+        .contact-btn.sold:hover { transform: none; box-shadow: none; filter: none; }
+        /* MODAL */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-overlay.active { display: flex; }
+        .modal-box { background: linear-gradient(135deg, #1a1a2e, #16213e); border: 2px solid rgba(107,154,196,0.4); border-radius: 25px; padding: 40px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 0 60px rgba(107,154,196,0.3); animation: modalIn 0.3s ease; }
+        @keyframes modalIn { from { opacity: 0; transform: scale(0.9) translateY(-20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .modal-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--text-gray); font-size: 1.8rem; cursor: pointer; line-height: 1; transition: color 0.3s; }
+        .modal-close:hover { color: var(--shenni-pink); }
+        .modal-title { font-family: 'Dancing Script', cursive; font-size: 2rem; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .modal-painting-name { font-family: 'Barlow', sans-serif; color: var(--shenni-orange); font-size: 1rem; margin-bottom: 20px; font-style: italic; }
+        .modal-instruction { font-family: 'Work Sans', sans-serif; color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
+        .email-display { background: rgba(107,154,196,0.1); border: 1px solid rgba(107,154,196,0.3); border-radius: 12px; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+        .email-address { font-family: 'Barlow', sans-serif; color: var(--shenni-blue); font-size: 0.95rem; font-weight: 600; word-break: break-all; }
+        .copy-btn { background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-purple)); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex-shrink: 0; }
+        .copy-btn:hover { filter: brightness(1.2); }
+        .copy-btn.copied { background: linear-gradient(135deg, var(--shenni-teal), #27ae60); }
+        .message-template { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; margin-bottom: 20px; }
+        .message-template-label { font-family: 'Barlow', sans-serif; color: var(--text-gray); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .message-template-text { font-family: 'Work Sans', sans-serif; color: var(--text-light); font-size: 0.85rem; line-height: 1.6; white-space: pre-line; }
+        .copy-message-btn { width: 100%; background: transparent; color: var(--shenni-blue); border: 1px solid var(--shenni-blue); padding: 8px; border-radius: 20px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .copy-message-btn:hover { background: var(--shenni-blue); color: white; }
+        .modal-divider { text-align: center; color: var(--text-gray); font-size: 0.85rem; margin: 15px 0; }
+        .open-gmail-btn { width: 100%; background: linear-gradient(135deg, var(--shenni-pink), var(--shenni-orange)); color: white; border: none; padding: 14px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: block; text-align: center; }
+        .open-gmail-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .footer { background: rgba(15,15,30,0.95); padding: 40px; text-align: center; border-top: 2px solid rgba(107,154,196,0.3); margin-top: 100px; }
+        .footer-gradient { font-family: 'Bebas Neue', sans-serif; background: linear-gradient(90deg, #b666d2, #e63946, #6B9AC4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.2rem; margin-bottom: 10px; }
+        .footer-text { font-family: 'Barlow', sans-serif; color: var(--text-gray); font-size: 0.9rem; }
+        .footer-contact { margin-top: 30px; padding: 20px; background: rgba(107,154,196,0.1); border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .footer-contact h3 { font-family: 'Dancing Script', cursive; font-size: 2rem; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px; }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; opacity: 0; transition: opacity 0.3s ease; cursor: pointer; }
+        .lightbox.active { display: flex; align-items: center; justify-content: center; opacity: 1; }
+        .lightbox-content { position: relative; max-width: 90%; max-height: 90%; }
+        .lightbox-image { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 15px; box-shadow: 0 0 50px rgba(107,154,196,0.6); }
+        .lightbox-close { position: absolute; top: -50px; right: 0; width: 40px; height: 40px; background: var(--shenni-pink); color: white; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; transition: all 0.3s ease; }
+        .lightbox-close:hover { background: var(--shenni-orange); transform: scale(1.1); }
+        .fade-in { animation: fadeInUp 0.8s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 1024px) { .paintings-grid { grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); } .navbar-links { display: none; } }
+        @media (max-width: 768px) { .navbar { padding: 15px 20px; } .page-title { font-size: 3rem; } .page-subtitle { font-size: 1.2rem; } .main-content { padding: 40px 20px; } .header-logo { width: 180px; height: 180px; } .paintings-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
-    <!-- Cosmic Background -->
     <div class="cosmic-bg">
-        <div class="cosmic-orb"></div>
-        <div class="cosmic-orb"></div>
-        <div class="cosmic-orb"></div>
-        <div class="cosmic-orb"></div>
+        <div class="cosmic-orb"></div><div class="cosmic-orb"></div>
+        <div class="cosmic-orb"></div><div class="cosmic-orb"></div>
     </div>
-
-    <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">THE KOOL-AID COMMUNE</a>
         <ul class="navbar-links">
@@ -627,23 +119,13 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-
-    <!-- Page Header -->
     <header class="page-header fade-in">
-        <div class="header-logo">
-            <img src="./Shennipaint.png" alt="Shennipaint Logo">
-        </div>
+        <div class="header-logo"><img src="./Shennipaint.png" alt="Shennipaint Logo"></div>
         <h1 class="page-title">Shennipaint Artwork</h1>
         <p class="page-subtitle">Original Paintings Available</p>
-        <div class="artist-intro">
-            <strong>Shennipaint</strong> - Indigenous self-taught artist based in Quebec, Canada. My works fuse prophetic visions with nature mysticism, exploring the hidden connections between spiritual forces and cosmic energies. Each painting is hand-painted with love, intention, and a touch of psychedelic magic.
-        </div>
+        <div class="artist-intro"><strong>Shennipaint</strong> - Indigenous self-taught artist based in Quebec, Canada. My works fuse prophetic visions with nature mysticism, exploring the hidden connections between spiritual forces and cosmic energies. Each painting is hand-painted with love, intention, and a touch of psychedelic magic.</div>
     </header>
-
-    <!-- Main Content -->
     <main class="main-content">
-        
-        <!-- Category Filters -->
         <div class="categories-filter fade-in">
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All Works</button>
@@ -652,204 +134,155 @@
                 <button class="filter-btn" data-filter="abstract">Abstract</button>
             </div>
         </div>
-
-        <!-- Paintings Grid -->
-        <div class="paintings-grid" id="paintings-gallery">
-            <!-- Paintings will be generated by JavaScript -->
-        </div>
-
+        <div class="paintings-grid" id="paintings-gallery"></div>
     </main>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-gradient">THE KOOL-AID COMMUNE</div>
-        <p class="footer-text">
-            Where satire meets salvation, one artificially flavored sip at a time.<br>
-            © 2026 The Kool-Aid Commune | All Rights Reserved
-        </p>
-        
+        <p class="footer-text">Where satire meets salvation, one artificially flavored sip at a time.<br>© 2026 The Kool-Aid Commune | All Rights Reserved</p>
         <div class="footer-contact">
             <h3>Commission Your Mystical Artwork</h3>
-            <p class="footer-text">
-                All paintings are unique originals.<br>
-                Custom commissions available to channel your specific visions.<br><br>
-                <strong>Email:</strong> crazykoolaidcommune@gmail.com
-            </p>
+            <p class="footer-text">All paintings are unique originals.<br>Custom commissions available to channel your specific visions.<br><br><strong>Email:</strong> crazykoolaidcommune@gmail.com</p>
         </div>
     </footer>
-
-    <!-- Lightbox -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <div class="lightbox-content" onclick="event.stopPropagation()">
-            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <button class="lightbox-close" onclick="closeLightbox()">x</button>
             <img class="lightbox-image" id="lightbox-image" src="" alt="">
         </div>
     </div>
-
+    <!-- CONTACT MODAL -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeContactModal()">x</button>
+            <div class="modal-title">Contact the Artist</div>
+            <div class="modal-painting-name" id="modalPaintingName"></div>
+            <p class="modal-instruction">Copy the email address below, then paste it into Gmail or any email app:</p>
+            <div class="email-display">
+                <span class="email-address">crazykoolaidcommune@gmail.com</span>
+                <button class="copy-btn" id="copyEmailBtn" onclick="copyEmail()">Copy</button>
+            </div>
+            <div class="message-template">
+                <div class="message-template-label">Suggested message</div>
+                <div class="message-template-text" id="messageTemplate"></div>
+                <button class="copy-message-btn" onclick="copyMessage()">Copy Message Text</button>
+            </div>
+            <div class="modal-divider">- or open directly -</div>
+            <a class="open-gmail-btn" id="gmailLink" href="#" target="_blank" rel="noopener">Open in Gmail</a>
+        </div>
+    </div>
     <script>
-        // Paintings Database
-        const paintings = [
-            {
-                title: "Bambi Mimic",
-                image: "./Bambi_Mimic.png",
-                description: "Behind its sweet smile, its mischievous eyes hide ancient secrets. This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks. The style is both figurative and slightly abstract, inviting the viewer to dive into a universe that is both dreamlike and intriguing.",
-                size: "12\" × 12\"",
-                medium: "Acrylic on canvas",
-                price: "$300 CAD",
-                status: "available",
-                category: ["abstract", "available"]
-            },
-            {
-                title: "Blue Forest",
-                image: "./BlueForest.png",
-                description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth.",
-                size: "7\" × 5\"",
-                medium: "Acrylic on canvas",
-                price: "$250 CAD",
-                status: "available",
-                category: ["nature", "available"]
-                
-            },
-            {
-                title: "The Entity",
-                image: "./The Entity edited.png",
-                description: "Add description.",
-                size: "number\" × number\"",
-                medium: "Acrylic on canvas",
-                price: "$175 CAD",
-                status: "available",
-                category: ["nature", "available"]
-            },
-            {
-                title: "Pink Glasses On the Back of The Turtle",
-                image: "./Tortoise.png",
-                description: "A prophetic exploration of perception and reality. The turtle carries ancient wisdom while modern vision seeks new truths.",
-                size: "16\" × 12\"",
-                medium: "Acrylic on canvas",
-                price: "$400 CAD",
-                status: "available",
-                category: ["nature", "available"]
-            },
-            {
-                title: "Rock Antler",
-                image: "./RockAntler.png",
-                description: "Where earth meets spirit, strength meets grace. A fusion of natural elements and mystical energy.",
-                size: "7\" × 5\"",
-                medium: "Acrylic",
-                price: "$250 CAD",
-                status: "available",
-                category: ["abstract", "available"]
-            },
-            {
-                title: "The Big Slam",
-                image: "./Thebigslam.png",
-                description: "Explosive energy captured on canvas. A cosmic collision of color and consciousness.",
-                size: "7\" × 5\"",
-                medium: "Acrylic",
-                price: "$250 CAD",
-                status: "available",
-                category: ["abstract", "available"]
-            },
-            {
-                title: "MW Upside-Down Reality",
-                image: "./MarineWolfs.png",
-                description: "Acrylic Painting, a reflection of the duality between the marine world and the territories of the land.",
-                size: "5\" × 5\"",
-                medium: "Acrylic",
-                price: "$500 CAD",
-                status: "sold",
-                category: ["abstract"]
-            }
+        var EMAIL = 'crazykoolaidcommune@gmail.com';
+        var paintings = [
+            { title: "Bambi Mimic", image: "./Bambi_Mimic.png", description: "Behind its sweet smile, its mischievous eyes hide ancient secrets. This piece is made with acrylic paint, a mix of neon pink that glows under UV light, and grays, greens, and blacks.", size: '12" x 12"', medium: "Acrylic on canvas", price: "$300 CAD", status: "available", category: ["abstract","available"] },
+            { title: "Blue Forest", image: "./BlueForest.png", description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$250 CAD", status: "available", category: ["nature","available"] },
+            { title: "The Entity", image: "./The Entity edited.png", description: "Add description.", size: 'TBD', medium: "Acrylic on canvas", price: "$175 CAD", status: "available", category: ["nature","available"] },
+            { title: "Pink Glasses On the Back of The Turtle", image: "./Tortoise.png", description: "A prophetic exploration of perception and reality. The turtle carries ancient wisdom while modern vision seeks new truths.", size: '16" x 12"', medium: "Acrylic on canvas", price: "$400 CAD", status: "available", category: ["nature","available"] },
+            { title: "Rock Antler", image: "./RockAntler.png", description: "Where earth meets spirit, strength meets grace. A fusion of natural elements and mystical energy.", size: '7" x 5"', medium: "Acrylic", price: "$250 CAD", status: "available", category: ["abstract","available"] },
+            { title: "The Big Slam", image: "./Thebigslam.png", description: "Explosive energy captured on canvas. A cosmic collision of color and consciousness.", size: '7" x 5"', medium: "Acrylic", price: "$250 CAD", status: "available", category: ["abstract","available"] },
+            { title: "MW Upside-Down Reality", image: "./MarineWolfs.png", description: "Acrylic Painting, a reflection of the duality between the marine world and the territories of the land.", size: '5" x 5"', medium: "Acrylic", price: "$500 CAD", status: "sold", category: ["abstract"] }
         ];
 
-        function createPaintingHTML(painting) {
-            const emailSubject = encodeURIComponent(`Interested in "${painting.title}"`);
-            const emailBody = encodeURIComponent(`Hello,\n\nI am interested in purchasing your painting "${painting.title}" (${painting.price}).\n\nPlease let me know the next steps.\n\nThank you!`);
-            const mailtoLink = `https://mail.google.com/mail/?view=cm&to=crazykoolaidcommune@gmail.com&su=${emailSubject}&body=${emailBody}`;
-
-            const statusClass = `status-${painting.status}`;
-            const statusText = painting.status === 'available' ? 'Available' : 'Sold';
-
-            return `
-                <div class="painting-card fade-in" data-category="${painting.category.join(' ')}">
-                    <div class="status-badge ${statusClass}">${statusText}</div>
-                    <div class="painting-image-container" onclick="openLightbox('${painting.image}')">
-                        <img src="${painting.image}" 
-                             alt="${painting.title}" 
-                             class="painting-image"
-                             loading="lazy">
-                    </div>
-                    <div class="painting-info">
-                        <h3 class="painting-title">${painting.title}</h3>
-                        <p class="painting-description">${painting.description}</p>
-                        <div class="painting-details">
-                            <div class="painting-meta">
-                                📐 ${painting.size}<br>
-                                🎨 ${painting.medium}
-                            </div>
-                            <div class="painting-price">${painting.price}</div>
-                        </div>
-                        ${painting.status === 'sold' 
-                            ? '<button class="contact-btn sold" disabled>Sold Out</button>' 
-                            : `<a href="mailto:crazykoolaidcommune@gmail.com?subject=${emailSubject}&body=${emailBody}" class="contact-btn">Contact Artist</a>
-   <p style="text-align:center; margin-top:10px; font-size:0.8rem; color:#aaa;">
-     or email: <a href="mailto:crazykoolaidcommune@gmail.com" style="color:#6B9AC4;">crazykoolaidcommune@gmail.com</a>
-   </p>`
-                        }
-                    </div>
-                </div>
-            `;
+        function createPaintingHTML(painting, idx) {
+            var statusText = painting.status === 'available' ? 'Available' : 'Sold';
+            var btn = painting.status === 'sold'
+                ? '<button class="contact-btn sold" disabled>Sold Out</button>'
+                : '<button class="contact-btn" onclick="openContactModal(' + idx + ')">Contact Artist</button>';
+            return '<div class="painting-card fade-in" data-category="' + painting.category.join(' ') + '">'
+                + '<div class="status-badge status-' + painting.status + '">' + statusText + '</div>'
+                + '<div class="painting-image-container" onclick="openLightbox(\'' + painting.image.replace(/'/g, "\\'") + '\')">'
+                + '<img src="' + painting.image + '" alt="' + painting.title + '" class="painting-image" loading="lazy">'
+                + '</div><div class="painting-info">'
+                + '<h3 class="painting-title">' + painting.title + '</h3>'
+                + '<p class="painting-description">' + painting.description + '</p>'
+                + '<div class="painting-details"><div class="painting-meta">Size: ' + painting.size + '<br>Medium: ' + painting.medium + '</div>'
+                + '<div class="painting-price">' + painting.price + '</div></div>'
+                + btn + '</div></div>';
         }
 
-        function displayPaintings(paintingsToShow = paintings) {
-            const gallery = document.getElementById('paintings-gallery');
-            gallery.innerHTML = paintingsToShow.map(painting => createPaintingHTML(painting)).join('');
+        function openContactModal(idx) {
+            var p = paintings[idx];
+            var message = 'Hello,\n\nI am interested in purchasing your painting "' + p.title + '" (' + p.price + ').\n\nPlease let me know the next steps.\n\nThank you!';
+            var subject = 'Interested in "' + p.title + '"';
+            document.getElementById('modalPaintingName').textContent = '"' + p.title + '" - ' + p.price;
+            document.getElementById('messageTemplate').textContent = message;
+            var gmailUrl = 'https://mail.google.com/mail/?view=cm&to=' + encodeURIComponent(EMAIL) + '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(message);
+            document.getElementById('gmailLink').href = gmailUrl;
+            var btn = document.getElementById('copyEmailBtn');
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) closeContactModal();
+        });
+
+        function copyEmail() {
+            var btn = document.getElementById('copyEmailBtn');
+            function showCopied() { btn.textContent = 'Copied!'; btn.classList.add('copied'); setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500); }
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(EMAIL).then(showCopied).catch(function(){
+                    var el = document.createElement('textarea'); el.value = EMAIL; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); showCopied();
+                });
+            } else {
+                var el = document.createElement('textarea'); el.value = EMAIL; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); showCopied();
+            }
+        }
+
+        function copyMessage() {
+            var msg = document.getElementById('messageTemplate').textContent;
+            if (navigator.clipboard) { navigator.clipboard.writeText(msg).catch(function(){ var el = document.createElement('textarea'); el.value = msg; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); }); }
+            else { var el = document.createElement('textarea'); el.value = msg; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); }
+        }
+
+        function displayPaintings(list) {
+            list = list || paintings;
+            var html = '';
+            for (var i = 0; i < list.length; i++) {
+                var globalIdx = paintings.indexOf(list[i]);
+                html += createPaintingHTML(list[i], globalIdx);
+            }
+            document.getElementById('paintings-gallery').innerHTML = html;
         }
 
         function filterPaintings(category) {
-            const filteredPaintings = category === 'all' 
-                ? paintings 
-                : paintings.filter(painting => painting.category.includes(category));
-            
-            displayPaintings(filteredPaintings);
+            if (category === 'all') { displayPaintings(paintings); return; }
+            var filtered = paintings.filter(function(p) { return p.category.indexOf(category) !== -1; });
+            displayPaintings(filtered);
         }
 
         function openLightbox(imageSrc) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightbox-image');
-            
-            lightboxImage.src = imageSrc;
-            lightbox.classList.add('active');
+            document.getElementById('lightbox-image').src = imageSrc;
+            document.getElementById('lightbox').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
+            document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
             displayPaintings();
-
-            // Filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            var btns = document.querySelectorAll('.filter-btn');
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener('click', function() {
+                    for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
                     this.classList.add('active');
-                    filterPaintings(this.dataset.filter);
+                    filterPaintings(this.getAttribute('data-filter'));
                 });
-            });
-        });
-
-        // Close lightbox with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
             }
         });
-    </script>
 
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') { closeLightbox(); closeContactModal(); }
+        });
+    </script>
 </body>
 </html>
