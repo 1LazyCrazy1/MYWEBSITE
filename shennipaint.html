@@ -765,7 +765,7 @@
         function createPaintingHTML(painting) {
             const emailSubject = encodeURIComponent(`Interested in "${painting.title}"`);
             const emailBody = encodeURIComponent(`Hello,\n\nI am interested in purchasing your painting "${painting.title}" (${painting.price}).\n\nPlease let me know the next steps.\n\nThank you!`);
-            const mailtoLink = `mailto:crazykoolaidcommune@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+            const mailtoLink = `https://mail.google.com/mail/?view=cm&to=crazykoolaidcommune@gmail.com&su=${emailSubject}&body=${emailBody}`;
 
             const statusClass = `status-${painting.status}`;
             const statusText = painting.status === 'available' ? 'Available' : 'Sold';
@@ -791,7 +791,7 @@
                         </div>
                         ${painting.status === 'sold' 
                             ? '<button class="contact-btn sold" disabled>Sold Out</button>' 
-                            : `<a href="${mailtoLink}" class="contact-btn">Contact Artist</a>`
+                            : `<a href="${mailtoLink}" class="contact-btn" target="_blank" rel="noopener">Contact Artist</a>`
                         }
                     </div>
                 </div>
