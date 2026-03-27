@@ -64,6 +64,8 @@
         .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(61,125,61,0.5); filter: brightness(1.1); }
         .contact-btn.sold { background: linear-gradient(135deg, #555, #333); cursor: not-allowed; }
         .contact-btn.sold:hover { transform: none; box-shadow: none; filter: none; }
+        .etsy-btn { width: 100%; background: linear-gradient(135deg, #f1641e, #f39c12); color: white; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: block; text-align: center; text-decoration: none; }
+        .etsy-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(241,100,30,0.5); filter: brightness(1.1); }
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .modal-overlay.active { display: flex; }
         .modal-box { background: linear-gradient(135deg, #1a2419, #243620); border: 2px solid rgba(61,125,61,0.4); border-radius: 25px; padding: 40px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 0 60px rgba(61,125,61,0.3); animation: modalIn 0.3s ease; }
@@ -162,20 +164,26 @@
         </div>
     </div>
     <script>
-        var EMAIL = 'crazykoolaidcommune@gmail.com';
+        var EMAIL = 'jennifershennipen@gmail.com';
         var paintings = [
-            { title: "Marine Wolfs", image: "./MarineWolfs.png", description: "Mystical creatures emerging from the depths of water and spirit. A meditation on wild nature.", size: '5" x 5"', medium: "Acrylic on canvas", price: "$500 CAD", status: "sold" },
-            { title: "Rock Antler", image: "./RockAntler.png", description: "Stone and spirit intertwined. Earth energy rendered in vibrant acrylic visions.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$250 CAD", status: "available" },
-            { title: "Tortoise", image: "./Tortoise.png", description: "Ancient wisdom. Slow, deliberate presence. A guardian of earth knowledge.", size: '16" x 12"', medium: "Acrylic on canvas", price: "$400 CAD", status: "available" },
-            { title: "Bambi Mimic", image: "./Bambi_Mimic.png", description: "Innocence meets intensity. Delicate nature transformed through psychedelic lens.", size: '12" x 12"', medium: "Acrylic on canvas", price: "$300 CAD", status: "available" },
-            { title: "Blue Forest", image: "./BlueForest.png", description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$250 CAD", status: "available" }
+            { title: "Marine Wolfs", image: "./MarineWolfs.png", description: "Mystical creatures emerging from the depths of water and spirit. A meditation on wild nature.", size: '5" x 5"', medium: "Acrylic on canvas", price: "$500 CAD", status: "sold", etsy: "" },
+            { title: "Tortoise", image: "./Tortoise.png", description: "Ancient wisdom. Slow, deliberate presence. A guardian of earth knowledge.", size: '16" x 12"', medium: "Acrylic on canvas", price: "$400 CAD", status: "available", etsy: "https://www.etsy.com/ca-fr/listing/4437249916/vie-sous-verres-roses-life-under-pink" },
+            { title: "Bambi Mimic", image: "./Bambi_Mimic.png", description: "Innocence meets intensity. Delicate nature transformed through psychedelic lens.", size: '12" x 12"', medium: "Acrylic on canvas", price: "$300 CAD", status: "available", etsy: "https://www.etsy.com/ca-fr/listing/4436656766/bambi-mimic-on-acrylic" },
+            { title: "Bloomhouse", image: "./BLOOMHOUSE.png", description: "Where nature blooms and consciousness expands. A sanctuary of growth and transformation.", size: 'Variable', medium: "Acrylic on canvas", price: "Contact for pricing", status: "available", etsy: "https://www.etsy.com/ca-fr/listing/4470508342/bloomhouse" },
+            { title: "Lichen Witness", image: "./lichen.png", description: "Ancient observer of time and transformation. Lichen as a silent witness to cosmic change.", size: 'Variable', medium: "Acrylic on canvas", price: "Contact for pricing", status: "available", etsy: "https://www.etsy.com/ca-fr/listing/4446311042/lichen-witness" }
         ];
 
         function createPaintingHTML(painting, idx) {
             var statusText = painting.status === 'available' ? 'Available' : 'Sold';
-            var btn = painting.status === 'sold'
+            var contactBtn = painting.status === 'sold'
                 ? '<button class="contact-btn sold" disabled>Sold Out</button>'
-                : '<button class="contact-btn" onclick="openContactModal(' + idx + ')">Contact Artist</button>';
+                : '<button class="contact-btn" onclick="openContactModal(' + idx + ')">Contact Artist (Commission)</button>';
+            var etsyBtn = painting.etsy 
+                ? '<a href="' + painting.etsy + '" target="_blank" class="etsy-btn">Buy on Etsy</a>'
+                : '';
+            var btnContainer = painting.status === 'sold' 
+                ? contactBtn 
+                : '<div style="display: flex; gap: 10px; flex-direction: column;">' + contactBtn + etsyBtn + '</div>';
             return '<div class="painting-card fade-in">'
                 + '<div class="status-badge status-' + painting.status + '">' + statusText + '</div>'
                 + '<div class="painting-image-container" onclick="openLightbox(\'' + painting.image.replace(/'/g, "\\'") + '\')">'
@@ -185,7 +193,7 @@
                 + '<p class="painting-description">' + painting.description + '</p>'
                 + '<div class="painting-details"><div class="painting-meta">Size: ' + painting.size + '<br>Medium: ' + painting.medium + '</div>'
                 + '<div class="painting-price">' + painting.price + '</div></div>'
-                + btn + '</div></div>';
+                + btnContainer + '</div></div>';
         }
 
         function openContactModal(idx) {
