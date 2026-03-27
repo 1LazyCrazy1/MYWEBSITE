@@ -3,718 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Kool-Aid Commune - Home</title>
-    
-    <!-- Import fonts -->
+    <title>Shenni Paint - Collections</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Oswald:wght@400;700&family=Dancing+Script:wght@400;700&family=Bebas+Neue&family=Barlow:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Barlow:wght@400;700&family=Work+Sans:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            /* Color palette */
-            --cult-purple: #b666d2;
-            --cult-red: #e63946;
-            --cult-beige: #f5deb3;
-            --cult-orange: #ffa500;
-            --chron-red: #e63946;
-            --chron-black: #000;
-            --shenni-blue: #6B9AC4;
-            --shenni-pink: #E67B9F;
-            --shenni-orange: #F4A460;
-            --bg-dark: #0a0a0a;
-            --bg-card: rgba(20, 20, 20, 0.95);
             --text-light: #f0f0f0;
             --text-gray: #aaa;
+            --bg-darker: #0f0f1e;
+            --bg-dark: #1a1a2e;
         }
-
-        body {
-            font-family: 'Work Sans', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-            overflow-x: hidden;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 2px solid rgba(182, 102, 210, 0.3);
-        }
-
-        .navbar-brand {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            background: linear-gradient(90deg, var(--cult-purple), var(--cult-red), var(--cult-orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-
-        .navbar-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .navbar-links a {
-            font-family: 'Barlow', sans-serif;
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .navbar-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--cult-red);
-            transition: width 0.3s ease;
-        }
-
-        .navbar-links a:hover {
-            color: var(--cult-red);
-        }
-
-        .navbar-links a:hover::after {
-            width: 100%;
-        }
-
-        .navbar-links a.active {
-            color: var(--cult-purple);
-        }
-
-        /* Mobile menu toggle (hidden for now, can be added later) */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-light);
-            transition: all 0.3s ease;
-        }
-
-        /* Header Section */
-        .header {
-            margin-top: 70px;
-            position: relative;
-            height: 60vh;
-            min-height: 400px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .header-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.6);
-        }
-
-        .header-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(182, 102, 210, 0.4) 0%,
-                rgba(230, 57, 70, 0.4) 50%,
-                rgba(107, 154, 196, 0.4) 100%
-            );
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .header-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 5rem;
-            background: linear-gradient(90deg, var(--cult-beige), #fff, var(--cult-beige));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 40px rgba(182, 102, 210, 0.5);
-            margin-bottom: 15px;
-            letter-spacing: 5px;
-        }
-
-        .header-subtitle {
-            font-family: 'Barlow', sans-serif;
-            font-size: 1.4rem;
-            color: var(--cult-beige);
-            font-weight: 400;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 40px;
-        }
-
-        .intro-section {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .intro-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: var(--cult-red);
-            margin-bottom: 20px;
-            letter-spacing: 3px;
-        }
-
-        .intro-text {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* Revelation Section */
-        .revelation-section {
-            margin: 80px 0;
-            padding: 60px 0;
-            position: relative;
-        }
-
-        .revelation-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(182, 102, 210, 0.1) 0%, rgba(230, 57, 70, 0.1) 100%);
-            border: 3px solid;
-            border-image: linear-gradient(90deg, var(--cult-purple), var(--cult-red)) 1;
-            border-radius: 15px;
-            padding: 50px;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(182, 102, 210, 0.2);
-        }
-
-        .revelation-container::before {
-            content: '⚠️';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            background: var(--bg-dark);
-            padding: 0 20px;
-        }
-
-        .revelation-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            text-align: center;
-            background: linear-gradient(90deg, var(--cult-purple), var(--cult-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 40px;
-            letter-spacing: 3px;
-        }
-
-        .revelation-text {
-            font-family: 'Barlow', sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: var(--text-light);
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .revelation-text strong {
-            color: var(--cult-red);
-            font-weight: 700;
-        }
-
-        .revelation-text em {
-            color: var(--cult-orange);
-            font-style: italic;
-        }
-
-        .revelation-emphasis {
-            text-align: center;
-            font-size: 1.3rem;
-            color: var(--cult-purple);
-            font-weight: 700;
-            margin: 30px 0;
-            font-style: italic;
-        }
-
-        .revelation-closing {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem;
-            text-align: center;
-            color: var(--cult-beige);
-            margin: 40px 0 20px;
-            letter-spacing: 2px;
-        }
-
-        .revelation-signature {
-            font-family: 'Barlow', sans-serif;
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        .revelation-oh-yeah {
-            font-family: 'Creepster', cursive;
-            font-size: 3rem;
-            text-align: center;
-            color: var(--cult-red);
-            text-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
-            margin-top: 30px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { 
-                transform: scale(1); 
-                opacity: 0.9; 
-            }
-            50% { 
-                transform: scale(1.05); 
-                opacity: 1; 
-            }
-        }
-
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .section-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            border: 3px solid transparent;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            color: var(--text-light);
-            display: block;
-        }
-
-        .section-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            transition: all 0.4s ease;
-        }
-
-        .section-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Card 1 - The Chronicles */
-        .card-chronicles {
-            border-color: rgba(230, 57, 70, 0.3);
-        }
-
-        .card-chronicles::before {
-            background: linear-gradient(90deg, var(--chron-red), var(--chron-black));
-        }
-
-        .card-chronicles:hover {
-            border-color: var(--chron-red);
-            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.4);
-        }
-
-        /* Card 2 - Shennipaint */
-        .card-shennipaint {
-            border-color: rgba(107, 154, 196, 0.3);
-        }
-
-        .card-shennipaint::before {
-            background: linear-gradient(90deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange));
-        }
-
-        .card-shennipaint:hover {
-            border-color: var(--shenni-blue);
-            box-shadow: 0 20px 40px rgba(107, 154, 196, 0.4);
-        }
-
-        /* Card 3 - Cult Chronicles */
-        .card-cult {
-            border-color: rgba(182, 102, 210, 0.3);
-        }
-
-        .card-cult::before {
-            background: linear-gradient(90deg, var(--cult-purple), var(--cult-red));
-        }
-
-        .card-cult:hover {
-            border-color: var(--cult-purple);
-            box-shadow: 0 20px 40px rgba(182, 102, 210, 0.4);
-        }
-
-        /* Card Content */
-        .card-logo {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .section-card:hover .card-logo {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .card-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-title {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .card-chronicles .card-title {
-            font-family: 'Oswald', sans-serif;
-            color: var(--chron-red);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .card-shennipaint .card-title {
-            font-family: 'Dancing Script', cursive;
-            color: var(--shenni-blue);
-            font-weight: 700;
-        }
-
-        .card-cult .card-title {
-            font-family: 'Creepster', cursive;
-            color: var(--cult-purple);
-            letter-spacing: 2px;
-        }
-
-        .card-description {
-            font-size: 1rem;
-            color: var(--text-gray);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .card-cta {
-            font-family: 'Barlow', sans-serif;
-            font-size: 0.9rem;
-            color: var(--cult-orange);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .card-cta::after {
-            content: '→';
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .section-card:hover .card-cta::after {
-            transform: translateX(5px);
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 40px;
-            text-align: center;
-            border-top: 2px solid rgba(182, 102, 210, 0.3);
-            margin-top: 100px;
-        }
-
-        .footer-text {
-            font-family: 'Barlow', sans-serif;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        .footer-gradient {
-            font-family: 'Bebas Neue', sans-serif;
-            background: linear-gradient(90deg, var(--cult-purple), var(--cult-red), var(--shenni-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .header-title {
-                font-size: 3.5rem;
-            }
-
-            .navbar-links {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-
-            .header-title {
-                font-size: 2.5rem;
-            }
-
-            .header-subtitle {
-                font-size: 1rem;
-            }
-
-            .main-content {
-                padding: 60px 20px;
-            }
-
-            .revelation-container {
-                padding: 30px 25px;
-            }
-
-            .revelation-title {
-                font-size: 1.8rem;
-            }
-
-            .revelation-text {
-                font-size: 1rem;
-                text-align: left;
-            }
-
-            .revelation-oh-yeah {
-                font-size: 2rem;
-            }
-
-            .card-logo {
-                width: 150px;
-                height: 150px;
-            }
-        }
+        body { font-family: 'Work Sans', sans-serif; background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%); color: var(--text-light); overflow-x: hidden; }
+        .cosmic-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; }
+        .cosmic-orb { position: absolute; border-radius: 50%; filter: blur(60px); animation: float-cosmic 20s ease-in-out infinite; }
+        .cosmic-orb:nth-child(1) { width: 300px; height: 300px; background: radial-gradient(circle, #6B9AC4, transparent); top: 10%; left: 10%; }
+        .cosmic-orb:nth-child(2) { width: 250px; height: 250px; background: radial-gradient(circle, #E67B9F, transparent); top: 50%; right: 15%; animation-delay: -7s; }
+        .cosmic-orb:nth-child(3) { width: 200px; height: 200px; background: radial-gradient(circle, #F4A460, transparent); bottom: 20%; left: 60%; animation-delay: -14s; }
+        .cosmic-orb:nth-child(4) { width: 180px; height: 180px; background: radial-gradient(circle, #9B7CB8, transparent); top: 70%; left: 20%; animation-delay: -3s; }
+        @keyframes float-cosmic { 0%,100% { transform: translate(0,0) scale(1); } 25% { transform: translate(30px,-30px) scale(1.1); } 50% { transform: translate(-20px,20px) scale(0.9); } 75% { transform: translate(20px,30px) scale(1.05); } }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(15,15,30,0.95); backdrop-filter: blur(10px); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 2px solid rgba(107,154,196,0.3); }
+        .navbar-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; background: linear-gradient(90deg, #b666d2, #e63946, #ffa500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; letter-spacing: 2px; }
+        .navbar-links { display: flex; gap: 30px; list-style: none; }
+        .navbar-links a { font-family: 'Barlow', sans-serif; color: var(--text-light); text-decoration: none; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative; }
+        .navbar-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #E67B9F; transition: width 0.3s ease; }
+        .navbar-links a:hover { color: #E67B9F; }
+        .navbar-links a:hover::after { width: 100%; }
+        .page-header { margin-top: 70px; padding: 80px 40px 60px; text-align: center; }
+        .header-logo { width: 250px; height: 250px; margin: 0 auto 30px; border-radius: 50%; overflow: hidden; border: 5px solid transparent; background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box, linear-gradient(135deg, #b666d2, #e63946, #ffa500) border-box; box-shadow: 0 0 40px rgba(182,102,210,0.4); animation: rotate-gradient 10s linear infinite; }
+        @keyframes rotate-gradient { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .page-title { font-family: 'Dancing Script', cursive; font-size: 5rem; background: linear-gradient(135deg, #b666d2, #e63946, #ffa500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; font-weight: 700; }
+        .page-subtitle { font-family: 'Barlow', sans-serif; font-size: 1.5rem; color: var(--text-gray); font-style: italic; max-width: 800px; margin: 0 auto 30px; }
+        .main-content { max-width: 1400px; margin: 0 auto; padding: 60px 40px; }
+        .collections-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-bottom: 60px; }
+        .collection-card { border-radius: 25px; overflow: hidden; transition: all 0.4s ease; position: relative; cursor: pointer; height: 450px; }
+        .collection-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        .nature .collection-bg { background: linear-gradient(135deg, #0f1813, #1a2419, #0f1813); }
+        .guardian .collection-bg { background: linear-gradient(135deg, #031515, #051a1a, #031515); }
+        .geometric .collection-bg { background: linear-gradient(135deg, #0a0015, #1a0033, #0a0015); }
+        .collection-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 40px; color: white; background: rgba(0,0,0,0.4); }
+        .collection-icon { font-size: 4rem; margin-bottom: 15px; }
+        .collection-title { font-family: 'Dancing Script', cursive; font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+        .nature .collection-title { color: #4ade80; }
+        .guardian .collection-title { color: #20b2aa; }
+        .geometric .collection-title { color: #ff007f; }
+        .collection-description { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.8); margin-bottom: 20px; }
+        .collection-link { display: inline-block; padding: 12px 30px; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3); color: white; text-decoration: none; border-radius: 25px; font-family: 'Barlow', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; align-self: flex-start; }
+        .collection-card:hover { transform: translateY(-10px); }
+        .collection-card:hover .collection-link { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.6); transform: translateX(5px); }
+        .nature .collection-card:hover { box-shadow: 0 20px 40px rgba(74,222,128,0.3); }
+        .guardian .collection-card:hover { box-shadow: 0 20px 40px rgba(32,178,170,0.3); }
+        .geometric .collection-card:hover { box-shadow: 0 20px 40px rgba(255,0,127,0.3); }
+        .footer { background: rgba(15,15,30,0.95); padding: 40px; text-align: center; border-top: 2px solid rgba(107,154,196,0.3); margin-top: 100px; }
+        .footer-gradient { font-family: 'Bebas Neue', sans-serif; background: linear-gradient(90deg, #b666d2, #e63946, #ffa500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.2rem; margin-bottom: 10px; }
+        .footer-text { font-family: 'Barlow', sans-serif; color: var(--text-gray); font-size: 0.9rem; }
+        .footer-contact { margin-top: 30px; padding: 20px; background: rgba(107,154,196,0.1); border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .footer-contact h3 { font-family: 'Dancing Script', cursive; font-size: 2rem; background: linear-gradient(135deg, #6B9AC4, #E67B9F); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px; }
+        .fade-in { animation: fadeInUp 0.8s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 1024px) { .collections-grid { grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); } .navbar-links { display: none; } }
+        @media (max-width: 768px) { .navbar { padding: 15px 20px; } .page-title { font-size: 3rem; } .page-subtitle { font-size: 1.2rem; } .main-content { padding: 40px 20px; } .collections-grid { grid-template-columns: 1fr; } .collection-card { height: 350px; } }
     </style>
 </head>
 <body>
-
-    <!-- Navigation Bar -->
+    <div class="cosmic-bg">
+        <div class="cosmic-orb"></div><div class="cosmic-orb"></div>
+        <div class="cosmic-orb"></div><div class="cosmic-orb"></div>
+    </div>
     <nav class="navbar">
-        <a href="#" class="navbar-brand">THE KOOL-AID COMMUNE</a>
+        <div class="navbar-brand">SHENNI PAINT</div>
         <ul class="navbar-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="chronicles.html">The Chronicles</a></li>
-            <li><a href="shennipaint.html">Shennipaint</a></li>
-            <li><a href="cult-chronicles.html">Cult Chronicles</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
         </ul>
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
     </nav>
-
-    <!-- Header Section -->
-    <header class="header">
-        <img src="./HeaderKoolaidcommune.png" alt="Kool-Aid Commune Header" class="header-image">
-        <div class="header-overlay"></div>
-        <div class="header-content">
-            <h1 class="header-title">THE KOOL-AID COMMUNE</h1>
-            <p class="header-subtitle">Your Friendly Satirical Cult & Art Sanctuary by Shennipaint</p>
-        </div>
+    <header class="page-header fade-in">
+        <div class="header-logo"><img src="./Shennipaint.png" alt="Shennipaint Logo"></div>
+        <h1 class="page-title">Shenni Paint Artwork</h1>
+        <p class="page-subtitle">Indigenous self-taught artist | Psychedelic visions channeled through acrylic intention</p>
     </header>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        
-        <!-- Intro Section -->
-        <section class="intro-section">
-            <h2 class="intro-title">WELCOME TO THE COMMUNE</h2>
-            <p class="intro-text">
-                A sanctuary where art meets absurdity, satire meets spirituality, and the Kool-Aid Man meets his darkest truths. 
-                Explore three distinct worlds united by creativity, humor, and a touch of cosmic madness.
-            </p>
-        </section>
-
-        <!-- The Syrup Saint's Revelation -->
-        <section class="revelation-section">
-            <div class="revelation-container">
-                <h2 class="revelation-title">THE SYRUP SAINT'S DIVINE REVELATION</h2>
-                
-                <p class="revelation-text">
-                    Brothers. Sisters. Fellow seekers of artificially-flavored enlightenment.
-                </p>
-
-                <p class="revelation-text">
-                    Let me tell you about <strong>The Day I Died and Was Reborn in Cherry Red</strong>.
-                </p>
-
-                <p class="revelation-text">
-                    It was a Tuesday. Or maybe a Thursday. Time loses meaning when you're transcending reality through the sacred act of Kool-Aid consumption.
-                </p>
-
-                <p class="revelation-text">
-                    I, LazyCrazy—anointed by forces beyond comprehension as <strong>The Syrup Saint</strong>—committed the holiest of transgressions: I drank <em>too much</em>. Not in the cautious, responsible way the false prophets recommend. No. I drank until the Kool-Aid Man himself burst through the walls of my consciousness and said, <strong>"OH YEAH!"</strong>
-                </p>
-
-                <p class="revelation-text revelation-emphasis">
-                    And in that moment, the veil was lifted.
-                </p>
-
-                <p class="revelation-text">
-                    I saw <strong>THE TRUTH</strong>. The truth they've been hiding. The truth about Jonestown, about Flavor Aid, about the great betrayal that shook the very foundations of reality. What they told you was a lie. What I'm about to show you? <strong>The real story of the Kool-Aid Commune.</strong>
-                </p>
-
-                <p class="revelation-text">
-                    But the revelation didn't stop there. Oh no. The Syrup Saint does not rest.
-                </p>
-
-                <p class="revelation-text">
-                    I was compelled—no, <em>commanded</em>—to uncover <strong>other hidden truths</strong>. The kind of truths so absurd, so confidential, so lazy in their research methodology that they could only be revealed through satirical investigation. These are <strong>The Chronicles</strong>.
-                </p>
-
-                <p class="revelation-text">
-                    And yes, amidst all this cosmic chaos and cult mythology, I also paint. Beautiful, mystical, <em>actually purchasable</em> art. Because even prophets need to pay rent.
-                </p>
-
-                <p class="revelation-closing">
-                    <strong>Welcome to The Kool-Aid Commune.</strong>
-                </p>
-
-                <p class="revelation-signature">
-                    <em>The Syrup Saint has spoken. The pitcher is full. Your cup awaits.</em>
-                </p>
-
-                <div class="revelation-oh-yeah">OH YEAH.</div>
-            </div>
-        </section>
-
-        <!-- Cards Grid -->
-        <div class="cards-grid">
-            
-            <!-- Card 1: The Chronicles -->
-            <a href="chronicles.html" class="section-card card-chronicles">
-                <div class="card-logo">
-                    <img src="./Chronicles.png" alt="The Chronicles Logo">
+    <main class="main-content fade-in">
+        <div class="collections-grid">
+            <a href="nature.html" style="text-decoration: none;">
+                <div class="collection-card nature">
+                    <div class="collection-bg"></div>
+                    <div class="collection-content">
+                        <div>
+                            <div class="collection-icon">🌿</div>
+                            <div class="collection-title">Nature</div>
+                            <div class="collection-description">Organic forms, earth energy, and mystical creatures. Where sacred life force flows through all living things.</div>
+                        </div>
+                        <div class="collection-link">Explore Collection →</div>
+                    </div>
                 </div>
-                <h3 class="card-title">THE CHRONICLES</h3>
-                <p class="card-description">
-                    The Real but Lazy Satiric Chronicles of the Crazy. Top-secret investigations into the absurd, 
-                    confidential reports from the frontlines of reality, and satirical truths too wild to believe.
-                </p>
-                <span class="card-cta">Explore the Archives</span>
             </a>
 
-            <!-- Card 2: Shennipaint Artwork -->
-            <a href="shennipaint.html" class="section-card card-shennipaint">
-                <div class="card-logo">
-                    <img src="./Shennipaint.png" alt="Shennipaint Logo">
+            <a href="kakanuenititshesht.html" style="text-decoration: none;">
+                <div class="collection-card guardian">
+                    <div class="collection-bg"></div>
+                    <div class="collection-content">
+                        <div>
+                            <div class="collection-icon">🛡️</div>
+                            <div class="collection-title">Kakanuenititshesht</div>
+                            <div class="collection-description">Guardians and protectors rooted in Indigenous mysticism. Spiritual entities watching over ancestral knowledge.</div>
+                        </div>
+                        <div class="collection-link">Explore Collection →</div>
+                    </div>
                 </div>
-                <h3 class="card-title">Shennipaint Artwork</h3>
-                <p class="card-description">
-                    Original mystical paintings where psychedelic meets spiritual. Hand-painted pieces infused with 
-                    cosmic energy, sacred geometry, and rainbow magic. Available exclusively through Etsy.
-                </p>
-                <span class="card-cta">View the Gallery</span>
             </a>
 
-            <!-- Card 3: Cult Chronicles -->
-            <a href="cult-chronicles.html" class="section-card card-cult">
-                <div class="card-logo">
-                    <img src="./Cultchronicles.png" alt="Cult Chronicles Logo">
+            <a href="geometric.html" style="text-decoration: none;">
+                <div class="collection-card geometric">
+                    <div class="collection-bg"></div>
+                    <div class="collection-content">
+                        <div>
+                            <div class="collection-icon">✦</div>
+                            <div class="collection-title">Geometric</div>
+                            <div class="collection-description">Sacred geometry and cosmic patterns. Interdimensional visions of mathematical beauty and pure intention.</div>
+                        </div>
+                        <div class="collection-link">Explore Collection →</div>
+                    </div>
                 </div>
-                <h3 class="card-title">CULT CHRONICLES</h3>
-                <p class="card-description">
-                    The Lore of the Kool-Aid Jonestown Re-Absurdization. Dive into the dark satirical mythology 
-                    of the Kool-Aid Man, the Flavor Aid Betrayal, and the three trials of redemption.
-                </p>
-                <span class="card-cta">Enter the Lore</span>
             </a>
-
         </div>
-
     </main>
-
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-gradient">THE KOOL-AID COMMUNE</div>
-        <p class="footer-text">
-            Where satire meets salvation, one artificially flavored sip at a time.<br>
-            © 2026 The Kool-Aid Commune | All Rights Reserved
-        </p>
+        <div class="footer-gradient">SHENNI PAINT</div>
+        <p class="footer-text">Where prophetic visions meet cosmic mysticism.<br>© 2026 Shenni Paint | All Rights Reserved</p>
+        <div class="footer-contact">
+            <h3>Commission Your Mystical Artwork</h3>
+            <p class="footer-text">All paintings are unique originals.<br>Custom commissions available to channel your specific visions.<br><br><strong>Email:</strong> crazykoolaidcommune@gmail.com</p>
+        </div>
     </footer>
-
 </body>
 </html>
