@@ -138,26 +138,26 @@
             <p class="footer-text">All paintings are unique originals.<br>Custom commissions available to channel your specific visions.<br><br><strong>Email:</strong> crazykoolaidcommune@gmail.com</p>
         </div>
     </footer>
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <button class="lightbox-close" onclick="closeLightbox()">x</button>
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">x</button>
             <img class="lightbox-image" id="lightbox-image" src="" alt="">
         </div>
     </div>
     <div class="modal-overlay" id="contactModal">
         <div class="modal-box">
-            <button class="modal-close" onclick="closeContactModal()">x</button>
+            <button class="modal-close" id="modalClose">x</button>
             <div class="modal-title">Contact the Artist</div>
             <div class="modal-painting-name" id="modalPaintingName"></div>
             <p class="modal-instruction">Copy the email address below, then paste it into Gmail or any email app:</p>
             <div class="email-display">
-                <span class="email-address">crazykoolaidcommune@gmail.com</span>
-                <button class="copy-btn" id="copyEmailBtn" onclick="copyEmail()">Copy</button>
+                <span class="email-address">jennifershennipen@gmail.com</span>
+                <button class="copy-btn" id="copyEmailBtn">Copy</button>
             </div>
             <div class="message-template">
                 <div class="message-template-label">Suggested message</div>
                 <div class="message-template-text" id="messageTemplate"></div>
-                <button class="copy-message-btn" onclick="copyMessage()">Copy Message Text</button>
+                <button class="copy-message-btn" id="copyMessageBtn">Copy Message Text</button>
             </div>
             <div class="modal-divider">- or open directly -</div>
             <a class="open-gmail-btn" id="gmailLink" href="#" target="_blank" rel="noopener">Open in Gmail</a>
@@ -176,7 +176,7 @@
             var statusText = painting.status === 'available' ? 'Available' : 'Sold';
             var contactBtn = painting.status === 'sold'
                 ? '<button class="contact-btn sold" disabled>Sold Out</button>'
-                : '<button class="contact-btn" onclick="openContactModal(' + idx + ')">Contact Artist (Commission)</button>';
+                : '<button class="contact-btn contact-artist-btn" data-index="' + idx + '">Contact Artist (Commission)</button>';
             var etsyBtn = painting.etsy 
                 ? '<a href="' + painting.etsy + '" target="_blank" class="etsy-btn">Buy on Etsy</a>'
                 : '';
@@ -185,7 +185,7 @@
                 : '<div style="display: flex; gap: 10px; flex-direction: column;">' + contactBtn + etsyBtn + '</div>';
             return '<div class="painting-card fade-in">'
                 + '<div class="status-badge status-' + painting.status + '">' + statusText + '</div>'
-                + '<div class="painting-image-container" onclick="openLightbox(\'' + painting.image.replace(/'/g, "\\'") + '\')">'
+                + '<div class="painting-image-container lightbox-trigger" data-image="' + painting.image.replace(/'/g, "\\'") + '">'
                 + '<img src="' + painting.image + '" alt="' + painting.title + '" class="painting-image" loading="lazy">'
                 + '</div><div class="painting-info">'
                 + '<h3 class="painting-title">' + painting.title + '</h3>'
@@ -255,7 +255,38 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('DOMContentLoaded', function() { displayPaintings(); });
+        document.addEventListener('DOMContentLoaded', function() { 
+            displayPaintings();
+            
+            // Contact Artist button listeners
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('contact-artist-btn')) {
+                    var idx = parseInt(e.target.getAttribute('data-index'));
+                    openContactModal(idx);
+                }
+            });
+            
+            // Lightbox listeners
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.lightbox-trigger')) {
+                    var img = e.target.closest('.lightbox-trigger').querySelector('img');
+                    openLightbox(img.src);
+                }
+            });
+            
+            // Close modal button
+            document.getElementById('modalClose').addEventListener('click', closeContactModal);
+            
+            // Close lightbox button and overlay
+            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+            document.getElementById('lightbox').addEventListener('click', function(e) {
+                if (e.target.id === 'lightbox') closeLightbox();
+            });
+            
+            // Copy buttons
+            document.getElementById('copyEmailBtn').addEventListener('click', copyEmail);
+            document.getElementById('copyMessageBtn').addEventListener('click', copyMessage);
+        });
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') { closeLightbox(); closeContactModal(); }
         });
