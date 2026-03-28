@@ -3,106 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kakanuenititshesht - Shenni Paint</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Barlow:wght@400;700&family=Work+Sans:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>Shenni Paint - Guardian Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Barlow:wght@400;700&family=Work+Sans:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-dark); color: var(--text-light); font-family: 'Work Sans', sans-serif; overflow-x: hidden; }
         :root {
             --shenni-blue: #20b2aa;
             --shenni-pink: #FF8C42;
             --shenni-orange: #FFA500;
             --shenni-purple: #44bbaa;
             --shenni-teal: #4ECDC4;
-            --bg-dark: #051a1a;
-            --bg-darker: #031515;
-            --bg-card: rgba(5,26,26,0.95);
+            --bg-dark: #0f1813;
+            --bg-darker: #0a1007;
+            --bg-card: rgba(15,24,19,0.95);
             --text-light: #f0f0f0;
             --text-gray: #aaa;
         }
-        body { font-family: 'Work Sans', sans-serif; background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%); color: var(--text-light); overflow-x: hidden; }
-        .cosmic-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; }
-        .cosmic-orb { position: absolute; border-radius: 50%; filter: blur(60px); animation: float-cosmic 20s ease-in-out infinite; }
-        .cosmic-orb:nth-child(1) { width: 300px; height: 300px; background: radial-gradient(circle, var(--shenni-blue), transparent); top: 10%; left: 10%; }
-        .cosmic-orb:nth-child(2) { width: 250px; height: 250px; background: radial-gradient(circle, var(--shenni-pink), transparent); top: 50%; right: 15%; animation-delay: -7s; }
-        .cosmic-orb:nth-child(3) { width: 200px; height: 200px; background: radial-gradient(circle, var(--shenni-orange), transparent); bottom: 20%; left: 60%; animation-delay: -14s; }
-        .cosmic-orb:nth-child(4) { width: 180px; height: 180px; background: radial-gradient(circle, var(--shenni-purple), transparent); top: 70%; left: 20%; animation-delay: -3s; }
-        @keyframes float-cosmic { 0%,100% { transform: translate(0,0) scale(1); } 25% { transform: translate(30px,-30px) scale(1.1); } 50% { transform: translate(-20px,20px) scale(0.9); } 75% { transform: translate(20px,30px) scale(1.05); } }
-        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(3,21,21,0.95); backdrop-filter: blur(10px); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 2px solid rgba(32,178,170,0.3); }
-        .navbar-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; background: linear-gradient(90deg, #20b2aa, #FF8C42, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; letter-spacing: 2px; }
+        .cosmic-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; background: var(--bg-dark); }
+        .cosmic-orb { position: absolute; border-radius: 50%; opacity: 0.1; animation: float 20s ease-in-out infinite; }
+        .cosmic-orb:nth-child(1) { width: 200px; height: 200px; background: var(--shenni-pink); top: 10%; left: 10%; animation-delay: 0s; }
+        .cosmic-orb:nth-child(2) { width: 300px; height: 300px; background: var(--shenni-orange); top: 50%; right: 5%; animation-delay: 5s; }
+        .cosmic-orb:nth-child(3) { width: 150px; height: 150px; background: var(--shenni-blue); bottom: 10%; left: 30%; animation-delay: 10s; }
+        .cosmic-orb:nth-child(4) { width: 250px; height: 250px; background: var(--shenni-teal); top: 60%; left: 50%; animation-delay: 15s; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(50px); } }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: rgba(15,24,19,0.9); border-bottom: 2px solid var(--shenni-blue); position: sticky; top: 0; z-index: 100; }
+        .navbar-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; background: linear-gradient(90deg, #20b2aa, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; letter-spacing: 2px; }
         .navbar-brand a { color: inherit; text-decoration: none; }
-        .navbar-links { display: flex; gap: 30px; list-style: none; }
-        .navbar-links a { font-family: 'Barlow', sans-serif; color: var(--text-light); text-decoration: none; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative; }
-        .navbar-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--shenni-pink); transition: width 0.3s ease; }
-        .navbar-links a:hover { color: var(--shenni-pink); }
-        .navbar-links a:hover::after { width: 100%; }
-        .navbar-links a.active { color: var(--shenni-blue); }
+        .navbar-links { list-style: none; display: flex; gap: 30px; }
+        .navbar-links a { color: var(--text-light); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        .navbar-links a:hover, .navbar-links a.active { color: var(--shenni-orange); }
         .page-header { margin-top: 70px; padding: 80px 40px 60px; text-align: center; }
-        .page-title { font-family: 'Dancing Script', cursive; font-size: 5rem; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; font-weight: 700; }
-        .page-subtitle { font-family: 'Barlow', sans-serif; font-size: 1.5rem; color: var(--text-gray); font-style: italic; max-width: 800px; margin: 0 auto 30px; }
-        .artist-intro { max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: var(--text-light); padding: 30px; background: rgba(32,178,170,0.1); border-radius: 20px; border: 1px solid rgba(32,178,170,0.2); }
-        .main-content { max-width: 1400px; margin: 0 auto; padding: 60px 40px; }
-        .paintings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 40px; }
-        .painting-card { background: var(--bg-card); border-radius: 25px; overflow: hidden; border: 2px solid transparent; transition: all 0.4s ease; position: relative; }
-        .painting-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 25px; padding: 2px; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.4s ease; }
-        .painting-card:hover::before { opacity: 1; }
-        .painting-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(32,178,170,0.3); }
-        .painting-image-container { width: 100%; height: 300px; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; cursor: pointer; }
-        .painting-image { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.4s ease; }
-        .painting-card:hover .painting-image { transform: scale(1.05); }
-        .painting-info { padding: 30px; }
-        .painting-title { font-family: 'Dancing Script', cursive; font-size: 2rem; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px; font-weight: 700; }
-        .painting-description { font-family: 'Work Sans', sans-serif; color: var(--text-gray); line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem; }
-        .painting-details { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
-        .painting-meta { font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--shenni-blue); }
-        .painting-price { font-family: 'Barlow', sans-serif; font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, var(--shenni-pink), var(--shenni-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .status-badge { position: absolute; top: 20px; right: 20px; padding: 8px 20px; border-radius: 20px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; z-index: 10; }
-        .status-available { background: linear-gradient(135deg, var(--shenni-teal), var(--shenni-blue)); color: white; }
-        .status-sold { background: linear-gradient(135deg, #dc3545, #c82333); color: white; }
-        .contact-btn { width: 100%; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink), var(--shenni-orange)); color: white; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: block; text-align: center; }
-        .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(32,178,170,0.5); filter: brightness(1.1); }
-        .contact-btn.sold { background: linear-gradient(135deg, #555, #333); cursor: not-allowed; }
-        .contact-btn.sold:hover { transform: none; box-shadow: none; filter: none; }
-        .etsy-btn { width: 100%; background: linear-gradient(135deg, #f1641e, #f39c12); color: white; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: block; text-align: center; text-decoration: none; }
-        .etsy-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(241,100,30,0.5); filter: brightness(1.1); }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .modal-overlay.active { display: flex; }
-        .modal-box { background: linear-gradient(135deg, #051a1a, #0a2e2e); border: 2px solid rgba(32,178,170,0.4); border-radius: 25px; padding: 40px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 0 60px rgba(32,178,170,0.3); animation: modalIn 0.3s ease; }
-        @keyframes modalIn { from { opacity: 0; transform: scale(0.9) translateY(-20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .modal-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--text-gray); font-size: 1.8rem; cursor: pointer; line-height: 1; transition: color 0.3s; }
-        .modal-close:hover { color: var(--shenni-pink); }
-        .modal-title { font-family: 'Dancing Script', cursive; font-size: 2rem; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
-        .modal-painting-name { font-family: 'Barlow', sans-serif; color: var(--shenni-orange); font-size: 1rem; margin-bottom: 20px; font-style: italic; }
-        .modal-instruction { font-family: 'Work Sans', sans-serif; color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
-        .email-display { background: rgba(32,178,170,0.1); border: 1px solid rgba(32,178,170,0.3); border-radius: 12px; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
-        .email-address { font-family: 'Barlow', sans-serif; color: var(--shenni-blue); font-size: 0.95rem; font-weight: 600; word-break: break-all; }
-        .copy-btn { background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-purple)); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex-shrink: 0; }
-        .copy-btn:hover { filter: brightness(1.2); }
-        .copy-btn.copied { background: linear-gradient(135deg, var(--shenni-teal), #27ae60); }
-        .message-template { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; margin-bottom: 20px; }
-        .message-template-label { font-family: 'Barlow', sans-serif; color: var(--text-gray); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .message-template-text { font-family: 'Work Sans', sans-serif; color: var(--text-light); font-size: 0.85rem; line-height: 1.6; white-space: pre-line; }
-        .copy-message-btn { width: 100%; background: transparent; color: var(--shenni-blue); border: 1px solid var(--shenni-blue); padding: 8px; border-radius: 20px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
-        .copy-message-btn:hover { background: var(--shenni-blue); color: white; }
-        .modal-divider { text-align: center; color: var(--text-gray); font-size: 0.85rem; margin: 15px 0; }
-        .open-gmail-btn { width: 100%; background: linear-gradient(135deg, var(--shenni-pink), var(--shenni-orange)); color: white; border: none; padding: 14px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: block; text-align: center; }
-        .open-gmail-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
-        .footer { background: rgba(3,21,21,0.95); padding: 40px; text-align: center; border-top: 2px solid rgba(32,178,170,0.3); margin-top: 100px; }
-        .footer-gradient { font-family: 'Bebas Neue', sans-serif; background: linear-gradient(90deg, #20b2aa, #FF8C42, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.2rem; margin-bottom: 10px; }
-        .footer-text { font-family: 'Barlow', sans-serif; color: var(--text-gray); font-size: 0.9rem; }
-        .footer-contact { margin-top: 30px; padding: 20px; background: rgba(32,178,170,0.1); border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .footer-contact h3 { font-family: 'Dancing Script', cursive; font-size: 2rem; background: linear-gradient(135deg, var(--shenni-blue), var(--shenni-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px; }
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; opacity: 0; transition: opacity 0.3s ease; cursor: pointer; }
-        .lightbox.active { display: flex; align-items: center; justify-content: center; opacity: 1; }
-        .lightbox-content { position: relative; max-width: 90%; max-height: 90%; }
-        .lightbox-image { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 15px; box-shadow: 0 0 50px rgba(32,178,170,0.6); }
-        .lightbox-close { position: absolute; top: -50px; right: 0; width: 40px; height: 40px; background: var(--shenni-pink); color: white; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; transition: all 0.3s ease; }
-        .lightbox-close:hover { background: var(--shenni-orange); transform: scale(1.1); }
+        .page-title { font-family: 'Dancing Script', cursive; font-size: 5rem; background: linear-gradient(135deg, #20b2aa, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; font-weight: 700; }
+        .page-subtitle { font-size: 1.5rem; color: var(--shenni-pink); margin-bottom: 10px; }
+        .artist-intro { max-width: 600px; margin: 20px auto; font-size: 1rem; color: var(--text-gray); line-height: 1.6; }
         .back-link { display: inline-block; margin: 20px 40px; color: var(--shenni-blue); text-decoration: none; font-weight: bold; font-family: 'Barlow', sans-serif; transition: color 0.3s; }
         .back-link:hover { color: var(--shenni-pink); }
+        .main-content { padding: 60px 40px; }
+        .paintings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .painting-card { background: var(--bg-card); border-radius: 15px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 8px 24px rgba(61, 125, 61, 0.2); position: relative; }
+        .painting-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(139, 195, 74, 0.3); }
+        .status-badge { position: absolute; top: 20px; right: 20px; padding: 8px 16px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; z-index: 10; }
+        .status-available { background: linear-gradient(135deg, #20b2aa, #FF8C42); color: white; }
+        .status-sold { background: linear-gradient(135deg, #555, #333); color: #aaa; }
+        .painting-image-container { position: relative; width: 100%; height: 300px; overflow: hidden; cursor: pointer; }
+        .painting-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .painting-image-container:hover .painting-image { transform: scale(1.05); }
+        .painting-info { padding: 30px; }
+        .painting-title { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: var(--shenni-pink); margin-bottom: 10px; }
+        .painting-description { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5; }
+        .painting-details { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .painting-meta { font-size: 0.9rem; color: var(--text-gray); }
+        .painting-price { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, #20b2aa, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .etsy-btn { width: 100%; background: linear-gradient(135deg, #f1641e, #f39c12); color: white; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: block; text-align: center; text-decoration: none; }
+        .etsy-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(241,100,30,0.5); filter: brightness(1.1); }
+        .contact-btn.sold { width: 100%; background: linear-gradient(135deg, #555, #333); color: #aaa; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: not-allowed; }
         .fade-in { animation: fadeInUp 0.8s ease-out; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; }
+        .lightbox.active { display: flex; align-items: center; justify-content: center; }
+        .lightbox-content { position: relative; max-width: 90%; max-height: 90vh; }
+        .lightbox-image { max-width: 100%; max-height: 85vh; object-fit: contain; }
+        .lightbox-close { position: absolute; top: -50px; right: 0; width: 40px; height: 40px; background: var(--shenni-pink); color: white; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; transition: all 0.3s ease; }
+        .lightbox-close:hover { background: var(--shenni-orange); transform: scale(1.1); }
+        .footer { padding: 60px 40px; text-align: center; border-top: 2px solid var(--shenni-blue); margin-top: 80px; }
+        .footer-gradient { font-family: 'Bebas Neue', sans-serif; background: linear-gradient(90deg, #20b2aa, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.2rem; margin-bottom: 10px; }
+        .footer-text { color: var(--text-gray); margin: 10px 0; }
+        .footer-contact { margin-top: 40px; }
+        .footer-contact h3 { color: var(--shenni-pink); margin-bottom: 10px; }
         @media (max-width: 1024px) { .paintings-grid { grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); } .navbar-links { display: none; } }
         @media (max-width: 768px) { .navbar { padding: 15px 20px; } .page-title { font-size: 3rem; } .page-subtitle { font-size: 1.2rem; } .main-content { padding: 40px 20px; } .paintings-grid { grid-template-columns: 1fr; } }
     </style>
@@ -116,8 +84,8 @@
         <div class="navbar-brand"><a href="index.html">SHENNI PAINT</a></div>
         <ul class="navbar-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="nature.html">Nature</a></li>
-            <li><a href="kakanuenititshesht.html" class="active">Guardian</a></li>
+            <li><a href="kakanuenititshesht.html" class="active">Nature</a></li>
+            <li><a href="kakanuenititshesht.html">Guardian</a></li>
             <li><a href="geometric.html">Geometric</a></li>
         </ul>
     </nav>
@@ -125,17 +93,17 @@
     <header class="page-header fade-in">
         <h1 class="page-title">🛡️ Kakanuenititshesht</h1>
         <p class="page-subtitle">Guardians and protectors in spiritual form</p>
-        <div class="artist-intro">Spiritual entities and sacred forces. Paintings rooted in Indigenous mysticism and protective power, channeling the energy of guardians watching over ancestral knowledge.</div>
+        <div class="artist-intro">Inspired by natural worlds, ancestral lands, and the mystical energy found in forests, water, and stone. These paintings capture the essence of living things transformed through psychedelic vision.</div>
     </header>
     <main class="main-content">
         <div class="paintings-grid" id="paintings-gallery"></div>
     </main>
     <footer class="footer">
-        <div class="footer-gradient">SHENNI PAINT - GUARDIAN COLLECTION</div>
-        <p class="footer-text">Where protection meets cosmic consciousness.<br>© 2026 Shenni Paint | All Rights Reserved</p>
+        <div class="footer-gradient">SHENNI PAINT - NATURE COLLECTION</div>
+        <p class="footer-text">Where protection meets consciousness.<br>© 2026 Shenni Paint | All Rights Reserved</p>
         <div class="footer-contact">
-            <h3>Commission Your Mystical Artwork</h3>
-            <p class="footer-text">All paintings are unique originals.<br>Custom commissions available to channel your specific visions.<br><br><strong>Email:</strong> jennifershennipen@gmail.com</p>
+            <h3>Your Paintings</h3>
+            <p class="footer-text">All paintings are unique originals.<br>Shop directly on Etsy.<br><br><strong>Etsy:</strong> <a href="https://shennipaint.etsy.com" target="_blank" style="color: var(--shenni-orange); text-decoration: none;">shennipaint.etsy.com</a></p>
         </div>
     </footer>
     <div class="lightbox" id="lightbox">
@@ -144,45 +112,19 @@
             <img class="lightbox-image" id="lightbox-image" src="" alt="">
         </div>
     </div>
-    <div class="modal-overlay" id="contactModal">
-        <div class="modal-box">
-            <button class="modal-close" id="modalClose">x</button>
-            <div class="modal-title">Contact the Artist</div>
-            <div class="modal-painting-name" id="modalPaintingName"></div>
-            <p class="modal-instruction">Copy the email address below, then paste it into Gmail or any email app:</p>
-            <div class="email-display">
-                <span class="email-address">jennifershennipen@gmail.com</span>
-                <button class="copy-btn" id="copyEmailBtn">Copy</button>
-            </div>
-            <div class="message-template">
-                <div class="message-template-label">Suggested message</div>
-                <div class="message-template-text" id="messageTemplate"></div>
-                <button class="copy-message-btn" id="copyMessageBtn">Copy Message Text</button>
-            </div>
-            <div class="modal-divider">- or open directly -</div>
-            <a class="open-gmail-btn" id="gmailLink" href="#" target="_blank" rel="noopener">Open in Gmail</a>
-        </div>
-    </div>
     <script>
-        var EMAIL = 'jennifershennipen@gmail.com';
         var paintings = [
-            { title: "Rock Antler", image: "./RockAntler.png", description: "Stone and spirit intertwined. Earth energy rendered in vibrant acrylic visions.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$250 CAD", status: "available", etsy: "https://www.etsy.com/ca-fr/listing/4446307895/pierre-et-ramure" },
-            { title: "Blue Forest", image: "./BlueForest.png", description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$250 CAD", status: "available", etsy: "https://www.etsy.com/ca-fr/listing/4437566932/ceremonie-sarcelle" },
-            { title: "The Watcher", image: "./watcher.jpg", description: "A guardian presence watching over sacred knowledge. Protective energy made visible through mystical vision.", size: 'Variable', medium: "Acrylic on canvas", price: "Contact for pricing", status: "available", etsy: "https://www.etsy.com/ca-fr/listing/4459854395/the-wardens-warning" },
-            { title: "Ordinary Psychosis", image: "./psychosis.jpg", description: "Where madness and enlightenment blur. A meditation on consciousness and transcendence.", size: 'Variable', medium: "Acrylic on canvas", price: "Contact for pricing", status: "available", etsy: "https://www.etsy.com/ca-fr/listing/4475210971/ordinary-psychosis" }
+            { title: "Rock Antler", image: "./RockAntler.png", description: "Stone and spirit intertwined. Earth energy rendered in vibrant acrylic visions.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$250 CAD", status: "available" },
+            { title: "Blue Forest", image: "./BlueForest.png", description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$250 CAD", status: "available" },
+            { title: "The Watcher", image: "./watcher.jpg", description: "A guardian presence watching over sacred knowledge. Protective energy made visible through mystical vision.", size: 'Variable', medium: "Acrylic on canvas", price: "Contact for pricing", status: "available" },
+            { title: "Ordinary Psychosis", image: "./psychosis.jpg", description: "Where madness and enlightenment blur. A meditation on consciousness and transcendence.", size: 'Variable', medium: "Acrylic on canvas", price: "Contact for pricing", status: "available" }
         ];
 
-        function createPaintingHTML(painting, idx) {
+        function createPaintingHTML(painting) {
             var statusText = painting.status === 'available' ? 'Available' : 'Sold';
-            var contactBtn = painting.status === 'sold'
+            var btn = painting.status === 'sold'
                 ? '<button class="contact-btn sold" disabled>Sold Out</button>'
-                : '<button class="contact-btn contact-artist-btn" data-index="' + idx + '">Contact Artist (Commission)</button>';
-            var etsyBtn = painting.etsy 
-                ? '<a href="' + painting.etsy + '" target="_blank" class="etsy-btn">Buy on Etsy</a>'
-                : '';
-            var btnContainer = painting.status === 'sold' 
-                ? contactBtn 
-                : '<div style="display: flex; gap: 10px; flex-direction: column;">' + contactBtn + etsyBtn + '</div>';
+                : '<a href="https://shennipaint.etsy.com" target="_blank" class="etsy-btn">Buy on Etsy</a>';
             return '<div class="painting-card fade-in">'
                 + '<div class="status-badge status-' + painting.status + '">' + statusText + '</div>'
                 + '<div class="painting-image-container lightbox-trigger" data-image="' + painting.image.replace(/'/g, "\\'") + '">'
@@ -192,58 +134,13 @@
                 + '<p class="painting-description">' + painting.description + '</p>'
                 + '<div class="painting-details"><div class="painting-meta">Size: ' + painting.size + '<br>Medium: ' + painting.medium + '</div>'
                 + '<div class="painting-price">' + painting.price + '</div></div>'
-                + btnContainer + '</div></div>';
+                + btn + '</div></div>';
         }
 
-        function openContactModal(idx) {
-            var p = paintings[idx];
-            var message = 'Hello,\n\nI am interested in your painting "' + p.title + '".\n\nPlease let me know the price and next steps.\n\nThank you!';
-            var subject = 'Interested in "' + p.title + '"';
-            document.getElementById('modalPaintingName').textContent = '"' + p.title + '" - ' + p.price;
-            document.getElementById('messageTemplate').textContent = message;
-            var gmailUrl = 'https://mail.google.com/mail/?view=cm&to=' + encodeURIComponent(EMAIL) + '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(message);
-            document.getElementById('gmailLink').href = gmailUrl;
-            var btn = document.getElementById('copyEmailBtn');
-            btn.textContent = 'Copy';
-            btn.classList.remove('copied');
-            document.getElementById('contactModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeContactModal() {
-            document.getElementById('contactModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function copyEmail() {
-            var btn = document.getElementById('copyEmailBtn');
-            function showCopied() { btn.textContent = 'Copied!'; btn.classList.add('copied'); setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500); }
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(EMAIL).then(showCopied).catch(function(){
-                    var el = document.createElement('textarea'); el.value = EMAIL; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); showCopied();
-                });
-            } else {
-                var el = document.createElement('textarea'); el.value = EMAIL; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); showCopied();
-            }
-        }
-
-        function copyMessage() {
-            var msg = document.getElementById('messageTemplate').textContent;
-            if (navigator.clipboard) { navigator.clipboard.writeText(msg).catch(function(){ var el = document.createElement('textarea'); el.value = msg; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); }); }
-            else { var el = document.createElement('textarea'); el.value = msg; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); }
-        }
-
-        function displayPaintings(list) {
-            list = list || paintings;
+        function displayPaintings() {
             var html = '';
-            for (var i = 0; i < list.length; i++) { html += createPaintingHTML(list[i], i); }
+            for (var i = 0; i < paintings.length; i++) { html += createPaintingHTML(paintings[i]); }
             document.getElementById('paintings-gallery').innerHTML = html;
-        }
-
-        function openLightbox(imageSrc) {
-            document.getElementById('lightbox-image').src = imageSrc;
-            document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
@@ -254,42 +151,24 @@
         document.addEventListener('DOMContentLoaded', function() { 
             displayPaintings();
             
-            // Modal overlay click listener
-            document.getElementById('contactModal').addEventListener('click', function(e) {
-                if (e.target === this) closeContactModal();
-            });
-            
-            // Contact Artist button listeners
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('contact-artist-btn')) {
-                    var idx = parseInt(e.target.getAttribute('data-index'));
-                    openContactModal(idx);
-                }
-            });
-            
             // Lightbox listeners
             document.addEventListener('click', function(e) {
                 if (e.target.closest('.lightbox-trigger')) {
                     var img = e.target.closest('.lightbox-trigger').querySelector('img');
-                    openLightbox(img.src);
+                    document.getElementById('lightbox-image').src = img.src;
+                    document.getElementById('lightbox').classList.add('active');
+                    document.body.style.overflow = 'hidden';
                 }
             });
             
-            // Close modal button
-            document.getElementById('modalClose').addEventListener('click', closeContactModal);
-            
-            // Close lightbox button and overlay
+            // Close lightbox
             document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
             document.getElementById('lightbox').addEventListener('click', function(e) {
                 if (e.target.id === 'lightbox') closeLightbox();
             });
-            
-            // Copy buttons
-            document.getElementById('copyEmailBtn').addEventListener('click', copyEmail);
-            document.getElementById('copyMessageBtn').addEventListener('click', copyMessage);
         });
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') { closeLightbox(); closeContactModal(); }
+            if (e.key === 'Escape') { closeLightbox(); }
         });
     </script>
 </body>
