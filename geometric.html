@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shenni Paint - Geometric Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Barlow:wght@400;700&family=Work+Sans:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-dark); color: var(--text-light); font-family: 'Work Sans', sans-serif; overflow-x: hidden; }
+        :root {
+            --shenni-blue: #ff007f;
+            --shenni-pink: #00ffcc;
+            --shenni-orange: #ff1493;
+            --shenni-purple: #00ffff;
+            --shenni-teal: #ff00ff;
+            --bg-dark: #0f1813;
+            --bg-darker: #0a1007;
+            --bg-card: rgba(15,24,19,0.95);
+            --text-light: #f0f0f0;
+            --text-gray: #aaa;
+        }
+        .cosmic-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; background: var(--bg-dark); }
+        .cosmic-orb { position: absolute; border-radius: 50%; opacity: 0.1; animation: float 20s ease-in-out infinite; }
+        .cosmic-orb:nth-child(1) { width: 200px; height: 200px; background: var(--shenni-pink); top: 10%; left: 10%; animation-delay: 0s; }
+        .cosmic-orb:nth-child(2) { width: 300px; height: 300px; background: var(--shenni-orange); top: 50%; right: 5%; animation-delay: 5s; }
+        .cosmic-orb:nth-child(3) { width: 150px; height: 150px; background: var(--shenni-blue); bottom: 10%; left: 30%; animation-delay: 10s; }
+        .cosmic-orb:nth-child(4) { width: 250px; height: 250px; background: var(--shenni-teal); top: 60%; left: 50%; animation-delay: 15s; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(50px); } }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: rgba(15,24,19,0.9); border-bottom: 2px solid var(--shenni-blue); position: sticky; top: 0; z-index: 100; }
+        .navbar-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; background: linear-gradient(90deg, #ff007f, #ff1493); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; letter-spacing: 2px; }
+        .navbar-brand a { color: inherit; text-decoration: none; }
+        .navbar-links { list-style: none; display: flex; gap: 30px; }
+        .navbar-links a { color: var(--text-light); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        .navbar-links a:hover, .navbar-links a.active { color: var(--shenni-orange); }
+        .page-header { margin-top: 70px; padding: 80px 40px 60px; text-align: center; }
+        .page-title { font-family: 'Dancing Script', cursive; font-size: 5rem; background: linear-gradient(135deg, #ff007f, #ff1493); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; font-weight: 700; }
+        .page-subtitle { font-size: 1.5rem; color: var(--shenni-pink); margin-bottom: 10px; }
+        .artist-intro { max-width: 600px; margin: 20px auto; font-size: 1rem; color: var(--text-gray); line-height: 1.6; }
+        .back-link { display: inline-block; margin: 20px 40px; color: var(--shenni-blue); text-decoration: none; font-weight: bold; font-family: 'Barlow', sans-serif; transition: color 0.3s; }
+        .back-link:hover { color: var(--shenni-pink); }
+        .main-content { padding: 60px 40px; }
+        .paintings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .painting-card { background: var(--bg-card); border-radius: 15px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 8px 24px rgba(61, 125, 61, 0.2); position: relative; }
+        .painting-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(139, 195, 74, 0.3); }
+        .status-badge { position: absolute; top: 20px; right: 20px; padding: 8px 16px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; z-index: 10; }
+        .status-available { background: linear-gradient(135deg, #ff007f, #00ffcc); color: white; }
+        .status-sold { background: linear-gradient(135deg, #555, #333); color: #aaa; }
+        .painting-image-container { position: relative; width: 100%; height: 300px; overflow: hidden; cursor: pointer; }
+        .painting-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .painting-image-container:hover .painting-image { transform: scale(1.05); }
+        .painting-info { padding: 30px; }
+        .painting-title { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: var(--shenni-pink); margin-bottom: 10px; }
+        .painting-description { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5; }
+        .painting-details { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .painting-meta { font-size: 0.9rem; color: var(--text-gray); }
+        .painting-price { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, #ff007f, #ff1493); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .etsy-btn { width: 100%; background: linear-gradient(135deg, #f1641e, #f39c12); color: white; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: block; text-align: center; text-decoration: none; }
+        .etsy-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(241,100,30,0.5); filter: brightness(1.1); }
+        .contact-btn.sold { width: 100%; background: linear-gradient(135deg, #555, #333); color: #aaa; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: not-allowed; }
+        .fade-in { animation: fadeInUp 0.8s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; }
+        .lightbox.active { display: flex; align-items: center; justify-content: center; }
+        .lightbox-content { position: relative; max-width: 90%; max-height: 90vh; }
+        .lightbox-image { max-width: 100%; max-height: 85vh; object-fit: contain; }
+        .lightbox-close { position: absolute; top: -50px; right: 0; width: 40px; height: 40px; background: var(--shenni-pink); color: white; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; transition: all 0.3s ease; }
+        .lightbox-close:hover { background: var(--shenni-orange); transform: scale(1.1); }
+        .footer { padding: 60px 40px; text-align: center; border-top: 2px solid var(--shenni-blue); margin-top: 80px; }
+        .footer-gradient { font-family: 'Bebas Neue', sans-serif; background: linear-gradient(90deg, #ff007f, #ff1493); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.2rem; margin-bottom: 10px; }
+        .footer-text { color: var(--text-gray); margin: 10px 0; }
+        .footer-contact { margin-top: 40px; }
+        .footer-contact h3 { color: var(--shenni-pink); margin-bottom: 10px; }
+        @media (max-width: 1024px) { .paintings-grid { grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); } .navbar-links { display: none; } }
+        @media (max-width: 768px) { .navbar { padding: 15px 20px; } .page-title { font-size: 3rem; } .page-subtitle { font-size: 1.2rem; } .main-content { padding: 40px 20px; } .paintings-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="cosmic-bg">
+        <div class="cosmic-orb"></div><div class="cosmic-orb"></div>
+        <div class="cosmic-orb"></div><div class="cosmic-orb"></div>
+    </div>
+    <nav class="navbar">
+        <div class="navbar-brand"><a href="index.html">SHENNI PAINT</a></div>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="geometric.html" class="active">Nature</a></li>
+            <li><a href="kakanuenititshesht.html">Guardian</a></li>
+            <li><a href="geometric.html">Geometric</a></li>
+        </ul>
+    </nav>
+    <a href="index.html" class="back-link">← Back to Collections</a>
+    <header class="page-header fade-in">
+        <h1 class="page-title">✨ Geometric</h1>
+        <p class="page-subtitle">Bold geometric visions and cosmic patterns</p>
+        <div class="artist-intro">Inspired by natural worlds, ancestral lands, and the mystical energy found in forests, water, and stone. These paintings capture the essence of living things transformed through psychedelic vision.</div>
+    </header>
+    <main class="main-content">
+        <div class="paintings-grid" id="paintings-gallery"></div>
+    </main>
+    <footer class="footer">
+        <div class="footer-gradient">SHENNI PAINT - NATURE COLLECTION</div>
+        <p class="footer-text">Where geometry meets consciousness.<br>© 2026 Shenni Paint | All Rights Reserved</p>
+        <div class="footer-contact">
+            <h3>Your Paintings</h3>
+            <p class="footer-text">All paintings are unique originals.<br>Shop directly on Etsy.<br><br><strong>Etsy:</strong> <a href="https://shennipaint.etsy.com" target="_blank" style="color: var(--shenni-orange); text-decoration: none;">shennipaint.etsy.com</a></p>
+        </div>
+    </footer>
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">x</button>
+            <img class="lightbox-image" id="lightbox-image" src="" alt="">
+        </div>
+    </div>
+    <script>
+        var paintings = [
+            { title: "Lost in the Forest of His Mind", image: "./lostforestmind.png", description: "Geometric patterns merge with consciousness. A journey through the intricate landscapes of the mind.", size: 'Variable', medium: "Acrylic on canvas", price: "Contact for pricing", status: "available" },
+            { title: "The Big Slam", image: "./thebigslam.png", description: "Explosive energy captured on canvas. A cosmic collision of color, geometry, and consciousness.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$250 CAD", status: "available" }
+        ];
+
+        function createPaintingHTML(painting) {
+            var statusText = painting.status === 'available' ? 'Available' : 'Sold';
+            var btn = painting.status === 'sold'
+                ? '<button class="contact-btn sold" disabled>Sold Out</button>'
+                : '<a href="https://shennipaint.etsy.com" target="_blank" class="etsy-btn">Buy on Etsy</a>';
+            return '<div class="painting-card fade-in">'
+                + '<div class="status-badge status-' + painting.status + '">' + statusText + '</div>'
+                + '<div class="painting-image-container lightbox-trigger" data-image="' + painting.image.replace(/'/g, "\\'") + '">'
+                + '<img src="' + painting.image + '" alt="' + painting.title + '" class="painting-image" loading="lazy">'
+                + '</div><div class="painting-info">'
+                + '<h3 class="painting-title">' + painting.title + '</h3>'
+                + '<p class="painting-description">' + painting.description + '</p>'
+                + '<div class="painting-details"><div class="painting-meta">Size: ' + painting.size + '<br>Medium: ' + painting.medium + '</div>'
+                + '<div class="painting-price">' + painting.price + '</div></div>'
+                + btn + '</div></div>';
+        }
+
+        function displayPaintings() {
+            var html = '';
+            for (var i = 0; i < paintings.length; i++) { html += createPaintingHTML(paintings[i]); }
+            document.getElementById('paintings-gallery').innerHTML = html;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() { 
+            displayPaintings();
+            
+            // Lightbox listeners
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.lightbox-trigger')) {
+                    var img = e.target.closest('.lightbox-trigger').querySelector('img');
+                    document.getElementById('lightbox-image').src = img.src;
+                    document.getElementById('lightbox').classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+            
+            // Close lightbox
+            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+            document.getElementById('lightbox').addEventListener('click', function(e) {
+                if (e.target.id === 'lightbox') closeLightbox();
+            });
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') { closeLightbox(); }
+        });
+    </script>
+</body>
+</html>
