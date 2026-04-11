@@ -113,12 +113,13 @@
         </div>
     </div>
     <script>
-        var paintings = [
-            { title: "Marine Wolfs", image: "./MarineWolfs.png", description: "Mystical creatures emerging from the depths of water and spirit. A meditation on wild nature.", size: '5" x 5"', medium: "Acrylic on canvas", price: "$500 CAD", status: "sold" }0
-            { title: "Bambi Mimic", image: "./Bambi_Mimic.png", description: "Innocence meets intensity. Delicate nature transformed through psychedelic lens.", size: '12" x 12"', medium: "Acrylic on canvas", price: "$325 CAD", status: "available" },
-            { title: "Bloomhouse", image: "./BLOOMHOUSE.png", description: "Where nature blooms and consciousness expands. A sanctuary of growth and transformation.", size: 'Variable', medium: "Acrylic on canvas", price: "$200 CAD", status: "sold" },
-            { title: "Lichen Witness", image: "./lichen.png", description: "Ancient observer of time and transformation. Lichen as a silent witness to cosmic change.", size: 'Variable', medium: "Acrylic on canvas", price: "$275 CAD", status: "available" },
-            { title :"Hommage Bella", imaget="/Hommagebella.jpg", description: "A cosmic hommage to saying goodbye to our best conpanion", size: '10X8', medium: "Acrylic on canvas", price: "$275 CAD", status: "available" },
+       var paintings = [
+    { title: "Marine Wolfs", image: "./MarineWolfs.png", description: "Mystical creatures emerging from the depths of water and spirit. A meditation on wild nature.", size: '5" x 5"', medium: "Acrylic on canvas", price: "$500 CAD", status: "sold" },
+    { title: "Bambi Mimic", image: "./Bambi_Mimic.png", description: "Innocence meets intensity. Delicate nature transformed through psychedelic lens.", size: '12" x 12"', medium: "Acrylic on canvas", price: "$325 CAD", status: "available" },
+    { title: "Bloomhouse", image: "./BLOOMHOUSE.png", description: "Where nature blooms and consciousness expands. A sanctuary of growth and transformation.", size: 'Variable', medium: "Acrylic on canvas", price: "$200 CAD", status: "sold" },
+    { title: "Lichen Witness", image: "./lichen.png", description: "Ancient observer of time and transformation. Lichen as a silent witness to cosmic change.", size: 'Variable', medium: "Acrylic on canvas", price: "$275 CAD", status: "available" },
+    { title: "Hommage Bella", image: "./Hommagebella.jpg", description: "A cosmic hommage to saying goodbye to our best companion", size: '10x8', medium: "Acrylic on canvas", price: "$275 CAD", status: "available" }
+];
 
         function createPaintingHTML(painting) {
             var statusText = painting.status === 'available' ? 'Available' : 'Sold';
