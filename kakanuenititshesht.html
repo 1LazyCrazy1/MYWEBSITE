@@ -58,6 +58,32 @@
         .etsy-btn { width: 100%; background: linear-gradient(135deg, #f1641e, #f39c12); color: white; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: block; text-align: center; text-decoration: none; }
         .etsy-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(241,100,30,0.5); filter: brightness(1.1); }
         .contact-btn.sold { width: 100%; background: linear-gradient(135deg, #555, #333); color: #aaa; border: none; padding: 15px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: not-allowed; }
+        
+        /* COMMENTS SECTION */
+        .comments-section { margin-top: 40px; padding-top: 30px; border-top: 2px solid var(--shenni-blue); }
+        .comment-question { font-size: 1.1rem; color: var(--shenni-pink); margin-bottom: 20px; font-weight: 600; font-style: italic; }
+        .comment-form { margin-bottom: 30px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; color: var(--text-light); margin-bottom: 8px; font-weight: 500; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--shenni-blue); border-radius: 8px; color: var(--text-light); font-family: 'Work Sans', sans-serif; resize: none; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-gray); }
+        .form-group textarea { min-height: 100px; }
+        .submit-btn { width: 100%; background: linear-gradient(135deg, #20b2aa, #FFA500); color: white; border: none; padding: 12px; border-radius: 30px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(32, 178, 170, 0.4); }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        /* CAROUSEL */
+        .comments-carousel { margin-top: 30px; }
+        .carousel-wrapper { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 12px; border: 1px solid var(--shenni-blue); }
+        .comment-display { min-height: 120px; display: flex; flex-direction: column; justify-content: center; }
+        .comment-text { color: var(--text-light); font-size: 1rem; line-height: 1.6; margin-bottom: 15px; font-style: italic; }
+        .comment-author { color: var(--shenni-pink); font-weight: 600; font-size: 0.95rem; }
+        .carousel-dots { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255, 165, 0, 0.3); cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; }
+        .dot.active { background: var(--shenni-orange); border-color: var(--shenni-orange); }
+        .dot:hover { background: var(--shenni-pink); }
+        .no-comments { color: var(--text-gray); text-align: center; padding: 20px; font-style: italic; }
+        
         .fade-in { animation: fadeInUp 0.8s ease-out; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; }
@@ -84,22 +110,22 @@
         <div class="navbar-brand"><a href="index.html">SHENNI PAINT</a></div>
         <ul class="navbar-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="kakanuenititshesht.html" class="active">Nature</a></li>
-            <li><a href="kakanuenititshesht.html">Guardian</a></li>
+            <li><a href="nature.html">Nature</a></li>
+            <li><a href="kakanuenititshesht.html" class="active">Guardian</a></li>
             <li><a href="geometric.html">Geometric</a></li>
         </ul>
     </nav>
     <a href="index.html" class="back-link">← Back to Collections</a>
     <header class="page-header fade-in">
-        <h1 class="page-title">🛡️ Kakanuenititshesht</h1>
+        <h1 class="page-title">🛡️ Guardian</h1>
         <p class="page-subtitle">Guardians and protectors in spiritual form</p>
-        <div class="artist-intro">Inspired by natural worlds, ancestral lands, and the mystical energy found in forests, water, and stone. These paintings capture the essence of living things transformed through psychedelic vision.</div>
+        <div class="artist-intro">Ancestral spirits and mystical guardians emerge from the depths. These paintings explore protection, wisdom, and the sacred knowledge kept by those who watch over us. Ancient energy rendered through psychedelic vision.</div>
     </header>
     <main class="main-content">
         <div class="paintings-grid" id="paintings-gallery"></div>
     </main>
     <footer class="footer">
-        <div class="footer-gradient">SHENNI PAINT - NATURE COLLECTION</div>
+        <div class="footer-gradient">SHENNI PAINT - GUARDIAN COLLECTION</div>
         <p class="footer-text">Where protection meets consciousness.<br>© 2026 Shenni Paint | All Rights Reserved</p>
         <div class="footer-contact">
             <h3>Your Paintings</h3>
@@ -112,63 +138,236 @@
             <img class="lightbox-image" id="lightbox-image" src="" alt="">
         </div>
     </div>
-    <script>
-        var paintings = [
-            { title: "Rock Antler", image: "./RockAntler.png", description: "Stone and spirit intertwined. Earth energy rendered in vibrant acrylic visions.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$200 CAD", status: "available" },
-            { title: "Blue Forest", image: "./BlueForest.png", description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$275 CAD", status: "available" },
-            { title: "The Watcher", image: "./watcher.jpg", description: "A guardian presence watching over sacred knowledge. Protective energy made visible through mystical vision.", size: 'Variable', medium: "Acrylic on canvas", price: "$225 CAD", status: "available" },
-            { title: "Ordinary Psychosis", image: "./psychosis.jpg", description: "Where madness and enlightenment blur. A meditation on consciousness and transcendence.", size: '7" x 5"', medium: "Acrylic on canvas", price: "150 CAD", status: "available" }
+
+    <!-- FIREBASE SCRIPTS -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
+
+        // YOUR FIREBASE CONFIG
+        const firebaseConfig = {
+            apiKey: "AIzaSyANpsk9MGIw-BpfTyjSJmAG37aaOs413hk",
+            authDomain: "shennipaint-feedback.firebaseapp.com",
+            projectId: "shennipaint-feedback",
+            storageBucket: "shennipaint-feedback.firebasestorage.app",
+            messagingSenderId: "948406345015",
+            appId: "1:948406345015:web:d90e958a8a942c4ea40eb2"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Anonymous auth
+        signInAnonymously(auth).catch(err => console.error("Auth error:", err));
+
+        // PAINTINGS DATA
+        const paintings = [
+            { id: "rock-antler", title: "Rock Antler", image: "./RockAntler.png", description: "Stone and spirit intertwined. Earth energy rendered in vibrant acrylic visions.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$200 CAD", status: "available", question: "Do the antlers feel like armor or a burden to you?" },
+            { id: "blue-forest", title: "Blue Forest", image: "./BlueForest.png", description: "The ancestral spirits of the Quebec forest emerge to guide lost souls to truth.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$275 CAD", status: "available", question: "What animal embodies both protection and mystery for you?" },
+            { id: "the-watcher", title: "The Watcher", image: "./watcher.jpg", description: "A guardian presence watching over sacred knowledge. Protective energy made visible through mystical vision.", size: 'Variable', medium: "Acrylic on canvas", price: "$225 CAD", status: "available", question: "Which creature would guard the wild but keep its distance from us?" },
+            { id: "ordinary-psychosis", title: "Ordinary Psychosis", image: "./psychosis.jpg", description: "Where madness and enlightenment blur. A meditation on consciousness and transcendence.", size: '7" x 5"', medium: "Acrylic on canvas", price: "$150 CAD", status: "available", question: "Have you ever experienced a moment—psychotic or psychedelic—where you saw colors you can't quite remember, but know you've never seen before?" },
+            { id: "sea-turtle", title: "Original Sea Turtle Mosaic Painting 12x16", image: "./turtle.png", description: "This original acrylic painting captures the ancient wisdom and mystical grace of the sea turtle. With its intricate geometric mosaic shell rendered in rich blues, corals, and earthy tones, the turtle becomes a symbol of slow, grounded journey through life's depths. Surrounded by swirling botanical elements and ethereal bubbles, the piece celebrates the interconnection between the creature and its ocean world.", size: '12x16', medium: "Acrylic on canvas", price: "$250 CAD", status: "available", question: "What does the ocean represent in your inner world?" }
         ];
 
+        // CREATE PAINTING HTML WITH COMMENTS
         function createPaintingHTML(painting) {
-            var statusText = painting.status === 'available' ? 'Available' : 'Sold';
-            var btn = painting.status === 'sold'
+            const statusText = painting.status === 'available' ? 'Available' : 'Sold';
+            const btn = painting.status === 'sold'
                 ? '<button class="contact-btn sold" disabled>Sold Out</button>'
                 : '<a href="https://shennipaint.etsy.com" target="_blank" class="etsy-btn">Buy on Etsy</a>';
-            return '<div class="painting-card fade-in">'
-                + '<div class="status-badge status-' + painting.status + '">' + statusText + '</div>'
-                + '<div class="painting-image-container lightbox-trigger" data-image="' + painting.image.replace(/'/g, "\\'") + '">'
-                + '<img src="' + painting.image + '" alt="' + painting.title + '" class="painting-image" loading="lazy">'
-                + '</div><div class="painting-info">'
-                + '<h3 class="painting-title">' + painting.title + '</h3>'
-                + '<p class="painting-description">' + painting.description + '</p>'
-                + '<div class="painting-details"><div class="painting-meta">Size: ' + painting.size + '<br>Medium: ' + painting.medium + '</div>'
-                + '<div class="painting-price">' + painting.price + '</div></div>'
-                + btn + '</div></div>';
+            
+            let commentsHTML = '';
+            if (painting.question) {
+                commentsHTML = `
+                    <div class="comments-section">
+                        <p class="comment-question">✨ ${painting.question}</p>
+                        <div class="comment-form">
+                            <form id="form-${painting.id}">
+                                <div class="form-group">
+                                    <label>Your name (optional):</label>
+                                    <input type="text" class="comment-name" placeholder="Anonymous" maxlength="50">
+                                </div>
+                                <div class="form-group">
+                                    <label>Your thoughts:</label>
+                                    <textarea class="comment-text-input" placeholder="Share your reflection..." maxlength="500" required></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">Share Your Thoughts</button>
+                            </form>
+                        </div>
+                        <div class="comments-carousel" id="carousel-${painting.id}">
+                            <div class="carousel-wrapper">
+                                <div class="no-comments">No reflections yet. Be the first! ✨</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `<div class="painting-card fade-in">
+                <div class="status-badge status-${painting.status}">${statusText}</div>
+                <div class="painting-image-container lightbox-trigger" data-image="${painting.image.replace(/'/g, "\\'")}">
+                    <img src="${painting.image}" alt="${painting.title}" class="painting-image" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3 class="painting-title">${painting.title}</h3>
+                    <p class="painting-description">${painting.description}</p>
+                    <div class="painting-details">
+                        <div class="painting-meta">Size: ${painting.size}<br>Medium: ${painting.medium}</div>
+                        <div class="painting-price">${painting.price}</div>
+                    </div>
+                    ${btn}
+                    ${commentsHTML}
+                </div>
+            </div>`;
         }
 
         function displayPaintings() {
-            var html = '';
-            for (var i = 0; i < paintings.length; i++) { html += createPaintingHTML(paintings[i]); }
+            let html = '';
+            paintings.forEach(p => { html += createPaintingHTML(p); });
             document.getElementById('paintings-gallery').innerHTML = html;
+            
+            // Load comments for each painting
+            paintings.forEach(p => {
+                if (p.question) {
+                    loadComments(p.id);
+                }
+            });
+
+            // Attach form listeners
+            paintings.forEach(p => {
+                if (p.question) {
+                    document.getElementById(`form-${p.id}`).addEventListener('submit', (e) => handleCommentSubmit(e, p.id));
+                }
+            });
         }
 
+        // LOAD COMMENTS FROM FIRESTORE
+        async function loadComments(paintingId) {
+            try {
+                const q = query(collection(db, "comments"), where("paintingId", "==", paintingId));
+                const snapshot = await getDocs(q);
+                const comments = [];
+                snapshot.forEach(doc => {
+                    comments.push(doc.data());
+                });
+                
+                displayComments(paintingId, comments);
+            } catch (error) {
+                console.error("Error loading comments:", error);
+            }
+        }
+
+        // DISPLAY COMMENTS WITH CAROUSEL
+        function displayComments(paintingId, comments) {
+            const carouselDiv = document.getElementById(`carousel-${paintingId}`);
+            
+            if (comments.length === 0) {
+                carouselDiv.innerHTML = '<div class="carousel-wrapper"><div class="no-comments">No reflections yet. Be the first! ✨</div></div>';
+                return;
+            }
+
+            let currentIndex = 0;
+
+            function renderCarousel() {
+                const comment = comments[currentIndex];
+                const dotsHTML = comments.map((_, i) => `<div class="dot ${i === currentIndex ? 'active' : ''}" data-index="${i}"></div>`).join('');
+                
+                carouselDiv.innerHTML = `
+                    <div class="carousel-wrapper">
+                        <div class="comment-display">
+                            <p class="comment-text">"${comment.text}"</p>
+                            <p class="comment-author">— ${comment.author || 'Anonymous'}</p>
+                        </div>
+                        <div class="carousel-dots">${dotsHTML}</div>
+                    </div>
+                `;
+
+                // Attach dot listeners
+                carouselDiv.querySelectorAll('.dot').forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        currentIndex = parseInt(e.target.dataset.index);
+                        renderCarousel();
+                    });
+                });
+            }
+
+            renderCarousel();
+        }
+
+        // SUBMIT COMMENT
+        async function handleCommentSubmit(e, paintingId) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const nameInput = form.querySelector('.comment-name');
+            const textInput = form.querySelector('.comment-text-input');
+            const submitBtn = form.querySelector('.submit-btn');
+
+            const name = nameInput.value.trim() || 'Anonymous';
+            const text = textInput.value.trim();
+
+            if (!text) {
+                alert('Please share your thoughts!');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Posting...';
+
+            try {
+                await addDoc(collection(db, "comments"), {
+                    paintingId: paintingId,
+                    author: name,
+                    text: text,
+                    timestamp: serverTimestamp()
+                });
+
+                // Clear form
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Share Your Thoughts';
+
+                // Reload comments
+                await loadComments(paintingId);
+            } catch (error) {
+                console.error("Error adding comment:", error);
+                alert('Error posting comment. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Share Your Thoughts';
+            }
+        }
+
+        // LIGHTBOX
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
+        // INITIALIZE
         document.addEventListener('DOMContentLoaded', function() { 
             displayPaintings();
             
             // Lightbox listeners
             document.addEventListener('click', function(e) {
                 if (e.target.closest('.lightbox-trigger')) {
-                    var img = e.target.closest('.lightbox-trigger').querySelector('img');
+                    const img = e.target.closest('.lightbox-trigger').querySelector('img');
                     document.getElementById('lightbox-image').src = img.src;
                     document.getElementById('lightbox').classList.add('active');
                     document.body.style.overflow = 'hidden';
                 }
             });
             
-            // Close lightbox
             document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
             document.getElementById('lightbox').addEventListener('click', function(e) {
                 if (e.target.id === 'lightbox') closeLightbox();
             });
         });
+
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') { closeLightbox(); }
+            if (e.key === 'Escape') closeLightbox();
         });
     </script>
 </body>
